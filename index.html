@@ -463,6 +463,12 @@
       margin: 0;
     }
 
+    .tasks-stats {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
     .tasks-count {
       background: var(--gray-100);
       color: var(--gray-600);
@@ -470,6 +476,16 @@
       border-radius: var(--radius);
       font-size: 0.875rem;
       font-weight: 500;
+    }
+
+    .unassigned-count {
+      background: var(--warning);
+      color: white;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: none;
     }
 
     /* Task card */
@@ -491,6 +507,31 @@
     .task-card.completed {
       opacity: 0.7;
       background: var(--gray-50);
+    }
+    
+    /* Unassigned task styling - simplified */
+    .task-card.unassigned {
+      border-left: 4px solid var(--warning);
+      background: #fef3c7;
+    }
+    
+    .task-card.unassigned:hover {
+      background: linear-gradient(to right, #fde68a, white);
+    }
+    
+    .unassigned-badge {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      background: var(--warning);
+      color: white;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      z-index: 1;
+      box-shadow: var(--shadow-sm);
     }
     
     .task-header {
@@ -533,6 +574,20 @@
 
     .task-meta-item strong {
       color: var(--gray-700);
+    }
+    
+    .text-muted {
+      color: var(--gray-500);
+      font-style: italic;
+    }
+    
+    .text-warning {
+      color: var(--warning);
+      font-weight: 600;
+    }
+    
+    .text-danger {
+      color: var(--danger);
     }
 
     .task-description {
@@ -905,7 +960,7 @@
           <button id="generateReport" class="btn btn-primary">
             📋 Générer Rapport
           </button>
-        </div>
+            </div>
           </div>
         </div>
 
@@ -1012,6 +1067,7 @@
         
         // Load and display tasks
         await loadTasks();
+        updateTasksCount(items.length);
         
         // Hide splash screen if in Capacitor
         if (window.Capacitor && window.Capacitor.Plugins.SplashScreen) {
@@ -1138,12 +1194,7 @@
         
         // Validation
         if (!taskData.title) {
-          alert('Le titre de la tâche est requis.');
-          return;
-        }
-        
-        if (taskData.who.length === 0) {
-          alert('Veuillez assigner la tâche à au moins une personne.');
+          showError('Le titre de la tâche est requis.');
           return;
         }
         
@@ -1446,10 +1497,11 @@
       const priorityClass = getPriorityClass(item.urgent);
       const statusClass = getStatusClass(item.status);
       const isOverdue = isTaskOverdue(item);
-      const assignees = item.who && item.who.length > 0 ? item.who.join(', ') : 'Non assignée';
+      const isUnassigned = !item.who || item.who.length === 0;
+      const assignees = isUnassigned ? 'Non assignée' : item.who.join(', ');
       
       return `
-        <div class="task-card ${item.status === 'Terminé' ? 'completed' : ''}" data-id="${item.id}">
+        <div class="task-card ${item.status === 'Terminé' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
           <div class="task-header">
             <h3 class="task-title">${escapeHtml(item.title)}</h3>
             <div class="task-actions">
@@ -1470,7 +1522,7 @@
           
           <div class="task-meta">
             <div class="task-meta-item">
-              <strong>Assigné à:</strong> ${escapeHtml(assignees)}
+              <strong>Assigné à:</strong> <span class="${isUnassigned ? 'text-warning' : ''}">${escapeHtml(assignees)}</span>
             </div>
             <div class="task-meta-item">
               <strong>Priorité:</strong> <span class="${priorityClass}">${getPriorityText(item.urgent)}</span>
@@ -1481,13 +1533,13 @@
             ${item.deadline ? `
               <div class="task-meta-item ${isOverdue ? 'text-danger' : ''}">
                 <strong>Échéance:</strong> ${formatDate(item.deadline)} ${isOverdue ? '⚠️ En retard' : ''}
-            </div>
+              </div>
             ` : ''}
             <div class="task-meta-item">
               <strong>Créée:</strong> ${formatDate(item.createdAt)}
-          </div>
             </div>
           </div>
+        </div>
       `;
     }
     
@@ -1597,6 +1649,12 @@
     // Update tasks count display
     function updateTasksCount(count) {
       $tasksCount.textContent = `${count} tâche${count !== 1 ? 's' : ''}`;
+    }
+    
+    // Update unassigned count display
+    function updateUnassignedCount(count) {
+      document.getElementById('unassignedCount').textContent = `${count} tâche${count !== 1 ? 's' : ''} non assignée`;
+      document.getElementById('unassignedCount').style.display = count > 0 ? 'block' : 'none';
     }
     
     // ============================================================================
