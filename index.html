@@ -153,8 +153,8 @@
     header {
       background: white;
       border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      margin-bottom: var(--space-6);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
     }
@@ -164,11 +164,11 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: var(--space-4);
+      gap: var(--space-3);
     }
     
     .app-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
       margin: 0;
@@ -176,7 +176,7 @@
     
     .header-actions {
       display: flex;
-      gap: var(--space-3);
+      gap: var(--space-2);
       flex-wrap: wrap;
     }
     
@@ -294,11 +294,19 @@
       color: var(--gray-700);
       margin-bottom: var(--space-2);
       font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
     }
     
     .form-label.required::after {
       content: " *";
       color: var(--danger);
+    }
+    
+    .field-icon {
+      font-size: 1.1rem;
+      opacity: 0.8;
     }
     
     .form-input,
@@ -320,6 +328,50 @@
     .form-textarea {
       resize: vertical;
       min-height: 80px;
+    }
+    
+    .form-textarea-enhanced {
+      min-height: 100px;
+      line-height: 1.5;
+    }
+    
+    .form-input-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    .field-hint {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: var(--space-1);
+      font-style: italic;
+    }
+    
+    /* Form sections */
+    .form-section {
+      grid-column: 1 / -1;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+    }
+    
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--gray-200);
+    }
+    
+    .form-section .form-grid {
+      gap: var(--space-3);
+    }
+    
+    .form-section .form-row {
+      margin-bottom: var(--space-3);
     }
 
     /* Chip styles */
@@ -355,6 +407,101 @@
     .chip input[type="radio"]:checked + span {
       color: var(--primary);
       font-weight: 500;
+    }
+    
+    /* Enhanced chips */
+    .chip-enhanced {
+      background: white;
+      border: 2px solid var(--gray-200);
+      padding: var(--space-3) var(--space-4);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .chip-enhanced:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-400);
+      transform: translateY(-1px);
+    }
+    
+    .chip-enhanced input[type="checkbox"]:checked + .chip-text,
+    .chip-enhanced input[type="radio"]:checked + .chip-text {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .chip-enhanced input[type="checkbox"]:checked,
+    .chip-enhanced input[type="radio"]:checked {
+      accent-color: var(--primary);
+    }
+    
+    .chip-priority {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chip-priority::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gray-300);
+      transition: background-color 0.2s;
+    }
+    
+    .chip-priority input[type="radio"]:checked + .chip-text {
+      color: var(--primary);
+    }
+    
+    .chip-priority input[type="radio"][value="Oui"]:checked + .chip-text {
+      color: var(--warning);
+    }
+    
+    .chip-priority input[type="radio"][value="Au PC !"]:checked + .chip-text {
+      color: var(--danger);
+    }
+    
+    .chip-text {
+      pointer-events: none;
+    }
+    
+    /* File upload styles */
+    .file-upload-container {
+      position: relative;
+    }
+    
+    .file-input {
+      padding: var(--space-4);
+      border: 2px dashed var(--gray-300);
+      background: var(--gray-50);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .file-input:hover {
+      border-color: var(--primary);
+      background: var(--gray-100);
+    }
+    
+    .file-input:focus {
+      border-color: var(--primary);
+      background: white;
+    }
+    
+    .file-hint {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: var(--space-2);
+      text-align: left;
+      display: block;
+      width: 100%;
+    }
+    
+    /* Button icon styles */
+    .btn-icon {
+      margin-right: var(--space-2);
     }
 
     /* Submit button container */
@@ -509,16 +656,18 @@
     .task-card {
       background: white;
       border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius);
       padding: var(--space-4);
-      margin-bottom: var(--space-4);
+      margin-bottom: var(--space-3);
       transition: all 0.2s ease-in-out;
       position: relative;
+      box-shadow: var(--shadow-sm);
     }
     
     .task-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+      border-color: var(--gray-300);
     }
     
     .task-card.completed {
@@ -526,14 +675,19 @@
       background: var(--gray-50);
     }
     
-    /* Unassigned task styling - simplified */
+    .task-card.completed .task-title {
+      text-decoration: line-through;
+      color: var(--gray-600);
+    }
+    
+    /* Unassigned task styling - subtle */
     .task-card.unassigned {
-      border-left: 4px solid var(--warning);
-      background: #fef3c7;
+      border-left: 3px solid var(--warning);
+      background: white;
     }
     
     .task-card.unassigned:hover {
-      background: linear-gradient(to right, #fde68a, white);
+      background: var(--gray-50);
     }
     
     .unassigned-badge {
@@ -560,7 +714,7 @@
     }
     
     .task-title {
-      font-size: 1.125rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--gray-800);
       margin: 0;
@@ -570,16 +724,127 @@
     
     .task-actions {
       display: flex;
-      gap: var(--space-2);
+      gap: var(--space-1);
       flex-shrink: 0;
     }
     
-    .task-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-3);
+    .task-actions .btn {
+      min-width: 40px;
+      min-height: 40px;
+      padding: var(--space-2);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      background: transparent;
+      border: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    
+    .task-actions .btn:hover {
+      transform: translateY(-1px);
+      opacity: 1;
+      background: var(--gray-50);
+      border-color: var(--gray-300);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .task-actions .btn:active {
+      transform: translateY(0);
+    }
+    
+    .task-actions .btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      opacity: 1;
+    }
+    
+    /* Specific button styles for better visual hierarchy */
+    .task-actions .btn-primary {
+      color: var(--primary);
+      border-color: var(--primary);
+      opacity: 0.8;
+    }
+    
+    .task-actions .btn-primary:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .task-actions .btn-primary:focus {
+      outline-color: var(--primary);
+    }
+    
+    .task-actions .btn-warning {
+      color: var(--warning);
+      border-color: var(--warning);
+      opacity: 0.8;
+    }
+    
+    .task-actions .btn-warning:hover {
+      background: var(--warning);
+      color: white;
+      border-color: var(--warning);
+    }
+    
+    .task-actions .btn-warning:focus {
+      outline-color: var(--warning);
+    }
+    
+    .task-actions .btn-danger {
+      color: var(--danger);
+      border-color: var(--danger);
+      opacity: 0.8;
+    }
+    
+    .task-actions .btn-danger:hover {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+    
+    .task-actions .btn-danger:focus {
+      outline-color: var(--danger);
+    }
+    
+    .task-content {
       margin-bottom: var(--space-3);
-      font-size: 0.875rem;
+    }
+    
+    .task-description {
+      color: var(--gray-600);
+      margin-bottom: var(--space-2);
+      line-height: 1.5;
+      font-size: 0.9rem;
+      padding: var(--space-2);
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--primary);
+    }
+
+    .task-location {
+      color: var(--gray-500);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-2);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2);
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--secondary);
+    }
+    
+    .task-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-2);
+      padding: var(--space-3);
+      background: var(--gray-50);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
     }
 
     .task-meta-item {
@@ -587,10 +852,18 @@
       align-items: center;
       gap: var(--space-2);
       color: var(--gray-600);
+      font-size: 0.85rem;
+      padding: var(--space-2);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200);
     }
 
     .task-meta-item strong {
       color: var(--gray-700);
+      font-weight: 600;
+      min-width: 70px;
+      font-size: 0.8rem;
     }
     
     .text-muted {
@@ -607,69 +880,62 @@
       color: var(--danger);
     }
 
-    .task-description {
-      color: var(--gray-600);
-      margin-bottom: var(--space-3);
-      line-height: 1.5;
-    }
-
-    .task-location {
-      color: var(--gray-500);
-      font-size: 0.875rem;
-      margin-bottom: var(--space-3);
-      font-style: italic;
-    }
-
-    /* Priority indicators */
-    .priority-urgent {
-      background: var(--danger);
-      color: white;
+    /* Priority indicators - compact */
+    .priority-urgent,
+    .priority-normal,
+    .priority-critical {
       padding: var(--space-1) var(--space-2);
       border-radius: var(--radius-sm);
       font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      min-width: 60px;
+      justify-content: center;
+    }
+
+    .priority-urgent {
+      background: var(--warning);
+      color: white;
     }
 
     .priority-normal {
       background: var(--gray-500);
       color: white;
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
     }
 
     .priority-critical {
-      background: var(--warning);
+      background: var(--danger);
       color: white;
+    }
+
+    /* Status indicators - compact */
+    .status-en-cours,
+    .status-termine {
       padding: var(--space-1) var(--space-2);
       border-radius: var(--radius-sm);
       font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      min-width: 60px;
+      justify-content: center;
     }
 
-    /* Status indicators */
     .status-en-cours {
       background: var(--primary);
       color: white;
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
     }
 
     .status-termine {
       background: var(--success);
       color: white;
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
     }
 
     /* Responsive design */
@@ -683,11 +949,11 @@
       .header-content {
         flex-direction: column;
         text-align: center;
-        gap: var(--space-4);
+        gap: var(--space-3);
       }
       
       .app-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
         line-height: 1.2;
       }
       
@@ -725,8 +991,8 @@
       }
       
       .task-actions .btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 40px;
+        min-height: 40px;
         padding: var(--space-2);
         font-size: 0.8rem;
       }
@@ -821,6 +1087,100 @@
         font-size: 0.9rem;
         touch-action: manipulation;
       }
+      
+      /* Enhanced form mobile improvements */
+      .form-section {
+        padding: var(--space-3);
+        margin: var(--space-3) 0;
+      }
+      
+      .section-title {
+        font-size: 1rem;
+        margin-bottom: var(--space-3);
+      }
+      
+      .chip-enhanced {
+        padding: var(--space-3);
+        min-height: 48px;
+        justify-content: center;
+      }
+      
+      .field-hint {
+        font-size: 0.7rem;
+        margin-top: var(--space-1);
+      }
+      
+      .file-input {
+        padding: var(--space-3);
+        min-height: 48px;
+        text-align: center;
+      }
+      
+      .file-hint {
+        font-size: 0.7rem;
+        margin-top: var(--space-1);
+      }
+      
+      /* Enhanced task card mobile improvements */
+      .task-card {
+        padding: var(--space-4);
+        margin-bottom: var(--space-3);
+      }
+      
+      .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+      
+      .task-title {
+        font-size: 1.1rem;
+        line-height: 1.3;
+      }
+      
+      .task-actions {
+        align-self: flex-end;
+        gap: var(--space-1);
+      }
+      
+      .task-actions .btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: var(--space-2);
+      }
+      
+      .task-description,
+      .task-location {
+        padding: var(--space-2);
+        font-size: 0.9rem;
+      }
+      
+      .task-meta {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        padding: var(--space-3);
+      }
+      
+      .task-meta-item {
+        padding: var(--space-2);
+        font-size: 0.85rem;
+      }
+      
+      .task-meta-item strong {
+        min-width: 70px;
+        font-size: 0.8rem;
+      }
+      
+      .priority-urgent,
+      .priority-normal,
+      .priority-critical,
+      .status-en-cours,
+      .status-termine {
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.75rem;
+        min-width: 70px;
+      }
     }
     
     /* Extra small mobile devices */
@@ -911,8 +1271,8 @@
       }
       
       .task-actions .btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 40px;
+        min-height: 40px;
         justify-content: center;
       }
     }
@@ -1213,9 +1573,6 @@
           <button id="clearMockData" class="btn btn-danger hidden">
             🗑️ Effacer données test
           </button>
-          <button id="shareApp" class="btn btn-success">
-            🔗 Partager
-          </button>
         </div>
       </div>
     </header>
@@ -1227,63 +1584,173 @@
         <input type="hidden" id="editId" value="">
         
         <div class="form-grid">
+          <!-- Title Section -->
           <div class="form-row full-width">
-            <label for="title" class="form-label required">Titre de la tâche</label>
-            <input id="title" name="title" type="text" class="form-input" required placeholder="Que faut-il faire ?">
+            <label for="title" class="form-label required">
+              <span class="field-icon">📝</span>
+              Titre de la tâche
+            </label>
+            <input 
+              id="title" 
+              name="title" 
+              type="text" 
+              class="form-input form-input-title" 
+              required 
+              placeholder="Que faut-il faire ?"
+              maxlength="200"
+            >
           </div>
           
+          <!-- Location Section - Moved up for better flow -->
           <div class="form-row full-width">
-            <label for="description" class="form-label">Description</label>
-            <textarea id="description" name="description" class="form-input form-textarea" placeholder="Détails, instructions, contexte..."></textarea>
+            <label for="location" class="form-label">
+              <span class="field-icon">📍</span>
+              Localisation
+            </label>
+            <input 
+              id="location" 
+              name="location" 
+              type="text" 
+              class="form-input" 
+              placeholder="Où se trouve la tâche ? (peut être un lien Google Maps)"
+            >
           </div>
           
-          <div class="form-row">
-            <label for="location" class="form-label">📍 Localisation</label>
-            <textarea id="location" name="location" class="form-input" placeholder="Où se trouve la tâche ?"></textarea>
+          <!-- Description Section - Enhanced -->
+          <div class="form-row full-width">
+            <label for="description" class="form-label">
+              <span class="field-icon">📋</span>
+              Description
+            </label>
+            <textarea 
+              id="description" 
+              name="description" 
+              class="form-input form-textarea form-textarea-enhanced" 
+              placeholder="Détails, instructions, contexte..."
+              maxlength="1000"
+            ></textarea>
           </div>
           
-          <div class="form-row">
-            <label class="form-label">👥 Assignation</label>
-            <div class="chip-group">
-              <label class="chip"><input type="checkbox" name="who" value="Éric"> Éric</label>
-              <label class="chip"><input type="checkbox" name="who" value="Fred"> Fred</label>
-              <label class="chip"><input type="checkbox" name="who" value="Audrey"> Audrey</label>
-              <label class="chip"><input type="checkbox" name="who" value="Lucas"> Lucas</label>
-              <label class="chip"><input type="checkbox" name="who" value="Miguel"> Miguel</label>
-              <label class="chip"><input type="checkbox" name="who" value="Autre"> Autre</label>
+          <!-- Task Characteristics Section -->
+          <div class="form-section">
+            <h3 class="section-title">Caractéristiques de la tâche</h3>
+            
+            <div class="form-grid">
+              <!-- Assignee Section -->
+              <div class="form-row">
+                <label class="form-label">
+                  <span class="field-icon">👥</span>
+                  Assignation
+                </label>
+                <div class="chip-group chip-group-enhanced">
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Éric">
+                    <span class="chip-text">Éric</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Fred">
+                    <span class="chip-text">Fred</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Audrey">
+                    <span class="chip-text">Audrey</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Lucas">
+                    <span class="chip-text">Lucas</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Miguel">
+                    <span class="chip-text">Miguel</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="checkbox" name="who" value="Autre">
+                    <span class="chip-text">Autre</span>
+                  </label>
+                </div>
+                <div class="field-hint">Sélectionnez une ou plusieurs personnes</div>
+              </div>
+              
+              <!-- Priority Section -->
+              <div class="form-row">
+                <label class="form-label">
+                  <span class="field-icon">🚨</span>
+                  Priorité
+                </label>
+                <div class="chip-group chip-group-enhanced">
+                  <label class="chip chip-enhanced chip-priority">
+                    <input type="radio" name="urgent" value="Non" checked>
+                    <span class="chip-text">Normal</span>
+                  </label>
+                  <label class="chip chip-enhanced chip-priority">
+                    <input type="radio" name="urgent" value="Oui">
+                    <span class="chip-text">Urgent</span>
+                  </label>
+                  <label class="chip chip-enhanced chip-priority">
+                    <input type="radio" name="urgent" value="Au PC !">
+                    <span class="chip-text">Critique</span>
+                  </label>
+                </div>
+                <div class="field-hint">Définissez l'urgence de la tâche</div>
+              </div>
+              
+              <!-- Status Section -->
+              <div class="form-row">
+                <label class="form-label">
+                  <span class="field-icon">📊</span>
+                  Statut
+                </label>
+                <div class="chip-group chip-group-enhanced">
+                  <label class="chip chip-enhanced">
+                    <input type="radio" name="status" value="En cours" checked>
+                    <span class="chip-text">En cours</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="radio" name="status" value="En Attente">
+                    <span class="chip-text">En Attente</span>
+                  </label>
+                  <label class="chip chip-enhanced">
+                    <input type="radio" name="status" value="Terminée">
+                    <span class="chip-text">Terminée</span>
+                  </label>
+                </div>
+                <div class="field-hint">Définissez le statut de la tâche</div>
+              </div>
             </div>
           </div>
           
-          <div class="form-row">
-            <label class="form-label">🚨 Priorité</label>
-            <div class="chip-group">
-              <label class="chip"><input type="radio" name="urgent" value="Non" checked> Normal</label>
-              <label class="chip"><input type="radio" name="urgent" value="Oui"> Urgent</label>
-              <label class="chip"><input type="radio" name="urgent" value="Au PC !"> Critique</label>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <label for="deadline" class="form-label">⏰ Échéance</label>
-            <input id="deadline" name="deadline" type="date" class="form-input">
-          </div>
-          
+          <!-- Files Section -->
           <div class="form-row full-width">
-            <label for="files" class="form-label">📎 Fichiers</label>
-            <input id="files" name="files" type="file" multiple class="form-input">
+            <label for="files" class="form-label">
+              <span class="field-icon">📎</span>
+              Fichiers joints
+            </label>
+            <div class="file-upload-container">
+              <input 
+                id="files" 
+                name="files" 
+                type="file" 
+                multiple 
+                class="form-input file-input"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+              >
+            </div>
+            <div class="file-hint">Formats acceptés: PDF, DOC, images, texte</div>
           </div>
         </div>
         
         <div class="submit-container">
           <button type="submit" class="submit-btn" id="submitBtn">
-            💾 Enregistrer la tâche
+            <span class="btn-icon">💾</span>
+            Enregistrer la tâche
           </button>
           <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none; margin-left: var(--space-3);">
-            ❌ Annuler
+            <span class="btn-icon">❌</span>
+            Annuler
           </button>
-            </div>
+        </div>
       </form>
-          </div>
+    </div>
 
     <!-- Controls Section -->
     <div class="controls-section">
@@ -1302,8 +1769,9 @@
           <label for="filterSelect" class="control-label">Filtrer par statut</label>
           <select id="filterSelect" class="control-select">
             <option value="all">Toutes les tâches</option>
-            <option value="pending">En cours</option>
-            <option value="done">Terminées</option>
+            <option value="en-cours">En cours</option>
+            <option value="en-attente">En Attente</option>
+            <option value="terminee">Terminées</option>
             <option value="unassigned">Non assignées</option>
           </select>
         </div>
@@ -1313,7 +1781,6 @@
           <select id="sortSelect" class="control-select">
             <option value="status">Statut</option>
             <option value="urgency">Priorité</option>
-            <option value="deadline">Échéance</option>
             <option value="created">Date de création</option>
           </select>
         </div>
@@ -1363,7 +1830,7 @@
     
     // DOM elements - will be initialized after DOM loads
     let $passwordOverlay, $passwordForm, $passwordInput, $appContainer, $cmvForm, $taskList, $tasksCount;
-    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $addMockData, $clearMockData, $shareApp, $generateReport;
+    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $addMockData, $clearMockData, $generateReport;
     
     // App state
     let currentFilter = 'all';
@@ -1375,7 +1842,8 @@
     // Status weights for sorting
     const STATUS_WEIGHT = {
       "En cours": 1,
-      "Terminé": 2
+      "En Attente": 2,
+      "Terminée": 3
     };
     
     // ============================================================================
@@ -1504,7 +1972,6 @@
         location: item.location || '',
         who: Array.isArray(item.who) ? item.who : (item.who ? [item.who] : []),
         urgent: item.urgent || 'Non',
-        deadline: item.deadline || null,
         status: item.status || 'En cours',
         createdAt: item.createdAt || new Date().toISOString()
       };
@@ -1524,13 +1991,6 @@
       
       if (taskData.description && taskData.description.length > 1000) {
         errors.push('La description ne peut pas dépasser 1000 caractères');
-      }
-      
-      if (taskData.deadline) {
-        const deadlineDate = new Date(taskData.deadline);
-        if (isNaN(deadlineDate.getTime())) {
-          errors.push('Date d\'échéance invalide');
-        }
       }
       
       return errors;
@@ -1565,7 +2025,6 @@
       $exportCSV.addEventListener('click', exportToCSV);
       $addMockData.addEventListener('click', addMockData);
       $clearMockData.addEventListener('click', clearMockData);
-      $shareApp.addEventListener('click', shareApp);
       $generateReport.addEventListener('click', generateReport);
       
       console.log('Event listeners set up successfully');
@@ -1603,8 +2062,7 @@
           location: formData.get('location').trim(),
           who: Array.from(formData.getAll('who')),
           urgent: formData.get('urgent'),
-          deadline: formData.get('deadline'),
-          status: 'En cours',
+          status: formData.get('status'),
           createdAt: new Date().toISOString()
         };
         
@@ -1740,30 +2198,6 @@
       }
     }
     
-    // Toggle task status
-    async function toggleTaskStatus(taskId) {
-      try {
-        const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
-        const taskIndex = items.findIndex(item => item.id == taskId);
-        
-        if (taskIndex === -1) {
-          throw new Error('Task not found');
-        }
-        
-        const currentStatus = items[taskIndex].status;
-        items[taskIndex].status = currentStatus === 'En cours' ? 'Terminé' : 'En cours';
-        
-        localStorage.setItem('cmvDB', JSON.stringify(items));
-        
-        console.log('Task status toggled successfully');
-        await loadTasks();
-        showSuccess('Statut de la tâche modifié avec succès !');
-      } catch (error) {
-        console.error('Failed to toggle task status:', error);
-        showError('Erreur lors du changement de statut: ' + error.message);
-      }
-    }
-    
     // Edit a task
     function editTask(taskId) {
       try {
@@ -1779,7 +2213,6 @@
         document.getElementById('title').value = task.title || '';
         document.getElementById('description').value = task.description || '';
         document.getElementById('location').value = task.location || '';
-        document.getElementById('deadline').value = task.deadline || '';
         
         // Set assignees
         const whoInputs = document.querySelectorAll('input[name="who"]');
@@ -1791,6 +2224,12 @@
         const urgentInputs = document.querySelectorAll('input[name="urgent"]');
         urgentInputs.forEach(input => {
           input.checked = input.value === task.urgent;
+        });
+        
+        // Set status
+        const statusInputs = document.querySelectorAll('input[name="status"]');
+        statusInputs.forEach(input => {
+          input.checked = input.value === task.status;
         });
         
         // Update form state
@@ -1905,20 +2344,16 @@
     function renderTaskCard(item) {
       const priorityClass = getPriorityClass(item.urgent);
       const statusClass = getStatusClass(item.status);
-      const isOverdue = isTaskOverdue(item);
       const isUnassigned = !item.who || item.who.length === 0;
       const assignees = isUnassigned ? 'Non assignée' : item.who.join(', ');
       
       return `
-        <div class="task-card ${item.status === 'Terminé' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
+        <div class="task-card ${item.status === 'Terminée' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
           <div class="task-header">
             <h3 class="task-title">${escapeHtml(item.title)}</h3>
             <div class="task-actions">
               <button class="btn btn-sm btn-primary" onclick="editTask(${item.id})" title="Modifier">
                 ✏️
-              </button>
-              <button class="btn btn-sm btn-warning" onclick="toggleTaskStatus(${item.id})" title="${item.status === 'En cours' ? 'Marquer comme terminée' : 'Marquer comme en cours'}">
-                ${item.status === 'En cours' ? '✅' : '🔄'}
               </button>
               <button class="btn btn-sm btn-danger" onclick="deleteTask(${item.id})" title="Supprimer">
                 🗑️
@@ -1926,26 +2361,27 @@
             </div>
           </div>
           
-          ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
-          ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+          <div class="task-content">
+            ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
+            ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+          </div>
           
           <div class="task-meta">
             <div class="task-meta-item">
-              <strong>Assigné à:</strong> <span class="${isUnassigned ? 'text-warning' : ''}">${escapeHtml(assignees)}</span>
+              <strong>👥 Assigné à:</strong> 
+              <span class="${isUnassigned ? 'text-warning' : ''}">${escapeHtml(assignees)}</span>
             </div>
             <div class="task-meta-item">
-              <strong>Priorité:</strong> <span class="${priorityClass}">${getPriorityText(item.urgent)}</span>
+              <strong>🚨 Priorité:</strong> 
+              <span class="${priorityClass}">${getPriorityText(item.urgent)}</span>
             </div>
             <div class="task-meta-item">
-              <strong>Statut:</strong> <span class="${statusClass}">${item.status}</span>
+              <strong>📊 Statut:</strong> 
+              <span class="${statusClass}">${item.status}</span>
             </div>
-            ${item.deadline ? `
-              <div class="task-meta-item ${isOverdue ? 'text-danger' : ''}">
-                <strong>Échéance:</strong> ${formatDate(item.deadline)} ${isOverdue ? '⚠️ En retard' : ''}
-              </div>
-            ` : ''}
             <div class="task-meta-item">
-              <strong>Créée:</strong> ${formatDate(item.createdAt)}
+              <strong>📅 Créée:</strong> 
+              ${formatDate(item.createdAt)}
             </div>
           </div>
         </div>
@@ -2020,14 +2456,15 @@
     // Get status CSS class
     function getStatusClass(status) {
       switch (status) {
-        case 'Terminé': return 'status-termine';
+        case 'Terminée': return 'status-terminee';
+        case 'En Attente': return 'status-en-attente';
         default: return 'status-en-cours';
       }
     }
     
     // Check if task is overdue
     function isTaskOverdue(item) {
-      if (!item.deadline || item.status === 'Terminé') return false;
+      if (!item.deadline || item.status === 'Terminée') return false;
       const deadline = new Date(item.deadline);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -2050,6 +2487,8 @@
     
     // Escape HTML to prevent XSS
     function escapeHtml(text) {
+      if (typeof text !== 'string') return text;
+      
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
@@ -2103,7 +2542,7 @@
         }
         
         // Create CSV content
-        const headers = ['Titre', 'Description', 'Localisation', 'Assigné à', 'Priorité', 'Statut', 'Échéance', 'Date de création'];
+        const headers = ['Titre', 'Description', 'Localisation', 'Assigné à', 'Priorité', 'Statut', 'Date de création'];
         const csvContent = [
           headers.join(','),
           ...items.map(item => [
@@ -2113,7 +2552,6 @@
             `"${(item.who ? item.who.join('; ') : '').replace(/"/g, '""')}"`,
             `"${item.urgent || ''}"`,
             `"${item.status || ''}"`,
-            `"${item.deadline || ''}"`,
             `"${item.createdAt ? formatDate(item.createdAt) : ''}"`
           ].join(','))
         ].join('\n');
@@ -2139,29 +2577,7 @@
     
     // Share app URL
     function shareApp() {
-      const githubUrl = 'https://miguelbaillargeon.github.io/glentasks-web/';
-      
-      if (navigator.share) {
-        navigator.share({
-          title: 'GlenTasks - Gestion des Tâches',
-          text: 'Application de gestion des tâches simple et efficace',
-          url: githubUrl
-        });
-        } else {
-        // Fallback for browsers that don't support Web Share API
-        navigator.clipboard.writeText(githubUrl).then(() => {
-          showSuccess('Lien GitHub copié dans le presse-papiers !');
-        }).catch(() => {
-          // Fallback for older browsers
-          const textArea = document.createElement('textarea');
-          textArea.value = githubUrl;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-          showSuccess('Lien GitHub copié dans le presse-papiers !');
-        });
-      }
+      // Function removed - no longer needed
     }
     
     // ============================================================================
@@ -2178,7 +2594,6 @@
             location: "Sentier principal - km 2.5",
             who: ["Éric"],
             urgent: "Oui",
-            deadline: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
           },
@@ -2188,8 +2603,7 @@
             location: "Parking principal",
             who: ["Fred"],
             urgent: "Non",
-            deadline: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            status: "En cours",
+            status: "En Attente",
             createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
@@ -2198,7 +2612,6 @@
             location: "Entrée principale",
             who: ["Audrey", "Lucas"],
             urgent: "Au PC !",
-            deadline: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
           },
@@ -2208,8 +2621,7 @@
             location: "Bâtiment administratif",
             who: ["Miguel"],
             urgent: "Non",
-            deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            status: "En cours",
+            status: "Terminée",
             createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
@@ -2218,17 +2630,15 @@
             location: "Chemin de randonnée - départ",
             who: ["Éric"],
             urgent: "Oui",
-            deadline: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            status: "En cours",
+            status: "En Attente",
             createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
             title: "Planter de nouveaux arbres",
             description: "Remplacer les pins morts par des sapins",
             location: "Zone de reboisement - versant nord",
-            who: ["Fred", "Audrey"],
+            who: [],
             urgent: "Non",
-            deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
           },
@@ -2238,8 +2648,7 @@
             location: "Pont du ruisseau - sentier est",
             who: ["Lucas"],
             urgent: "Oui",
-            deadline: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            status: "En cours",
+            status: "Terminée",
             createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
@@ -2248,7 +2657,6 @@
             location: "Tous les panneaux du site",
             who: ["Miguel", "Fred"],
             urgent: "Non",
-            deadline: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
           },
@@ -2258,17 +2666,15 @@
             location: "Belvédère - point de vue",
             who: ["Éric", "Lucas"],
             urgent: "Au PC !",
-            deadline: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            status: "En cours",
+            status: "En Attente",
             createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
             title: "Tondre les pelouses",
             description: "Herbe haute sur les zones de pique-nique",
             location: "Zones de pique-nique",
-            who: ["Audrey"],
+            who: [],
             urgent: "Non",
-            deadline: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
           }
@@ -2325,63 +2731,54 @@
       try {
         console.log('Report generation started...');
             
-            // Get current filtered and sorted items
-            let items = await listSubmissions();
-            
-            // Apply the same filtering logic as renderList
-            items.forEach(it => {
-              if (!it.status) it.status = "En cours";
-              if (!it.title && it.task) it.title = it.task;
-              if (!it.description) it.description = "";
-            });
-            
-            // Apply current filters
-            items = items.filter(it => {
-              if (selectedEmployee && (!it.who || !it.who.includes(selectedEmployee))) {
-                return false;
-              }
-              
-              switch (currentFilter) {
-                case 'done':
-                  return it.status === "Terminé";
-                case 'pending':
-                  return it.status === "En cours";
-                case 'unassigned':
-                  return !it.who || it.who.length === 0;
-                default:
-                  return true;
-              }
-            });
-            
-            // Apply current sorting
-            items.sort((a, b) => {
-              const wa = STATUS_WEIGHT[a.status] ?? 0;
-              const wb = STATUS_WEIGHT[b.status] ?? 0;
-              if (wa !== wb) return wa - wb;
-              
-              let sortResult = 0;
-              switch (currentSort) {
-                case 'urgency':
-                  const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
-                  const urgencyA = urgencyOrder[a.urgent] || 0;
-                  const urgencyB = urgencyOrder[b.urgent] || 0;
-                  sortResult = urgencyB - urgencyA;
-                  break;
-                case 'deadline':
-                  const today = new Date().setHours(0,0,0,0);
-                  const deadlineA = a.deadline ? new Date(a.deadline) : new Date('9999-12-31');
-                  const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
-                  
-                  // Overdue tasks first (but only among non-done tasks)
-                  const overdueA = deadlineA < today && a.status !== "Terminé";
-                  const overdueB = deadlineB < today && b.status !== "Terminé";
-                  if (overdueA !== overdueB) {
-                    sortResult = overdueB - overdueA;
-                  } else {
-                    sortResult = deadlineA - deadlineB;
-                  }
-                  break;
-                default:
+        // Get current filtered and sorted items
+        let items = await listSubmissions();
+        
+        // Apply the same filtering logic as renderList
+        items.forEach(it => {
+          if (!it.status) it.status = "En cours";
+          if (!it.title && it.task) it.title = it.task;
+          if (!it.description) it.description = "";
+        });
+        
+        // Apply current filters
+        items = items.filter(it => {
+          if (selectedEmployee && (!it.who || !it.who.includes(selectedEmployee))) {
+            return false;
+          }
+          
+          switch (currentFilter) {
+            case 'terminee':
+              return it.status === "Terminée";
+            case 'en-cours':
+              return it.status === "En cours";
+            case 'en-attente':
+              return it.status === "En Attente";
+            case 'unassigned':
+              return !it.who || it.who.length === 0;
+            default:
+              return true;
+          }
+        });
+        
+        // Apply current sorting
+        items.sort((a, b) => {
+          const wa = STATUS_WEIGHT[a.status] ?? 0;
+          const wb = STATUS_WEIGHT[b.status] ?? 0;
+          if (wa !== wb) return wa - wb;
+          
+          let sortResult = 0;
+          switch (currentSort) {
+            case 'urgency':
+              const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
+              const urgencyA = urgencyOrder[a.urgent] || 0;
+              const urgencyB = urgencyOrder[b.urgent] || 0;
+              sortResult = urgencyB - urgencyA;
+              break;
+            case 'created':
+              sortResult = new Date(b.createdAt) - new Date(a.createdAt);
+              break;
+            default: // status
               sortResult = STATUS_WEIGHT[a.status] - STATUS_WEIGHT[b.status];
           }
           
@@ -2410,7 +2807,7 @@
             console.warn('Capacitor Filesystem failed, trying fallback:', error);
             fallbackReportGeneration(reportHTML);
           }
-      } else {
+        } else {
           fallbackReportGeneration(reportHTML);
         }
         
@@ -2440,8 +2837,9 @@
     function generateReportHTML(items) {
       const now = new Date();
       const totalTasks = items.length;
-      const completedTasks = items.filter(item => item.status === 'Terminé').length;
+      const completedTasks = items.filter(item => item.status === 'Terminée').length;
       const pendingTasks = items.filter(item => item.status === 'En cours').length;
+      const waitingTasks = items.filter(item => item.status === 'En Attente').length;
       const urgentTasks = items.filter(item => item.urgent === 'Oui' || item.urgent === 'Au PC !').length;
       
       return `
@@ -2452,189 +2850,460 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Rapport GlenTasks - ${now.toLocaleDateString('fr-FR')}</title>
           <style>
+            /* CSS Variables for consistent theming */
+            :root {
+              --primary: #3b82f6;
+              --primary-dark: #2563eb;
+              --secondary: #64748b;
+              --success: #10b981;
+              --warning: #f59e0b;
+              --danger: #ef4444;
+              --gray-50: #f8fafc;
+              --gray-100: #f1f5f9;
+              --gray-200: #e2e8f0;
+              --gray-300: #cbd5e1;
+              --gray-400: #94a3b8;
+              --gray-500: #64748b;
+              --gray-600: #475569;
+              --gray-700: #334155;
+              --gray-800: #1e293b;
+              --gray-900: #0f172a;
+              
+              --space-1: 0.25rem;
+              --space-2: 0.5rem;
+              --space-3: 0.75rem;
+              --space-4: 1rem;
+              --space-5: 1.25rem;
+              --space-6: 1.5rem;
+              --space-8: 2rem;
+              --space-10: 2.5rem;
+              --space-12: 3rem;
+              
+              --radius-sm: 0.25rem;
+              --radius: 0.375rem;
+              --radius-md: 0.5rem;
+              --radius-lg: 0.75rem;
+              --radius-xl: 1rem;
+              
+              --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+              --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+              --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+              --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            }
+
+            /* Reset and base styles */
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+
             body { 
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-              line-height: 1.6; 
-              color: #333;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+              line-height: 1.4; 
+              color: var(--gray-800);
               max-width: 1200px;
               margin: 0 auto;
-              padding: 20px;
-              background: #f8fafc;
+              padding: var(--space-3);
+              background: var(--gray-50);
+              font-size: 0.8rem;
             }
+
+            /* Header - Ultra compact */
             .header { 
               text-align: center; 
-              margin-bottom: 40px;
-              padding: 30px;
-              background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+              margin-bottom: var(--space-4);
+              padding: var(--space-4);
+              background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
               color: white;
-              border-radius: 12px;
+              border-radius: var(--radius-md);
+              box-shadow: var(--shadow);
             }
+            
             .header h1 { 
               margin: 0; 
-              font-size: 2.5rem;
+              font-size: 1.5rem;
               font-weight: 700;
+              margin-bottom: var(--space-1);
             }
+            
             .header p {
-              margin: 10px 0 0 0;
-              font-size: 1.1rem;
+              margin: 0;
+              font-size: 0.875rem;
               opacity: 0.9;
+              font-weight: 500;
             }
+
+            /* Summary cards - Ultra compact grid */
             .summary {
               display: grid; 
-              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-              gap: 20px;
-              margin-bottom: 40px;
+              grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+              gap: var(--space-2);
+              margin-bottom: var(--space-4);
             }
+            
             .summary-card {
               background: white;
-              padding: 25px;
-              border-radius: 12px;
+              padding: var(--space-3);
+              border-radius: var(--radius);
               text-align: center;
-              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-              border: 1px solid #e2e8f0;
+              box-shadow: var(--shadow-sm);
+              border: 1px solid var(--gray-200);
+              transition: transform 0.2s ease;
             }
+            
+            .summary-card:hover {
+              transform: translateY(-1px);
+              box-shadow: var(--shadow);
+            }
+            
             .summary-number {
-              font-size: 2.5rem;
+              font-size: 1.5rem;
               font-weight: 700;
-              color: #3b82f6;
-              margin-bottom: 10px;
+              color: var(--primary);
+              margin-bottom: var(--space-1);
+              line-height: 1;
             }
+            
             .summary-label {
-              color: #64748b;
-              font-size: 0.9rem;
+              color: var(--gray-600);
+              font-size: 0.7rem;
               text-transform: uppercase;
-              letter-spacing: 0.5px;
+              letter-spacing: 0.3px;
+              font-weight: 600;
             }
+
+            /* Tasks section - Ultra compact */
             .tasks-section {
               background: white;
-              border-radius: 12px;
-              padding: 30px;
-              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-              border: 1px solid #e2e8f0;
+              border-radius: var(--radius-md);
+              padding: var(--space-4);
+              box-shadow: var(--shadow);
+              border: 1px solid var(--gray-200);
             }
+            
             .tasks-title {
-              font-size: 1.5rem;
+              font-size: 1.1rem;
               font-weight: 600;
-              color: #1e293b;
-              margin-bottom: 25px;
-              padding-bottom: 15px;
-              border-bottom: 2px solid #e2e8f0;
+              color: var(--gray-800);
+              margin-bottom: var(--space-3);
+              padding-bottom: var(--space-2);
+              border-bottom: 1px solid var(--gray-200);
             }
+
+            /* Task items - Ultra compact */
             .task-item { 
-              padding: 20px;
-              border: 1px solid #e2e8f0; 
-              border-radius: 8px; 
-              margin-bottom: 15px; 
-              background: #f8fafc;
+              padding: var(--space-3);
+              border: 1px solid var(--gray-200); 
+              border-radius: var(--radius-sm);
+              margin-bottom: var(--space-2);
+              background: white;
+              transition: all 0.2s ease;
+              box-shadow: var(--shadow-sm);
             }
+            
+            .task-item:hover {
+              transform: translateY(-1px);
+              box-shadow: var(--shadow);
+              border-color: var(--gray-300);
+            }
+            
+            .task-item:last-child {
+              margin-bottom: 0;
+            }
+            
             .task-header { 
               display: flex;
               justify-content: space-between;
               align-items: flex-start;
-              margin-bottom: 15px;
+              margin-bottom: var(--space-2);
+              gap: var(--space-2);
             }
+            
             .task-title { 
-              font-size: 1.1rem;
+              font-size: 0.9rem;
               font-weight: 600; 
-              color: #1e293b; 
+              color: var(--gray-800); 
               margin: 0;
               flex: 1;
+              line-height: 1.3;
             }
-            .task-meta { 
+
+            /* Task description - Ultra compact */
+            .task-description {
+              color: var(--gray-600);
+              margin-bottom: var(--space-2);
+              line-height: 1.3;
+              font-size: 0.8rem;
+              padding: var(--space-2);
+              background: var(--gray-50);
+              border-radius: var(--radius-sm);
+              border-left: 2px solid var(--primary);
+            }
+
+            /* Task location - Ultra compact */
+            .task-location {
+              color: var(--gray-500);
+              font-size: 0.75rem;
+              margin-bottom: var(--space-2);
+              font-style: italic;
               display: flex;
-              flex-wrap: wrap;
-              gap: 15px;
-              margin-bottom: 15px;
-              font-size: 0.9rem;
+              align-items: center;
+              gap: var(--space-1);
+              padding: var(--space-2);
+              background: var(--gray-50);
+              border-radius: var(--radius-sm);
+              border-left: 2px solid var(--secondary);
             }
+
+            /* Task meta - Ultra compact grid layout */
+            .task-meta { 
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+              gap: var(--space-1);
+              padding: var(--space-2);
+              background: var(--gray-50);
+              border-radius: var(--radius-sm);
+              border: 1px solid var(--gray-200);
+              font-size: 0.75rem;
+            }
+            
             .task-meta-item {
               display: flex; 
               align-items: center; 
-              gap: 5px;
+              gap: var(--space-1);
+              color: var(--gray-600);
+              padding: var(--space-1);
+              background: white;
+              border-radius: var(--radius-sm);
+              border: 1px solid var(--gray-200);
             }
+            
             .task-meta-item strong {
-              color: #475569; 
+              color: var(--gray-700);
+              font-weight: 600;
+              min-width: 50px;
+              font-size: 0.7rem;
             }
-            .priority-urgent { background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-            .priority-normal { background: #64748b; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-            .priority-critical { background: #f59e0b; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-            .status-en-cours { background: #3b82f6; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-            .status-termine { background: #10b981; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+
+            /* Priority and status indicators - Ultra compact */
+            .priority-urgent, .priority-normal, .priority-critical,
+            .status-en-cours, .status-termine {
+              padding: var(--space-1);
+              border-radius: var(--radius-sm);
+              font-size: 0.65rem;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.2px;
+              display: inline-flex;
+              align-items: center;
+              gap: var(--space-1);
+              min-width: 45px;
+              justify-content: center;
+            }
+
+            .priority-urgent { background: var(--warning); color: white; }
+            .priority-normal { background: var(--gray-500); color: white; }
+            .priority-critical { background: var(--danger); color: white; }
+            .status-en-cours { background: var(--primary); color: white; }
+            .status-en-attente { background: var(--warning); color: white; }
+            .status-terminee { background: var(--success); color: white; }
+
+            /* Footer - Ultra compact */
             .footer { 
               text-align: center; 
-              margin-top: 40px;
-              padding: 20px;
-              color: #64748b;
-              font-size: 0.9rem;
+              margin-top: var(--space-4);
+              padding: var(--space-3);
+              color: var(--gray-500);
+              font-size: 0.75rem;
+              background: white;
+              border-radius: var(--radius-md);
+              border: 1px solid var(--gray-200);
             }
+
+            /* Responsive design */
+            @media (max-width: 768px) {
+              body {
+                padding: var(--space-2);
+                font-size: 0.75rem;
+              }
+              
+              .header {
+                padding: var(--space-3);
+                margin-bottom: var(--space-3);
+              }
+              
+              .header h1 {
+                font-size: 1.25rem;
+              }
+              
+              .summary {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-2);
+                margin-bottom: var(--space-3);
+              }
+              
+              .summary-card {
+                padding: var(--space-2);
+              }
+              
+              .summary-number {
+                font-size: 1.25rem;
+              }
+              
+              .tasks-section {
+                padding: var(--space-3);
+              }
+              
+              .task-item {
+                padding: var(--space-2);
+                margin-bottom: var(--space-2);
+              }
+              
+              .task-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-1);
+              }
+              
+              .task-meta {
+                grid-template-columns: 1fr;
+                gap: var(--space-1);
+                padding: var(--space-2);
+              }
+              
+              .task-meta-item {
+                padding: var(--space-1);
+                font-size: 0.7rem;
+              }
+              
+              .task-meta-item strong {
+                min-width: 45px;
+                font-size: 0.65rem;
+              }
+            }
+
+            @media (max-width: 480px) {
+              body {
+                padding: var(--space-2);
+              }
+              
+              .header {
+                padding: var(--space-2);
+              }
+              
+              .header h1 {
+                font-size: 1.1rem;
+              }
+              
+              .summary {
+                grid-template-columns: 1fr;
+              }
+              
+              .tasks-section {
+                padding: var(--space-2);
+              }
+              
+              .task-item {
+                padding: var(--space-2);
+              }
+            }
+
+            /* Print styles */
             @media print {
-              body { background: white; }
-              .header { background: #3b82f6 !important; -webkit-print-color-adjust: exact; }
+              body { 
+                background: white; 
+                padding: 0;
+                max-width: none;
+              }
+              
+              .header { 
+                background: var(--primary) !important; 
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+                margin-bottom: var(--space-3);
+                padding: var(--space-3);
+              }
+              
+              .summary {
+                margin-bottom: var(--space-3);
+              }
+              
+              .task-item {
+                break-inside: avoid;
+                page-break-inside: avoid;
+              }
+              
+              .footer {
+                margin-top: var(--space-3);
+              }
             }
           </style>
         </head>
         <body>
-            <div class="header">
-            <h1>📋 Rapport GlenTasks</h1>
-            <p>Généré le ${now.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            </div>
-            
+          <div class="header">
+            <h1>📋 GlenTasks</h1>
+            <p>${now.toLocaleDateString('fr-FR', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
+          </div>
+          
           <div class="summary">
             <div class="summary-card">
               <div class="summary-number">${totalTasks}</div>
-              <div class="summary-label">Total des tâches</div>
-              </div>
+              <div class="summary-label">Total</div>
+            </div>
             <div class="summary-card">
               <div class="summary-number">${pendingTasks}</div>
               <div class="summary-label">En cours</div>
-              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-number">${waitingTasks}</div>
+              <div class="summary-label">En Attente</div>
+            </div>
             <div class="summary-card">
               <div class="summary-number">${completedTasks}</div>
               <div class="summary-label">Terminées</div>
-              </div>
+            </div>
             <div class="summary-card">
               <div class="summary-number">${urgentTasks}</div>
               <div class="summary-label">Urgentes</div>
-              </div>
             </div>
-            
+          </div>
+          
           <div class="tasks-section">
-            <h2 class="tasks-title">Détail des Tâches</h2>
+            <h2 class="tasks-title">Tâches</h2>
             ${items.map(item => `
-            <div class="task-item">
-              <div class="task-header">
+              <div class="task-item">
+                <div class="task-header">
                   <h3 class="task-title">${escapeHtml(item.title)}</h3>
-                  <span class="${getPriorityClass(item.urgent)}">${getPriorityText(item.urgent)}</span>
-              </div>
-                ${item.description ? `<p style="margin-bottom: 15px; color: #475569;">${escapeHtml(item.description)}</p>` : ''}
+                </div>
+                
+                ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
+                ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+                
                 <div class="task-meta">
                   <div class="task-meta-item">
-                    <strong>Assigné à:</strong> ${item.who && item.who.length > 0 ? escapeHtml(item.who.join(', ')) : 'Non assignée'}
+                    <strong>👥</strong> 
+                    <span>${item.who && item.who.length > 0 ? escapeHtml(item.who.join(', ')) : 'Non assignée'}</span>
                   </div>
                   <div class="task-meta-item">
-                    <strong>Statut:</strong> <span class="${getStatusClass(item.status)}">${item.status}</span>
+                    <strong>🚨</strong> 
+                    <span class="${getPriorityClass(item.urgent)}">${getPriorityText(item.urgent)}</span>
                   </div>
-                  ${item.deadline ? `
-                    <div class="task-meta-item">
-                      <strong>Échéance:</strong> ${formatDate(item.deadline)}
-                  </div>
-                  ` : ''}
-                  ${item.location ? `
-                    <div class="task-meta-item">
-                      <strong>Localisation:</strong> ${escapeHtml(item.location)}
-                  </div>
-                  ` : ''}
                   <div class="task-meta-item">
-                    <strong>Créée:</strong> ${formatDate(item.createdAt)}
+                    <strong>📊</strong> 
+                    <span class="${getStatusClass(item.status)}">${item.status}</span>
+                  </div>
+                  <div class="task-meta-item">
+                    <strong>📅</strong> 
+                    <span>${formatDate(item.createdAt)}</span>
+                  </div>
                 </div>
-                  </div>
               </div>
             `).join('')}
-            </div>
-            
-            <div class="footer">
-            <p>Rapport généré automatiquement par GlenTasks</p>
-            <p>© ${now.getFullYear()} - Application de gestion des tâches</p>
+          </div>
+          
+          <div class="footer">
+            <p>📋 GlenTasks - ${now.getFullYear()}</p>
           </div>
         </body>
         </html>
@@ -2660,7 +3329,6 @@
       $exportCSV = document.getElementById('exportCSV');
       $addMockData = document.getElementById('addMockData');
       $clearMockData = document.getElementById('clearMockData');
-      $shareApp = document.getElementById('shareApp');
       $generateReport = document.getElementById('generateReport');
       
       // Setup password form after DOM elements are available
@@ -2757,15 +3425,6 @@
         location: sanitizeInput(taskData.location),
         who: Array.isArray(taskData.who) ? taskData.who.map(w => sanitizeInput(w)) : []
       };
-    }
-    
-    // Escape HTML for safe display (already exists, but improved)
-    function escapeHtml(text) {
-      if (typeof text !== 'string') return text;
-      
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
     }
 
     // ============================================================================
@@ -2869,11 +3528,14 @@
       
       // Apply status filter
       switch (currentFilter) {
-        case 'done':
-          filteredItems = filteredItems.filter(item => item.status === "Terminé");
+        case 'terminee':
+          filteredItems = filteredItems.filter(item => item.status === "Terminée");
           break;
-        case 'pending':
+        case 'en-cours':
           filteredItems = filteredItems.filter(item => item.status === "En cours");
+          break;
+        case 'en-attente':
+          filteredItems = filteredItems.filter(item => item.status === "En Attente");
           break;
         case 'unassigned':
           filteredItems = filteredItems.filter(item => !item.who || item.who.length === 0);
@@ -2913,8 +3575,8 @@
             const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
             
             // Overdue tasks first (but only among non-done tasks)
-            const overdueA = deadlineA < today && a.status !== "Terminé";
-            const overdueB = deadlineB < today && b.status !== "Terminé";
+            const overdueA = deadlineA < today && a.status !== "Terminée";
+            const overdueB = deadlineB < today && b.status !== "Terminée";
             if (overdueA !== overdueB) {
               sortResult = overdueB - overdueA;
             } else {
@@ -3308,24 +3970,6 @@
       };
     }
     
-    // Global error handler with logging
-    function handleGlobalError(error, context = '') {
-      ErrorLogger.error(`Global error in ${context}`, { context }, error);
-      
-      // Don't show technical errors to users, show friendly messages
-      let userMessage = 'Une erreur inattendue s\'est produite.';
-      
-      if (error.message.includes('localStorage')) {
-        userMessage = 'Erreur de stockage. Vérifiez que votre navigateur supporte le stockage local.';
-      } else if (error.message.includes('validation')) {
-        userMessage = 'Données invalides. Vérifiez les informations saisies.';
-      } else if (error.message.includes('network')) {
-        userMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
-      }
-      
-      showError(userMessage);
-    }
-
     // ============================================================================
     // DEBUGGING AND DEVELOPMENT TOOLS
     // ============================================================================
@@ -3659,7 +4303,7 @@
     TestRunner.test('Task Filtering', async () => {
       const testTasks = [
         { title: 'Task 1', status: 'En cours', who: ['Éric'] },
-        { title: 'Task 2', status: 'Terminé', who: ['Fred'] },
+        { title: 'Task 2', status: 'Terminée', who: ['Fred'] },
         { title: 'Task 3', status: 'En cours', who: [] }
       ];
       
@@ -3674,7 +4318,7 @@
     
     TestRunner.test('Task Sorting', async () => {
       const testTasks = [
-        { title: 'Task 1', status: 'Terminé', urgent: 'Non' },
+        { title: 'Task 1', status: 'Terminée', urgent: 'Non' },
         { title: 'Task 2', status: 'En cours', urgent: 'Oui' },
         { title: 'Task 3', status: 'En cours', urgent: 'Non' }
       ];
@@ -3683,7 +4327,7 @@
       
       // Completed tasks should be at the bottom
       TestRunner.assertEquals('En cours', sorted[0].status, 'First task should be pending');
-      TestRunner.assertEquals('Terminé', sorted[sorted.length - 1].status, 'Last task should be completed');
+      TestRunner.assertEquals('Terminée', sorted[sorted.length - 1].status, 'Last task should be completed');
     });
     
     TestRunner.test('Input Sanitization', async () => {
