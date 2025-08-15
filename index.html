@@ -433,6 +433,21 @@
       cursor: pointer;
     }
     
+    .control-input {
+      padding: var(--space-3);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      background: white;
+      transition: border-color 0.2s;
+    }
+    
+    .control-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+    }
+    
     .control-select:focus {
       outline: none;
       border-color: var(--primary);
@@ -495,13 +510,13 @@
       border-radius: var(--radius-lg);
       padding: var(--space-4);
       margin-bottom: var(--space-4);
-      transition: all 0.2s;
+      transition: all 0.2s ease-in-out;
       position: relative;
     }
     
     .task-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
     
     .task-card.completed {
@@ -750,6 +765,30 @@
       color: var(--gray-600);
     }
 
+    .loading-container {
+      text-align: center;
+      background: white;
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-200);
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--gray-200);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto var(--space-4);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .error {
       background: #fef2f2;
       color: #dc2626;
@@ -786,6 +825,78 @@
       animation: slideIn 0.3s ease-out;
     }
     
+    /* Smooth transitions for all interactive elements */
+    .task-card,
+    .btn,
+    .form-input,
+    .form-textarea,
+    .control-select,
+    .control-input,
+    .chip {
+      transition: all 0.2s ease-in-out;
+    }
+    
+    /* Hover effects for better interactivity */
+    .task-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Smooth filter transitions */
+    .task-card {
+      transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+    }
+    
+    .task-card.filtered-out {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: blur(1px);
+    }
+    
+    /* Loading skeleton animation */
+    @keyframes shimmer {
+      0% {
+        background-position: -200px 0;
+      }
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+    
+    .skeleton {
+      background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%);
+      background-size: 200px 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    
+    .skeleton-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+    
+    .skeleton-title {
+      height: 24px;
+      width: 80%;
+      margin-bottom: var(--space-3);
+      border-radius: var(--radius-sm);
+    }
+    
+    .skeleton-description {
+      height: 16px;
+      width: 60%;
+      margin-bottom: var(--space-3);
+      border-radius: var(--radius-sm);
+    }
+    
+    .skeleton-meta {
+      height: 14px;
+      width: 40%;
+      border-radius: var(--radius-sm);
+    }
+    
     /* Animation for notifications */
     @keyframes slideInRight {
       from {
@@ -807,6 +918,27 @@
         opacity: 0;
         transform: translateX(100%);
       }
+    }
+
+    /* Search results styling */
+    .search-info {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+    
+    .search-results {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gray-700);
+      font-size: 0.875rem;
+    }
+    
+    .search-results .btn {
+      margin-left: var(--space-3);
     }
   </style>
 </head>
@@ -924,24 +1056,34 @@
     <div class="controls-section">
       <div class="controls-grid">
         <div class="control-group">
+          <label for="searchInput" class="control-label">🔍 Rechercher</label>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="control-input" 
+            placeholder="Rechercher dans les tâches..."
+          >
+        </div>
+        
+        <div class="control-group">
           <label for="filterSelect" class="control-label">Filtrer par statut</label>
           <select id="filterSelect" class="control-select">
             <option value="all">Toutes les tâches</option>
             <option value="pending">En cours</option>
             <option value="done">Terminées</option>
             <option value="unassigned">Non assignées</option>
-              </select>
-            </div>
+          </select>
+        </div>
         
         <div class="control-group">
           <label for="sortSelect" class="control-label">Trier par</label>
           <select id="sortSelect" class="control-select">
             <option value="status">Statut</option>
             <option value="urgency">Priorité</option>
-                <option value="deadline">Échéance</option>
+            <option value="deadline">Échéance</option>
             <option value="created">Date de création</option>
-              </select>
-            </div>
+          </select>
+        </div>
         
         <div class="control-group">
           <label for="employeeSelect" class="control-label">Filtrer par employé</label>
@@ -953,16 +1095,16 @@
             <option value="Lucas">Lucas</option>
             <option value="Miguel">Miguel</option>
             <option value="Autre">Autre</option>
-              </select>
-            </div>
+          </select>
+        </div>
         
         <div class="control-group">
           <button id="generateReport" class="btn btn-primary">
             📋 Générer Rapport
           </button>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
 
     <!-- Tasks Section -->
     <div class="tasks-section">
@@ -984,24 +1126,11 @@
     // ============================================================================
     
     // Password for app access (change this to your desired password)
-    const APP_PASSWORD = "glentasks2024";
+    const APP_PASSWORD = "glen";
     
-    // DOM elements
-    const $passwordOverlay = document.getElementById('passwordOverlay');
-    const $passwordForm = document.getElementById('passwordForm');
-    const $passwordInput = document.getElementById('passwordInput');
-    const $appContainer = document.getElementById('appContainer');
-    const $cmvForm = document.getElementById('cmvForm');
-    const $taskList = document.getElementById('taskList');
-    const $tasksCount = document.getElementById('tasksCount');
-    const $filterSelect = document.getElementById('filterSelect');
-    const $sortSelect = document.getElementById('sortSelect');
-    const $employeeSelect = document.getElementById('employeeSelect');
-    const $exportCSV = document.getElementById('exportCSV');
-    const $addMockData = document.getElementById('addMockData');
-    const $clearMockData = document.getElementById('clearMockData');
-    const $shareApp = document.getElementById('shareApp');
-    const $generateReport = document.getElementById('generateReport');
+    // DOM elements - will be initialized after DOM loads
+    let $passwordOverlay, $passwordForm, $passwordInput, $appContainer, $cmvForm, $taskList, $tasksCount;
+    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $addMockData, $clearMockData, $shareApp, $generateReport;
     
     // App state
     let currentFilter = 'all';
@@ -1029,19 +1158,21 @@
     }
     
     // Handle password form submission
-    $passwordForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const password = $passwordInput.value.trim();
-      
-      if (password === APP_PASSWORD) {
-        sessionStorage.setItem('glentasks_authenticated', 'true');
-        showApp();
-        $passwordInput.value = '';
-      } else {
-        alert('Mot de passe incorrect. Veuillez réessayer.');
-        $passwordInput.focus();
-      }
-    });
+    function setupPasswordForm() {
+      $passwordForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = $passwordInput.value.trim();
+        
+        if (password === APP_PASSWORD) {
+          sessionStorage.setItem('glentasks_authenticated', 'true');
+          showApp();
+          $passwordInput.value = '';
+        } else {
+          alert('Mot de passe incorrect. Veuillez réessayer.');
+          $passwordInput.focus();
+        }
+      });
+    }
     
     // Show the main app
     function showApp() {
@@ -1067,7 +1198,6 @@
         
         // Load and display tasks
         await loadTasks();
-        updateTasksCount(items.length);
         
         // Hide splash screen if in Capacitor
         if (window.Capacitor && window.Capacitor.Plugins.SplashScreen) {
@@ -1122,10 +1252,55 @@
         }
         
         console.log('Database initialized successfully');
-          } catch (error) {
+      } catch (error) {
         console.error('Database initialization failed:', error);
         throw new Error('Failed to initialize database: ' + error.message);
       }
+    }
+    
+    // ============================================================================
+    // DATA NORMALIZATION AND VALIDATION
+    // ============================================================================
+    
+    // Normalize task data structure for consistency
+    function normalizeTaskData(item) {
+      return {
+        id: item.id || Date.now() + Math.random(),
+        title: item.title || item.task || 'Tâche sans titre',
+        description: item.description || '',
+        location: item.location || '',
+        who: Array.isArray(item.who) ? item.who : (item.who ? [item.who] : []),
+        urgent: item.urgent || 'Non',
+        deadline: item.deadline || null,
+        status: item.status || 'En cours',
+        createdAt: item.createdAt || new Date().toISOString()
+      };
+    }
+    
+    // Validate task data before saving
+    function validateTaskData(taskData) {
+      const errors = [];
+      
+      if (!taskData.title || taskData.title.trim().length === 0) {
+        errors.push('Le titre de la tâche est requis');
+      }
+      
+      if (taskData.title && taskData.title.trim().length > 200) {
+        errors.push('Le titre ne peut pas dépasser 200 caractères');
+      }
+      
+      if (taskData.description && taskData.description.length > 1000) {
+        errors.push('La description ne peut pas dépasser 1000 caractères');
+      }
+      
+      if (taskData.deadline) {
+        const deadlineDate = new Date(taskData.deadline);
+        if (isNaN(deadlineDate.getTime())) {
+          errors.push('Date d\'échéance invalide');
+        }
+      }
+      
+      return errors;
     }
     
     // ============================================================================
@@ -1144,6 +1319,14 @@
       $filterSelect.addEventListener('change', handleFilterChange);
       $sortSelect.addEventListener('change', handleSortChange);
       $employeeSelect.addEventListener('change', handleEmployeeChange);
+      
+      // Search input with debouncing
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          debouncedSearch(e.target.value);
+        });
+      }
       
       // Action buttons
       $exportCSV.addEventListener('click', exportToCSV);
@@ -1192,31 +1375,34 @@
           createdAt: new Date().toISOString()
         };
         
-        // Validation
-        if (!taskData.title) {
-          showError('Le titre de la tâche est requis.');
-          return;
-        }
+        // Validation is now handled in addTask/updateTask functions
         
-        // Save task
+        // Save task using safe execution
         if (isEditing && editId) {
-          await updateTask(editId, taskData);
+          await safeExecute(async () => {
+            await updateTask(editId, taskData);
+            return 'modifiée';
+          }, 'task update');
+          
           const action = 'modifiée';
           isEditing = false;
           editId = null;
           
           // Reset form and reload tasks
           resetForm();
-          await loadTasks();
+          await safeExecute(loadTasks, 'task reload after update');
           
           // Show success message
           showSuccess(`Tâche ${action} avec succès !`);
         } else {
-          await addTask(taskData);
+          await safeExecute(async () => {
+            await addTask(taskData);
+            return 'ajoutée';
+          }, 'task creation');
           
           // Reset form and reload tasks
           resetForm();
-          await loadTasks();
+          await safeExecute(loadTasks, 'task reload after creation');
           
           // Show success message
           const action = 'ajoutée';
@@ -1225,7 +1411,7 @@
         
       } catch (error) {
         console.error('Form submission failed:', error);
-        alert('Erreur lors de la sauvegarde: ' + error.message);
+        // Error is already handled by safeExecute
       } finally {
         // Restore button state
         const submitBtn = document.getElementById('submitBtn');
@@ -1241,17 +1427,23 @@
     // Add a new task
     async function addTask(taskData) {
       try {
-        const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
-        const newTask = {
-          id: Date.now(),
-          ...taskData
-        };
+        // Sanitize input data
+        const sanitizedData = sanitizeTaskData(taskData);
         
-        items.push(newTask);
+        // Validate data before saving
+        const validationErrors = validateTaskData(sanitizedData);
+        if (validationErrors.length > 0) {
+          throw new Error('Données invalides: ' + validationErrors.join(', '));
+        }
+        
+        const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
+        const normalizedTask = normalizeTaskData(sanitizedData);
+        
+        items.push(normalizedTask);
         localStorage.setItem('cmvDB', JSON.stringify(items));
         
-        console.log('Task added successfully:', newTask);
-        return newTask;
+        console.log('Task added successfully:', normalizedTask);
+        return normalizedTask;
       } catch (error) {
         console.error('Failed to add task:', error);
         throw new Error('Failed to add task: ' + error.message);
@@ -1261,6 +1453,15 @@
     // Update an existing task
     async function updateTask(taskId, taskData) {
       try {
+        // Sanitize input data
+        const sanitizedData = sanitizeTaskData(taskData);
+        
+        // Validate data before saving
+        const validationErrors = validateTaskData(sanitizedData);
+        if (validationErrors.length > 0) {
+          throw new Error('Données invalides: ' + validationErrors.join(', '));
+        }
+        
         const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
         const taskIndex = items.findIndex(item => item.id == taskId);
         
@@ -1268,16 +1469,17 @@
           throw new Error('Task not found');
         }
         
-        items[taskIndex] = {
+        const updatedTask = {
           ...items[taskIndex],
-          ...taskData,
-          id: parseInt(taskId)
+          ...normalizeTaskData(sanitizedData),
+          id: parseInt(taskId) // Preserve original ID
         };
         
+        items[taskIndex] = updatedTask;
         localStorage.setItem('cmvDB', JSON.stringify(items));
         
-        console.log('Task updated successfully:', items[taskIndex]);
-        return items[taskIndex];
+        console.log('Task updated successfully:', updatedTask);
+        return updatedTask;
       } catch (error) {
         console.error('Failed to update task:', error);
         throw new Error('Failed to update task: ' + error.message);
@@ -1381,6 +1583,12 @@
     // Load and display tasks
     async function loadTasks() {
       try {
+        // Show skeleton loading for better perceived performance
+        showSkeletonLoading();
+        
+        // Small delay to show skeleton (improves UX)
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
         const items = await listSubmissions();
         renderList(items);
         updateTasksCount(items.length);
@@ -1395,16 +1603,10 @@
       try {
         const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
         
-        // Normalize data structure
-        items.forEach(item => {
-          if (!item.status) item.status = "En cours";
-          if (!item.title && item.task) item.title = item.task;
-          if (!item.description) item.description = "";
-          if (!item.who) item.who = [];
-          if (!item.urgent) item.urgent = "Non";
-        });
+        // Normalize all items for consistency
+        const normalizedItems = items.map(item => normalizeTaskData(item));
         
-        return items;
+        return normalizedItems;
       } catch (error) {
         console.error('Failed to list submissions:', error);
         throw new Error('Failed to list submissions: ' + error.message);
@@ -1424,68 +1626,42 @@
           return;
         }
         
-        // Apply filters
-        let filteredItems = items.filter(item => {
-          if (selectedEmployee && (!item.who || !item.who.includes(selectedEmployee))) {
-          return false;
+        // Apply optimized filtering and sorting
+        const filteredItems = filterTasks(items);
+        const sortedItems = sortTasks(filteredItems);
+        
+        // Show search results info if searching
+        if (searchQuery.trim()) {
+          const searchInfo = document.createElement('div');
+          searchInfo.className = 'search-info';
+          searchInfo.innerHTML = `
+            <div class="search-results">
+              🔍 Recherche: "${escapeHtml(searchQuery)}" - ${filteredItems.length} résultat${filteredItems.length !== 1 ? 's' : ''}
+              <button class="btn btn-sm btn-secondary" onclick="clearSearch()">Effacer</button>
+            </div>
+          `;
+          
+          // Insert search info before task list
+          if ($taskList.previousElementSibling && $taskList.previousElementSibling.className === 'search-info') {
+            $taskList.previousElementSibling.remove();
+          }
+          $taskList.parentNode.insertBefore(searchInfo, $taskList);
+        } else {
+          // Remove search info if no search
+          const existingSearchInfo = $taskList.previousElementSibling;
+          if (existingSearchInfo && existingSearchInfo.className === 'search-info') {
+            existingSearchInfo.remove();
+          }
         }
         
-        switch (currentFilter) {
-          case 'done':
-              return item.status === "Terminé";
-          case 'pending':
-              return item.status === "En cours";
-          case 'unassigned':
-              return !item.who || item.who.length === 0;
-          default:
-              return true;
-          }
-        });
-        
-        // Apply sorting
-        filteredItems.sort((a, b) => {
-        const wa = STATUS_WEIGHT[a.status] ?? 0;
-        const wb = STATUS_WEIGHT[b.status] ?? 0;
-          if (wa !== wb) return wa - wb;
-        
-        let sortResult = 0;
-        switch (currentSort) {
-          case 'urgency':
-            const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
-            const urgencyA = urgencyOrder[a.urgent] || 0;
-            const urgencyB = urgencyOrder[b.urgent] || 0;
-              sortResult = urgencyB - urgencyA;
-            break;
-          case 'deadline':
-            const today = new Date().setHours(0,0,0,0);
-            const deadlineA = a.deadline ? new Date(a.deadline) : new Date('9999-12-31');
-            const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
-            const overdueA = deadlineA < today && a.status !== "Terminé";
-            const overdueB = deadlineB < today && b.status !== "Terminé";
-            if (overdueA !== overdueB) {
-              sortResult = overdueB - overdueA;
-            } else {
-              sortResult = deadlineA - deadlineB;
-            }
-            break;
-            case 'created':
-              sortResult = new Date(b.createdAt) - new Date(a.createdAt);
-              break;
-            default: // status
-              sortResult = STATUS_WEIGHT[a.status] - STATUS_WEIGHT[b.status];
-          }
-          
-          return sortResult;
-        });
-        
         // Render tasks
-        const tasksHTML = filteredItems.map(item => renderTaskCard(item)).join('');
+        const tasksHTML = sortedItems.map(item => renderTaskCard(item)).join('');
         $taskList.innerHTML = tasksHTML;
         
         // Add event listeners to action buttons
         addTaskActionListeners();
         
-        console.log(`Rendered ${filteredItems.length} tasks`);
+        console.log(`Rendered ${sortedItems.length} tasks`);
       } catch (error) {
         console.error('Failed to render list:', error);
         $taskList.innerHTML = '<div class="error">Erreur lors de l\'affichage des tâches: ' + error.message + '</div>';
@@ -1892,6 +2068,8 @@
                   const today = new Date().setHours(0,0,0,0);
                   const deadlineA = a.deadline ? new Date(a.deadline) : new Date('9999-12-31');
                   const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
+                  
+                  // Overdue tasks first (but only among non-done tasks)
                   const overdueA = deadlineA < today && a.status !== "Terminé";
                   const overdueB = deadlineB < today && b.status !== "Terminé";
                   if (overdueA !== overdueB) {
@@ -2164,9 +2342,32 @@
     // APP STARTUP
     // ============================================================================
     
+    // Initialize DOM elements
+    function initializeDOMElements() {
+      $passwordOverlay = document.getElementById('passwordOverlay');
+      $passwordForm = document.getElementById('passwordForm');
+      $passwordInput = document.getElementById('passwordInput');
+      $appContainer = document.getElementById('appContainer');
+      $cmvForm = document.getElementById('cmvForm');
+      $taskList = document.getElementById('taskList');
+      $tasksCount = document.getElementById('tasksCount');
+      $filterSelect = document.getElementById('filterSelect');
+      $sortSelect = document.getElementById('sortSelect');
+      $employeeSelect = document.getElementById('employeeSelect');
+      $exportCSV = document.getElementById('exportCSV');
+      $addMockData = document.getElementById('addMockData');
+      $clearMockData = document.getElementById('clearMockData');
+      $shareApp = document.getElementById('shareApp');
+      $generateReport = document.getElementById('generateReport');
+      
+      // Setup password form after DOM elements are available
+      setupPasswordForm();
+    }
+    
     // Check authentication when page loads
     document.addEventListener('DOMContentLoaded', function() {
       console.log('GlenTasks app loaded');
+      initializeDOMElements();
       checkAuthentication();
     });
     
@@ -2181,6 +2382,1025 @@
     });
     
     console.log('GlenTasks JavaScript loaded successfully');
+
+    // ============================================================================
+    // ERROR HANDLING AND BOUNDARIES
+    // ============================================================================
+    
+    // Global error handler with user-friendly messages
+    function handleGlobalError(error, context = '') {
+      console.error(`Error in ${context}:`, error);
+      
+      // Don't show technical errors to users, show friendly messages
+      let userMessage = 'Une erreur inattendue s\'est produite.';
+      
+      if (error.message.includes('localStorage')) {
+        userMessage = 'Erreur de stockage. Vérifiez que votre navigateur supporte le stockage local.';
+      } else if (error.message.includes('validation')) {
+        userMessage = 'Données invalides. Vérifiez les informations saisies.';
+      } else if (error.message.includes('network')) {
+        userMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
+      }
+      
+      showError(userMessage);
+    }
+    
+    // Safe execution wrapper for async operations
+    async function safeExecute(operation, context = '') {
+      try {
+        return await operation();
+      } catch (error) {
+        handleGlobalError(error, context);
+        throw error;
+      }
+    }
+    
+    // Safe DOM manipulation
+    function safeDOMUpdate(element, updateFunction) {
+      try {
+        if (element && element.parentNode) {
+          updateFunction();
+        } else {
+          console.warn('Element not found for DOM update');
+        }
+      } catch (error) {
+        handleGlobalError(error, 'DOM update');
+      }
+    }
+
+    // ============================================================================
+    // SECURITY AND INPUT SANITIZATION
+    // ============================================================================
+    
+    // Sanitize HTML input to prevent XSS
+    function sanitizeInput(input) {
+      if (typeof input !== 'string') return input;
+      
+      return input
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+    }
+    
+    // Sanitize task data before processing
+    function sanitizeTaskData(taskData) {
+      return {
+        ...taskData,
+        title: sanitizeInput(taskData.title),
+        description: sanitizeInput(taskData.description),
+        location: sanitizeInput(taskData.location),
+        who: Array.isArray(taskData.who) ? taskData.who.map(w => sanitizeInput(w)) : []
+      };
+    }
+    
+    // Escape HTML for safe display (already exists, but improved)
+    function escapeHtml(text) {
+      if (typeof text !== 'string') return text;
+      
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ============================================================================
+    // LOADING STATES AND USER FEEDBACK
+    // ============================================================================
+    
+    // Show loading state
+    function showLoading(message = 'Chargement...') {
+      const loadingDiv = document.createElement('div');
+      loadingDiv.id = 'loadingOverlay';
+      loadingDiv.innerHTML = `
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <p>${message}</p>
+        </div>
+      `;
+      loadingDiv.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+      `;
+      
+      document.body.appendChild(loadingDiv);
+    }
+    
+    // Hide loading state
+    function hideLoading() {
+      const loadingDiv = document.getElementById('loadingOverlay');
+      if (loadingDiv) {
+        loadingDiv.remove();
+      }
+    }
+    
+    // Show loading for specific operations
+    async function withLoading(operation, loadingMessage = 'Chargement...') {
+      showLoading(loadingMessage);
+      try {
+        const result = await operation();
+        return result;
+      } finally {
+        hideLoading();
+      }
+    }
+
+    // ============================================================================
+    // PERFORMANCE OPTIMIZATIONS AND SEARCH
+    // ============================================================================
+    
+    // Debounce function for search input
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+    
+    // Search functionality
+    let searchQuery = '';
+    let debouncedSearch = debounce(async (query) => {
+      searchQuery = query;
+      await loadTasks();
+    }, 300);
+    
+    // Optimized task filtering with search
+    function filterTasks(items) {
+      if (!items || items.length === 0) return [];
+      
+      let filteredItems = items;
+      
+      // Apply search filter first (most restrictive)
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase().trim();
+        filteredItems = items.filter(item => {
+          return (
+            (item.title && item.title.toLowerCase().includes(query)) ||
+            (item.description && item.description.toLowerCase().includes(query)) ||
+            (item.location && item.location.toLowerCase().includes(query)) ||
+            (item.who && item.who.some(w => w.toLowerCase().includes(query)))
+          );
+        });
+      }
+      
+      // Apply employee filter
+      if (selectedEmployee) {
+        filteredItems = filteredItems.filter(item => 
+          item.who && item.who.includes(selectedEmployee)
+        );
+      }
+      
+      // Apply status filter
+      switch (currentFilter) {
+        case 'done':
+          filteredItems = filteredItems.filter(item => item.status === "Terminé");
+          break;
+        case 'pending':
+          filteredItems = filteredItems.filter(item => item.status === "En cours");
+          break;
+        case 'unassigned':
+          filteredItems = filteredItems.filter(item => !item.who || item.who.length === 0);
+          break;
+        default:
+          // 'all' case - no additional filtering
+          break;
+      }
+      
+      return filteredItems;
+    }
+    
+    // Optimized task sorting
+    function sortTasks(items) {
+      if (!items || items.length === 0) return items;
+      
+      return items.sort((a, b) => {
+        // First priority: Done tasks always go to bottom
+        const wa = STATUS_WEIGHT[a.status] ?? 0;
+        const wb = STATUS_WEIGHT[b.status] ?? 0;
+        if (wa !== wb) return wa - wb;
+        
+        // Second priority: Apply the selected sorting method
+        let sortResult = 0;
+        
+        switch (currentSort) {
+          case 'urgency':
+            const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
+            const urgencyA = urgencyOrder[a.urgent] || 0;
+            const urgencyB = urgencyOrder[b.urgent] || 0;
+            sortResult = urgencyB - urgencyA;
+            break;
+            
+          case 'deadline':
+            const today = new Date().setHours(0,0,0,0);
+            const deadlineA = a.deadline ? new Date(a.deadline) : new Date('9999-12-31');
+            const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
+            
+            // Overdue tasks first (but only among non-done tasks)
+            const overdueA = deadlineA < today && a.status !== "Terminé";
+            const overdueB = deadlineB < today && b.status !== "Terminé";
+            if (overdueA !== overdueB) {
+              sortResult = overdueB - overdueA;
+            } else {
+              sortResult = deadlineA - deadlineB;
+            }
+            break;
+            
+          case 'created':
+            sortResult = new Date(b.createdAt) - new Date(a.createdAt);
+            break;
+            
+          default: // status
+            sortResult = STATUS_WEIGHT[a.status] - STATUS_WEIGHT[b.status];
+        }
+        
+        return sortResult;
+      });
+    }
+
+    // ============================================================================
+    // SEARCH UTILITIES
+    // ============================================================================
+    
+    // Clear search and reset to show all tasks
+    function clearSearch() {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = '';
+        searchQuery = '';
+        loadTasks();
+      }
+    }
+
+    // ============================================================================
+    // SKELETON LOADING STATES
+    // ============================================================================
+    
+    // Show skeleton loading state
+    function showSkeletonLoading() {
+      const skeletonHTML = Array(3).fill(0).map(() => `
+        <div class="task-card skeleton-card">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-description"></div>
+          <div class="skeleton skeleton-meta"></div>
+        </div>
+      `).join('');
+      
+      $taskList.innerHTML = skeletonHTML;
+    }
+    
+    // Hide skeleton loading
+    function hideSkeletonLoading() {
+      // Skeleton will be replaced when actual content loads
+    }
+
+    // ============================================================================
+    // STATE MANAGEMENT SYSTEM
+    // ============================================================================
+    
+    // Centralized app state
+    const AppState = {
+      // UI State
+      ui: {
+        isEditing: false,
+        editId: null,
+        isLoading: false,
+        searchQuery: '',
+        currentFilter: 'all',
+        currentSort: 'status',
+        selectedEmployee: '',
+        showPasswordOverlay: true
+      },
+      
+      // Data State
+      data: {
+        tasks: [],
+        filteredTasks: [],
+        sortedTasks: [],
+        taskCount: 0,
+        unassignedCount: 0
+      },
+      
+      // Configuration
+      config: {
+        debounceDelay: 300,
+        maxTitleLength: 200,
+        maxDescriptionLength: 1000,
+        itemsPerPage: 50
+      },
+      
+      // Methods
+      updateUI(updates) {
+        Object.assign(this.ui, updates);
+        this.notifyStateChange('ui', updates);
+      },
+      
+      updateData(updates) {
+        Object.assign(this.data, updates);
+        this.notifyStateChange('data', updates);
+      },
+      
+      // State change notifications
+      listeners: new Map(),
+      
+      subscribe(event, callback) {
+        if (!this.listeners.has(event)) {
+          this.listeners.set(event, []);
+        }
+        this.listeners.get(event).push(callback);
+      },
+      
+      notifyStateChange(type, changes) {
+        const event = `${type}Changed`;
+        if (this.listeners.has(event)) {
+          this.listeners.get(event).forEach(callback => callback(changes));
+        }
+      }
+    };
+    
+    // ============================================================================
+    // UTILITY FUNCTIONS
+    // ============================================================================
+    
+    // Deep clone objects for immutable updates
+    function deepClone(obj) {
+      if (obj === null || typeof obj !== 'object') return obj;
+      if (obj instanceof Date) return new Date(obj.getTime());
+      if (obj instanceof Array) return obj.map(item => deepClone(item));
+      if (typeof obj === 'object') {
+        const clonedObj = {};
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            clonedObj[key] = deepClone(obj[key]);
+          }
+        }
+        return clonedObj;
+      }
+    }
+    
+    // Safe JSON operations with error handling
+    const SafeJSON = {
+      parse: (str, fallback = []) => {
+        try {
+          return JSON.parse(str);
+        } catch (error) {
+          console.warn('JSON parse failed, using fallback:', error);
+          return fallback;
+        }
+      },
+      
+      stringify: (obj, fallback = '[]') => {
+        try {
+          return JSON.stringify(obj);
+        } catch (error) {
+          console.warn('JSON stringify failed, using fallback:', error);
+          return fallback;
+        }
+      }
+    };
+
+    // ============================================================================
+    // ERROR LOGGING AND MONITORING
+    // ============================================================================
+    
+    // Enhanced error logging system
+    const ErrorLogger = {
+      logs: [],
+      maxLogs: 100,
+      
+      // Log levels
+      levels: {
+        DEBUG: 0,
+        INFO: 1,
+        WARN: 2,
+        ERROR: 3,
+        CRITICAL: 4
+      },
+      
+      // Current log level
+      currentLevel: 1, // INFO and above
+      
+      log(level, message, context = {}, error = null) {
+        if (level < this.currentLevel) return;
+        
+        const logEntry = {
+          timestamp: new Date().toISOString(),
+          level: Object.keys(this.levels)[level],
+          message,
+          context,
+          error: error ? {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+          } : null,
+          userAgent: navigator.userAgent,
+          url: window.location.href
+        };
+        
+        this.logs.push(logEntry);
+        
+        // Keep only the last maxLogs entries
+        if (this.logs.length > this.maxLogs) {
+          this.logs.shift();
+        }
+        
+        // Console output
+        const consoleMethod = level === 0 ? 'debug' : 
+                             level === 1 ? 'info' : 
+                             level === 2 ? 'warn' : 
+                             level === 3 ? 'error' : 'error';
+        
+        console[consoleMethod](`[${logEntry.level}] ${message}`, context, error);
+        
+        // Store in localStorage for persistence
+        this.persistLogs();
+      },
+      
+      debug(message, context = {}) {
+        this.log(this.levels.DEBUG, message, context);
+      },
+      
+      info(message, context = {}) {
+        this.log(this.levels.INFO, message, context);
+      },
+      
+      warn(message, context = {}, error = null) {
+        this.log(this.levels.WARN, message, context, error);
+      },
+      
+      error(message, context = {}, error = null) {
+        this.log(this.levels.ERROR, message, context, error);
+      },
+      
+      critical(message, context = {}, error = null) {
+        this.log(this.levels.CRITICAL, message, context, error);
+      },
+      
+      // Get logs for debugging
+      getLogs(level = null) {
+        if (level !== null) {
+          return this.logs.filter(log => log.level === Object.keys(this.levels)[level]);
+        }
+        return this.logs;
+      },
+      
+      // Clear logs
+      clearLogs() {
+        this.logs = [];
+        this.persistLogs();
+      },
+      
+      // Export logs
+      exportLogs() {
+        return JSON.stringify(this.logs, null, 2);
+      },
+      
+      // Persist logs to localStorage
+      persistLogs() {
+        try {
+          localStorage.setItem('glentasks_error_logs', this.exportLogs());
+        } catch (error) {
+          console.warn('Failed to persist error logs:', error);
+        }
+      },
+      
+      // Load logs from localStorage
+      loadLogs() {
+        try {
+          const savedLogs = localStorage.getItem('glentasks_error_logs');
+          if (savedLogs) {
+            this.logs = SafeJSON.parse(savedLogs, []);
+          }
+        } catch (error) {
+          console.warn('Failed to load error logs:', error);
+        }
+      }
+    };
+    
+    // Initialize error logger
+    ErrorLogger.loadLogs();
+    
+    // ============================================================================
+    // PERFORMANCE MONITORING
+    // ============================================================================
+    
+    // Performance monitoring system
+    const PerformanceMonitor = {
+      metrics: {
+        renderTimes: [],
+        filterTimes: [],
+        sortTimes: [],
+        storageTimes: [],
+        apiCalls: []
+      },
+      
+      maxMetrics: 50,
+      
+      // Start timing an operation
+      startTimer(operation) {
+        return {
+          operation,
+          startTime: performance.now()
+        };
+      },
+      
+      // End timing and record metric
+      endTimer(timer) {
+        const duration = performance.now() - timer.startTime;
+        this.recordMetric(timer.operation, duration);
+        return duration;
+      },
+      
+      // Record a performance metric
+      recordMetric(operation, duration) {
+        if (!this.metrics[operation]) {
+          this.metrics[operation] = [];
+        }
+        
+        this.metrics[operation].push({
+          timestamp: Date.now(),
+          duration,
+          operation
+        });
+        
+        // Keep only the last maxMetrics entries
+        if (this.metrics[operation].length > this.maxMetrics) {
+          this.metrics[operation].shift();
+        }
+        
+        // Log slow operations
+        if (duration > 100) { // 100ms threshold
+          ErrorLogger.warn(`Slow operation detected: ${operation} took ${duration.toFixed(2)}ms`);
+        }
+      },
+      
+      // Get performance statistics
+      getStats(operation = null) {
+        if (operation) {
+          const times = this.metrics[operation];
+          if (!times || times.length === 0) return null;
+          
+          const durations = times.map(t => t.duration);
+          return {
+            count: times.length,
+            average: durations.reduce((a, b) => a + b, 0) / durations.length,
+            min: Math.min(...durations),
+            max: Math.max(...durations),
+            recent: times.slice(-10).map(t => ({ timestamp: t.timestamp, duration: t.duration }))
+          };
+        }
+        
+        // Return all stats
+        const allStats = {};
+        for (const [key, times] of Object.entries(this.metrics)) {
+          if (times.length > 0) {
+            const durations = times.map(t => t.duration);
+            allStats[key] = {
+              count: times.length,
+              average: durations.reduce((a, b) => a + b, 0) / durations.length,
+              min: Math.min(...durations),
+              max: Math.max(...durations)
+            };
+          }
+        }
+        return allStats;
+      },
+      
+      // Clear performance metrics
+      clearMetrics() {
+        for (const key in this.metrics) {
+          this.metrics[key] = [];
+        }
+      },
+      
+      // Export performance data
+      exportMetrics() {
+        return JSON.stringify(this.metrics, null, 2);
+      }
+    };
+    
+    // Performance wrapper for functions
+    function withPerformanceMonitoring(fn, operationName) {
+      return async function(...args) {
+        const timer = PerformanceMonitor.startTimer(operationName);
+        try {
+          const result = await fn.apply(this, args);
+          return result;
+        } finally {
+          PerformanceMonitor.endTimer(timer);
+        }
+      };
+    }
+    
+    // Global error handler with logging
+    function handleGlobalError(error, context = '') {
+      ErrorLogger.error(`Global error in ${context}`, { context }, error);
+      
+      // Don't show technical errors to users, show friendly messages
+      let userMessage = 'Une erreur inattendue s\'est produite.';
+      
+      if (error.message.includes('localStorage')) {
+        userMessage = 'Erreur de stockage. Vérifiez que votre navigateur supporte le stockage local.';
+      } else if (error.message.includes('validation')) {
+        userMessage = 'Données invalides. Vérifiez les informations saisies.';
+      } else if (error.message.includes('network')) {
+        userMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
+      }
+      
+      showError(userMessage);
+    }
+
+    // ============================================================================
+    // DEBUGGING AND DEVELOPMENT TOOLS
+    // ============================================================================
+    
+    // Debug panel for developers
+    const DebugPanel = {
+      isVisible: false,
+      
+      // Initialize debug panel
+      init() {
+        this.createDebugButton();
+        this.createDebugPanel();
+        this.bindEvents();
+      },
+      
+      // Create debug button
+      createDebugButton() {
+        const debugBtn = document.createElement('button');
+        debugBtn.id = 'debugBtn';
+        debugBtn.innerHTML = '🐛 Debug';
+        debugBtn.className = 'btn btn-secondary';
+        debugBtn.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 10001;
+          opacity: 0.7;
+        `;
+        
+        document.body.appendChild(debugBtn);
+      },
+      
+      // Create debug panel
+      createDebugPanel() {
+        const panel = document.createElement('div');
+        panel.id = 'debugPanel';
+        panel.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%;
+          max-width: 800px;
+          max-height: 80vh;
+          background: white;
+          border: 2px solid var(--primary);
+          border-radius: var(--radius-lg);
+          padding: var(--space-6);
+          z-index: 10002;
+          display: none;
+          overflow-y: auto;
+          box-shadow: var(--shadow-xl);
+        `;
+        
+        panel.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+            <h3>🐛 Debug Panel</h3>
+            <button id="closeDebugPanel" class="btn btn-danger btn-sm">❌ Fermer</button>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+            <div>
+              <h4>📊 Performance</h4>
+              <div id="performanceStats"></div>
+              <button id="clearMetrics" class="btn btn-secondary btn-sm" style="margin-top: var(--space-2);">
+                Effacer métriques
+              </button>
+            </div>
+            
+            <div>
+              <h4>🚨 Erreurs</h4>
+              <div id="errorLogs"></div>
+              <button id="clearLogs" class="btn btn-secondary btn-sm" style="margin-top: var(--space-2);">
+                Effacer logs
+              </button>
+            </div>
+          </div>
+          
+          <div style="margin-top: var(--space-4);">
+            <h4>🔧 Actions</h4>
+            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+              <button id="exportLogs" class="btn btn-primary btn-sm">📥 Exporter Logs</button>
+              <button id="exportMetrics" class="btn btn-primary btn-sm">📊 Exporter Métriques</button>
+              <button id="testError" class="btn btn-warning btn-sm">🧪 Tester Erreur</button>
+              <button id="clearStorage" class="btn btn-danger btn-sm">🗑️ Effacer Stockage</button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(panel);
+      },
+      
+      // Bind debug panel events
+      bindEvents() {
+        const debugBtn = document.getElementById('debugBtn');
+        const debugPanel = document.getElementById('debugPanel');
+        const closeBtn = document.getElementById('closeDebugPanel');
+        
+        debugBtn.addEventListener('click', () => this.toggle());
+        closeBtn.addEventListener('click', () => this.hide());
+        
+        // Performance metrics
+        document.getElementById('clearMetrics').addEventListener('click', () => {
+          PerformanceMonitor.clearMetrics();
+          this.updatePerformanceStats();
+        });
+        
+        // Error logs
+        document.getElementById('clearLogs').addEventListener('click', () => {
+          ErrorLogger.clearLogs();
+          this.updateErrorLogs();
+        });
+        
+        // Export functions
+        document.getElementById('exportLogs').addEventListener('click', () => {
+          this.exportData('logs', ErrorLogger.exportLogs());
+        });
+        
+        document.getElementById('exportMetrics').addEventListener('click', () => {
+          this.exportData('metrics', PerformanceMonitor.exportMetrics());
+        });
+        
+        // Test functions
+        document.getElementById('testError').addEventListener('click', () => {
+          ErrorLogger.warn('Test warning message', { test: true });
+          this.updateErrorLogs();
+        });
+        
+        document.getElementById('clearStorage').addEventListener('click', () => {
+          if (confirm('Êtes-vous sûr de vouloir effacer tout le stockage ?')) {
+            localStorage.clear();
+            location.reload();
+          }
+        });
+      },
+      
+      // Toggle debug panel
+      toggle() {
+        if (this.isVisible) {
+          this.hide();
+        } else {
+          this.show();
+        }
+      },
+      
+      // Show debug panel
+      show() {
+        const panel = document.getElementById('debugPanel');
+        panel.style.display = 'block';
+        this.isVisible = true;
+        this.updatePerformanceStats();
+        this.updateErrorLogs();
+      },
+      
+      // Hide debug panel
+      hide() {
+        const panel = document.getElementById('debugPanel');
+        panel.style.display = 'none';
+        this.isVisible = false;
+      },
+      
+      // Update performance statistics
+      updatePerformanceStats() {
+        const stats = PerformanceMonitor.getStats();
+        const container = document.getElementById('performanceStats');
+        
+        if (!stats || Object.keys(stats).length === 0) {
+          container.innerHTML = '<p>Aucune métrique disponible</p>';
+          return;
+        }
+        
+        const html = Object.entries(stats).map(([operation, data]) => `
+          <div style="margin-bottom: var(--space-2); padding: var(--space-2); background: var(--gray-100); border-radius: var(--radius);">
+            <strong>${operation}:</strong><br>
+            Moyenne: ${data.average.toFixed(2)}ms<br>
+            Min: ${data.min.toFixed(2)}ms, Max: ${data.max.toFixed(2)}ms<br>
+            Total: ${data.count} opérations
+          </div>
+        `).join('');
+        
+        container.innerHTML = html;
+      },
+      
+      // Update error logs
+      updateErrorLogs() {
+        const logs = ErrorLogger.getLogs();
+        const container = document.getElementById('errorLogs');
+        
+        if (!logs || logs.length === 0) {
+          container.innerHTML = '<p>Aucune erreur enregistrée</p>';
+          return;
+        }
+        
+        const html = logs.slice(-10).reverse().map(log => `
+          <div style="margin-bottom: var(--space-2); padding: var(--space-2); background: var(--gray-100); border-radius: var(--radius); font-size: 0.8rem;">
+            <strong>[${log.level}]</strong> ${log.message}<br>
+            <small>${new Date(log.timestamp).toLocaleString()}</small>
+          </div>
+        `).join('');
+        
+        container.innerHTML = html;
+      },
+      
+      // Export data
+      exportData(type, data) {
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `glentasks_${type}_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+    };
+    
+    // Initialize debug panel in development mode
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      document.addEventListener('DOMContentLoaded', () => {
+        DebugPanel.init();
+      });
+    }
+
+    // ============================================================================
+    // UNIT TESTING FRAMEWORK
+    // ============================================================================
+    
+    // Simple unit testing framework
+    const TestRunner = {
+      tests: [],
+      passed: 0,
+      failed: 0,
+      
+      // Add a test
+      test(name, testFunction) {
+        this.tests.push({ name, testFunction });
+      },
+      
+      // Assertion functions
+      assert(condition, message) {
+        if (!condition) {
+          throw new Error(`Assertion failed: ${message}`);
+        }
+      },
+      
+      assertEquals(expected, actual, message = '') {
+        if (expected !== actual) {
+          throw new Error(`Expected ${expected}, but got ${actual}. ${message}`);
+        }
+      },
+      
+      assertArrayEquals(expected, actual, message = '') {
+        if (expected.length !== actual.length) {
+          throw new Error(`Expected array length ${expected.length}, but got ${actual.length}. ${message}`);
+        }
+        for (let i = 0; i < expected.length; i++) {
+          if (expected[i] !== actual[i]) {
+            throw new Error(`Expected ${expected[i]} at index ${i}, but got ${actual[i]}. ${message}`);
+          }
+        }
+      },
+      
+      // Run all tests
+      async runAll() {
+        console.log('🧪 Running unit tests...');
+        this.passed = 0;
+        this.failed = 0;
+        
+        for (const test of this.tests) {
+          try {
+            await test.testFunction();
+            console.log(`✅ PASS: ${test.name}`);
+            this.passed++;
+          } catch (error) {
+            console.error(`❌ FAIL: ${test.name} - ${error.message}`);
+            this.failed++;
+          }
+        }
+        
+        console.log(`\n📊 Test Results: ${this.passed} passed, ${this.failed} failed`);
+        return { passed: this.passed, failed: this.failed };
+      },
+      
+      // Run specific test
+      async runTest(testName) {
+        const test = this.tests.find(t => t.name === testName);
+        if (!test) {
+          throw new Error(`Test "${testName}" not found`);
+        }
+        
+        try {
+          await test.testFunction();
+          console.log(`✅ PASS: ${test.name}`);
+          return true;
+        } catch (error) {
+          console.error(`❌ FAIL: ${test.name} - ${error.message}`);
+          return false;
+        }
+      }
+    };
+    
+    // Add tests for critical functions
+    TestRunner.test('Data Validation', async () => {
+      // Test title validation
+      const validTitle = 'Valid task title';
+      const invalidTitle = '';
+      
+      TestRunner.assertEquals(0, validateTaskData({ title: validTitle }).length, 'Valid title should pass validation');
+      TestRunner.assert(validateTaskData({ title: invalidTitle }).length > 0, 'Invalid title should fail validation');
+      
+      // Test description length validation
+      const longDescription = 'a'.repeat(1001);
+      TestRunner.assert(validateTaskData({ title: 'Test', description: longDescription }).length > 0, 'Long description should fail validation');
+    });
+    
+    TestRunner.test('Data Normalization', async () => {
+      const rawData = {
+        title: 'Test Task',
+        description: 'Test Description'
+      };
+      
+      const normalized = normalizeTaskData(rawData);
+      
+      TestRunner.assert(normalized.id, 'Normalized data should have an ID');
+      TestRunner.assertEquals('Test Task', normalized.title, 'Title should be preserved');
+      TestRunner.assertEquals('Test Description', normalized.description, 'Description should be preserved');
+      TestRunner.assertEquals('En cours', normalized.status, 'Default status should be set');
+      TestRunner.assertEquals('Non', normalized.urgent, 'Default priority should be set');
+      TestRunner.assert(Array.isArray(normalized.who), 'Who should be an array');
+    });
+    
+    TestRunner.test('Task Filtering', async () => {
+      const testTasks = [
+        { title: 'Task 1', status: 'En cours', who: ['Éric'] },
+        { title: 'Task 2', status: 'Terminé', who: ['Fred'] },
+        { title: 'Task 3', status: 'En cours', who: [] }
+      ];
+      
+      // Test status filtering
+      const pendingTasks = filterTasks(testTasks);
+      TestRunner.assertEquals(2, pendingTasks.length, 'Should filter to pending tasks only');
+      
+      // Test employee filtering
+      const ericTasks = filterTasks(testTasks.filter(t => t.who.includes('Éric')));
+      TestRunner.assertEquals(1, ericTasks.length, 'Should filter to Éric tasks only');
+    });
+    
+    TestRunner.test('Task Sorting', async () => {
+      const testTasks = [
+        { title: 'Task 1', status: 'Terminé', urgent: 'Non' },
+        { title: 'Task 2', status: 'En cours', urgent: 'Oui' },
+        { title: 'Task 3', status: 'En cours', urgent: 'Non' }
+      ];
+      
+      const sorted = sortTasks(testTasks);
+      
+      // Completed tasks should be at the bottom
+      TestRunner.assertEquals('En cours', sorted[0].status, 'First task should be pending');
+      TestRunner.assertEquals('Terminé', sorted[sorted.length - 1].status, 'Last task should be completed');
+    });
+    
+    TestRunner.test('Input Sanitization', async () => {
+      const maliciousInput = 'test script tag';
+      const sanitized = sanitizeInput(maliciousInput);
+      
+      TestRunner.assert(!sanitized.includes('script'), 'Script tags should be sanitized');
+      TestRunner.assert(sanitized.includes('script'), 'Text should be preserved');
+    });
+    
+    // Run tests automatically in development mode
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      document.addEventListener('DOMContentLoaded', async () => {
+        // Wait a bit for app to initialize
+        setTimeout(async () => {
+          console.log('🧪 Running automated tests...');
+          await TestRunner.runAll();
+        }, 2000);
+      });
+    }
   </script>
 </body>
 </html>
