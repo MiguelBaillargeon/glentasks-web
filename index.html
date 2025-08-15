@@ -2,13 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>GlenTasks | Gestion des Tâches</title>
   <meta name="description" content="GlenTasks - Gestion des tâches simple et efficace">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="GlenTasks">
   <meta name="theme-color" content="#3b82f6">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   
   <style>
     /* CSS Variables for consistent theming */
@@ -674,32 +676,59 @@
     @media (max-width: 768px) {
       .app-container {
         padding: var(--space-3);
+        max-width: 100%;
+        overflow-x: hidden;
       }
       
       .header-content {
         flex-direction: column;
         text-align: center;
+        gap: var(--space-4);
       }
       
       .app-title {
         font-size: 2rem;
+        line-height: 1.2;
+      }
+      
+      .header-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+      
+      .header-actions .btn {
+        font-size: 0.8rem;
+        padding: var(--space-2) var(--space-3);
+        min-height: 44px;
       }
       
       .form-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-3);
       }
       
       .controls-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-3);
       }
       
       .task-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--space-2);
       }
       
       .task-actions {
         align-self: flex-end;
+        gap: var(--space-1);
+      }
+      
+      .task-actions .btn {
+        min-width: 44px;
+        min-height: 44px;
+        padding: var(--space-2);
+        font-size: 0.8rem;
       }
       
       .submit-container {
@@ -711,16 +740,146 @@
       .submit-container .btn {
         width: 100%;
         justify-content: center;
+        min-height: 48px;
       }
       
       .password-container {
         margin: var(--space-4);
         padding: var(--space-6);
+        max-width: 90vw;
       }
       
       .password-header h1 {
         font-size: 1.75rem;
       }
+      
+      .password-input,
+      .password-submit {
+        min-height: 48px;
+        font-size: 1rem;
+      }
+      
+      /* Prevent horizontal scrolling */
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+      }
+      
+      /* Ensure all containers respect viewport width */
+      .form-card,
+      .controls-section,
+      .tasks-section {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      /* Improve form inputs on mobile */
+      .form-input,
+      .form-textarea,
+      .control-input,
+      .control-select {
+        min-height: 48px;
+        font-size: 1rem;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: var(--radius);
+      }
+      
+      /* Better chip layout on mobile */
+      .chip-group {
+        gap: var(--space-2);
+      }
+      
+      .chip {
+        min-height: 48px;
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.9rem;
+      }
+      
+      /* Improve task cards on mobile */
+      .task-card {
+        padding: var(--space-4);
+        margin-bottom: var(--space-3);
+      }
+      
+      .task-meta {
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      
+      .task-meta-item {
+        font-size: 0.8rem;
+      }
+      
+      /* Better button sizing on mobile */
+      .btn {
+        min-height: 44px;
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.9rem;
+        touch-action: manipulation;
+      }
+    }
+    
+    /* Extra small mobile devices */
+    @media (max-width: 480px) {
+      .app-container {
+        padding: var(--space-2);
+      }
+      
+      .app-title {
+        font-size: 1.75rem;
+      }
+      
+      .form-title {
+        font-size: 1.25rem;
+      }
+      
+      .tasks-title {
+        font-size: 1.25rem;
+      }
+      
+      .header-actions .btn {
+        font-size: 0.75rem;
+        padding: var(--space-2);
+      }
+      
+      .task-actions .btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: var(--space-1);
+      }
+      
+      .password-container {
+        padding: var(--space-4);
+        margin: var(--space-2);
+      }
+      
+      .password-header h1 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Prevent horizontal scrolling globally */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    
+    /* Ensure all elements respect container width */
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Fix potential overflow issues */
+    .app-container,
+    .form-card,
+    .controls-section,
+    .tasks-section {
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     /* Accessibility improvements */
@@ -939,6 +1098,80 @@
     
     .search-results .btn {
       margin-left: var(--space-3);
+    }
+    
+    /* Mobile-specific improvements */
+    @media (max-width: 768px) {
+      /* Prevent text overflow */
+      .task-title {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      
+      /* Better touch targets */
+      input[type="checkbox"],
+      input[type="radio"] {
+        min-width: 24px;
+        min-height: 24px;
+      }
+      
+      /* Improve form layout */
+      .form-row {
+        margin-bottom: var(--space-3);
+      }
+      
+      /* Better button spacing */
+      .task-actions {
+        margin-top: var(--space-2);
+      }
+      
+      /* Prevent horizontal scroll in forms */
+      .form-grid {
+        overflow-x: hidden;
+        width: 100%;
+      }
+      
+      /* Better chip wrapping */
+      .chip-group {
+        justify-content: flex-start;
+      }
+      
+      /* Improve password form on mobile */
+      .password-container {
+        width: calc(100vw - 2rem);
+        max-width: 400px;
+      }
+    }
+    
+    /* iOS Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      .form-input,
+      .form-textarea,
+      .control-input,
+      .control-select {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: var(--radius);
+      }
+      
+      .btn {
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+    
+    /* Android Chrome specific fixes */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      .form-input:focus,
+      .form-textarea:focus,
+      .control-input:focus,
+      .control-select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+      }
     }
   </style>
 </head>
@@ -1940,9 +2173,9 @@
       try {
         const mockTasks = [
           {
-            title: "Réparer la machine à café",
-            description: "La machine ne fonctionne plus depuis ce matin",
-            location: "Salle de pause",
+            title: "Réparer le système d'irrigation",
+            description: "Tuyaux endommagés sur le sentier principal",
+            location: "Sentier principal - km 2.5",
             who: ["Éric"],
             urgent: "Oui",
             deadline: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
@@ -1950,24 +2183,94 @@
             createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Mettre à jour la documentation",
-            description: "Compléter la documentation du projet en cours",
-            location: "Bureau",
-            who: ["Miguel"],
+            title: "Tailler les haies du parking",
+            description: "Haies envahissantes bloquant la vue",
+            location: "Parking principal",
+            who: ["Fred"],
             urgent: "Non",
             deadline: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Réunion équipe",
-            description: "Planifier la réunion hebdomadaire de l'équipe",
-            location: "Salle de conférence",
+            title: "Réparer la rampe d'accès",
+            description: "Béton fissuré sur la rampe handicapés",
+            location: "Entrée principale",
             who: ["Audrey", "Lucas"],
             urgent: "Au PC !",
             deadline: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             status: "En cours",
             createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Nettoyer les gouttières",
+            description: "Feuilles et débris bloquant l'écoulement",
+            location: "Bâtiment administratif",
+            who: ["Miguel"],
+            urgent: "Non",
+            deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Réparer l'éclairage extérieur",
+            description: "Projecteurs défaillants sur le chemin de randonnée",
+            location: "Chemin de randonnée - départ",
+            who: ["Éric"],
+            urgent: "Oui",
+            deadline: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Planter de nouveaux arbres",
+            description: "Remplacer les pins morts par des sapins",
+            location: "Zone de reboisement - versant nord",
+            who: ["Fred", "Audrey"],
+            urgent: "Non",
+            deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Réparer le pont en bois",
+            description: "Planches pourries sur le pont du ruisseau",
+            location: "Pont du ruisseau - sentier est",
+            who: ["Lucas"],
+            urgent: "Oui",
+            deadline: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Nettoyer les panneaux d'information",
+            description: "Graffitis et saleté sur les panneaux",
+            location: "Tous les panneaux du site",
+            who: ["Miguel", "Fred"],
+            urgent: "Non",
+            deadline: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Réparer la clôture de sécurité",
+            description: "Section effondrée près du belvédère",
+            location: "Belvédère - point de vue",
+            who: ["Éric", "Lucas"],
+            urgent: "Au PC !",
+            deadline: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Tondre les pelouses",
+            description: "Herbe haute sur les zones de pique-nique",
+            location: "Zones de pique-nique",
+            who: ["Audrey"],
+            urgent: "Non",
+            deadline: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            status: "En cours",
+            createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
           }
         ];
         
@@ -3103,7 +3406,7 @@
           
           <div style="margin-top: var(--space-4);">
             <h4>🔧 Actions</h4>
-            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+            <div style="display: flex; gap: var(--space-2); flex-wrap;">
               <button id="exportLogs" class="btn btn-primary btn-sm">📥 Exporter Logs</button>
               <button id="exportMetrics" class="btn btn-primary btn-sm">📊 Exporter Métriques</button>
               <button id="testError" class="btn btn-warning btn-sm">🧪 Tester Erreur</button>
