@@ -64,10 +64,13 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
+      line-height: 1.3;
       color: var(--gray-800);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-2);
       background: var(--gray-50);
-      min-height: 100vh;
+      font-size: 0.75rem;
     }
 
     /* Password protection overlay */
@@ -157,6 +160,9 @@
       margin-bottom: var(--space-4);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
+      max-width: 1000px; /* Match tasks section width */
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .header-content {
@@ -165,6 +171,8 @@
       align-items: center;
       flex-wrap: wrap;
       gap: var(--space-3);
+      max-width: 900px; /* Constrain header content width */
+      margin: 0 auto;
     }
     
     .app-title {
@@ -172,12 +180,14 @@
       font-weight: 700;
       color: var(--primary);
       margin: 0;
+      line-height: 1.2;
     }
     
     .header-actions {
       display: flex;
       gap: var(--space-1);
       flex-wrap: wrap;
+      align-items: center;
     }
     
     /* Button styles */
@@ -256,7 +266,7 @@
       display: none !important;
     }
     
-    /* Form styles */
+    /* Form styles - Improved for large screens */
     .form-card {
       background: white;
       border-radius: var(--radius-lg);
@@ -264,6 +274,9 @@
       margin-bottom: var(--space-5);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
+      max-width: 900px; /* Limit max width for better readability */
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .form-title {
@@ -276,8 +289,10 @@
     
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased min width for better proportions */
       gap: var(--space-4);
+      max-width: 800px; /* Limit grid width for better form layout */
+      margin: 0 auto;
     }
     
     .form-row {
@@ -293,7 +308,7 @@
       font-weight: 500;
       color: var(--gray-700);
       margin-bottom: var(--space-2);
-      font-size: 0.85rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       gap: var(--space-2);
@@ -314,7 +329,7 @@
       padding: var(--space-3);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius);
-      font-size: 0.875rem;
+      font-size: 0.775rem;
       transition: border-color 0.2s;
     }
     
@@ -336,7 +351,7 @@
     }
     
     .form-input-title {
-      font-size: 0.95rem;
+      font-size: 0.775rem;
       font-weight: 500;
     }
     
@@ -353,12 +368,12 @@
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
       border-radius: var(--radius-lg);
-      padding: var(--space-3);
-      margin: var(--space-3) 0;
+      padding: var(--space-2);
+      margin: var(--space-2) 0;
     }
     
     .section-title {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--gray-700);
       margin-bottom: var(--space-4);
@@ -372,6 +387,21 @@
     
     .form-section .form-row {
       margin-bottom: var(--space-3);
+    }
+
+    /* Compact styling for task characteristics subsections */
+    .form-section .form-row .chip-group {
+      margin-top: var(--space-1);
+    }
+    
+    .form-section .form-row .field-hint {
+      margin-top: var(--space-1);
+      font-size: 0.65rem;
+    }
+    
+    .form-section .form-row .form-label {
+      margin-bottom: var(--space-1);
+      font-size: 0.95rem;
     }
 
     /* Chip styles */
@@ -544,7 +574,7 @@
       box-shadow: none;
     }
 
-    /* Controls and sorting */
+    /* Controls and sorting - Improved layout for large screens */
     .controls-section {
       background: white;
       border-radius: var(--radius-lg);
@@ -552,6 +582,9 @@
       margin-bottom: var(--space-5);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
+      max-width: 900px; /* Match form card width */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .controls-grid {
@@ -559,6 +592,8 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: var(--space-4);
       align-items: end;
+      max-width: 800px; /* Limit grid width for better proportions */
+      margin: 0 auto;
     }
 
     .control-group {
@@ -602,15 +637,18 @@
       border-color: var(--primary);
     }
 
-    /* Task list */
+    /* Task list - Improved layout for large screens */
     .tasks-section {
       background: white;
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
+      max-width: 1000px; /* Slightly wider than form for task display */
+      margin-left: auto;
+      margin-right: auto;
     }
-
+    
     .tasks-header {
       display: flex;
       justify-content: space-between;
@@ -618,21 +656,26 @@
       margin-bottom: var(--space-6);
       flex-wrap: wrap;
       gap: var(--space-4);
+      max-width: 900px; /* Match task list width for visual consistency */
+      margin-left: auto;
+      margin-right: auto;
     }
-
+    
     .tasks-title {
-      font-size: 1.375rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--gray-800);
-      margin: 0;
+      margin-bottom: var(--space-2);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--gray-200);
     }
-
+    
     .tasks-stats {
       display: flex;
       gap: var(--space-4);
       align-items: center;
     }
-
+    
     .tasks-count {
       background: var(--gray-100);
       color: var(--gray-600);
@@ -641,7 +684,7 @@
       font-size: 0.875rem;
       font-weight: 500;
     }
-
+    
     .unassigned-count {
       background: var(--warning);
       color: white;
@@ -651,7 +694,13 @@
       font-weight: 600;
       display: none;
     }
-
+    
+    /* Task card container constraints */
+    .task-list {
+      max-width: 900px; /* Constrain task list width for better readability */
+      margin: 0 auto;
+    }
+    
     /* Task card */
     .task-card {
       background: white;
@@ -662,6 +711,7 @@
       transition: all 0.2s ease-in-out;
       position: relative;
       box-shadow: var(--shadow-sm);
+      max-width: 100%; /* Ensure cards don't exceed container width */
     }
     
     .task-card:hover {
@@ -724,34 +774,37 @@
     
     .task-actions {
       display: flex;
-      gap: var(--space-1);
+      gap: var(--space-2);
       flex-shrink: 0;
       flex-wrap: wrap;
     }
     
     .task-actions .btn {
-      min-width: 40px;
-      min-height: 40px;
+      min-width: 36px;
+      min-height: 36px;
       padding: var(--space-2);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius);
       transition: all 0.2s ease;
-      background: transparent;
+      background: white;
       border: 1px solid var(--gray-200);
       color: var(--gray-600);
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-    
-    .task-actions .btn:hover {
-      transform: translateY(-1px);
-      opacity: 1;
-      background: var(--gray-50);
-      border-color: var(--gray-300);
+      font-size: 0.875rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: var(--shadow-sm);
     }
     
+    .task-actions .btn:hover {
+      transform: translateY(-2px);
+      opacity: 1;
+      box-shadow: var(--shadow-md);
+      border-color: var(--gray-300);
+    }
+    
     .task-actions .btn:active {
-      transform: translateY(0);
+      transform: translateY(-1px);
     }
     
     .task-actions .btn:focus {
@@ -764,45 +817,33 @@
     .task-actions .btn-primary {
       color: var(--primary);
       border-color: var(--primary);
-      opacity: 0.8;
+      background: rgba(59, 130, 246, 0.05);
+      opacity: 1;
     }
     
     .task-actions .btn-primary:hover {
       background: var(--primary);
       color: white;
       border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
     
     .task-actions .btn-primary:focus {
       outline-color: var(--primary);
     }
     
-    .task-actions .btn-warning {
-      color: var(--warning);
-      border-color: var(--warning);
-      opacity: 0.8;
-    }
-    
-    .task-actions .btn-warning:hover {
-      background: var(--warning);
-      color: white;
-      border-color: var(--warning);
-    }
-    
-    .task-actions .btn-warning:focus {
-      outline-color: var(--warning);
-    }
-    
     .task-actions .btn-danger {
       color: var(--danger);
       border-color: var(--danger);
-      opacity: 0.8;
+      background: rgba(239, 68, 68, 0.05);
+      opacity: 1;
     }
     
     .task-actions .btn-danger:hover {
       background: var(--danger);
       color: white;
       border-color: var(--danger);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
     }
     
     .task-actions .btn-danger:focus {
@@ -813,27 +854,29 @@
       margin-bottom: var(--space-3);
     }
     
+    /* Task description - Ultra compact with eye-friendly colors */
     .task-description {
       color: var(--gray-600);
       margin-bottom: var(--space-2);
-      line-height: 1.5;
-      font-size: 0.9rem;
+      line-height: 1.2;
+      font-size: 0.75rem;
       padding: var(--space-2);
-      background: var(--gray-50);
+      background: #f8fafc;
       border-radius: var(--radius-sm);
       border-left: 2px solid var(--primary);
     }
 
+    /* Task location - Ultra compact with eye-friendly colors */
     .task-location {
       color: var(--gray-500);
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       margin-bottom: var(--space-2);
       font-style: italic;
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: var(--space-1);
       padding: var(--space-2);
-      background: var(--gray-50);
+      background: #f8fafc;
       border-radius: var(--radius-sm);
       border-left: 2px solid var(--secondary);
     }
@@ -915,7 +958,8 @@
 
     /* Status indicators - compact */
     .status-en-cours,
-    .status-termine {
+    .status-en-attente,
+    .status-terminee {
       padding: var(--space-1) var(--space-2);
       border-radius: var(--radius-sm);
       font-size: 0.75rem;
@@ -934,7 +978,12 @@
       color: white;
     }
 
-    .status-termine {
+    .status-en-attente {
+      background: var(--warning);
+      color: white;
+    }
+
+    .status-terminee {
       background: var(--success);
       color: white;
     }
@@ -970,14 +1019,43 @@
         min-height: 44px;
       }
       
+      /* Form responsive adjustments */
+      .form-card {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: var(--space-3);
+      }
+      
       .form-grid {
         grid-template-columns: 1fr;
         gap: var(--space-2);
+        max-width: 100%;
+      }
+      
+      .controls-section {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: var(--space-3);
       }
       
       .controls-grid {
         grid-template-columns: 1fr;
         gap: var(--space-2);
+        max-width: 100%;
+      }
+      
+      .tasks-section {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      
+      .characteristics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+        max-width: 100%;
       }
       
       .task-header {
@@ -1094,6 +1172,22 @@
         text-overflow: clip;
         word-break: break-word;
       }
+      
+      /* Compact characteristics responsive */
+      .characteristics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+      
+      .compact-chip {
+        min-height: 40px;
+        padding: var(--space-2);
+        font-size: 0.8rem;
+      }
+      
+      .compact-chips {
+        gap: var(--space-2);
+      }
     }
     
     /* Extra small mobile devices */
@@ -1138,8 +1232,161 @@
       .chip-group {
         grid-template-columns: 1fr;
       }
+      
+      /* Compact characteristics on very small screens */
+      .compact-section {
+        padding: var(--space-2);
+        margin: var(--space-1) 0;
+      }
+      
+      .compact-title {
+        font-size: 1.1rem;
+        margin-bottom: var(--space-2);
+      }
+      
+      .characteristic-label {
+        font-size: 0.75rem;
+      }
+      
+      .compact-chip {
+        min-height: 36px;
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.7rem;
+      }
+      
+      /* Compact task cards on very small screens */
+      .compact-task {
+        padding: var(--space-3);
+        margin-bottom: var(--space-2);
+      }
+      
+      .compact-task .task-header {
+        gap: var(--space-1);
+        margin-bottom: var(--space-1);
+      }
+      
+      .compact-task .task-title {
+        font-size: 0.9rem;
+        line-height: 1.1;
+      }
+      
+      .task-quick-meta {
+        gap: var(--space-1);
+        font-size: 0.65rem;
+      }
+      
+      .task-assignee,
+      .task-priority,
+      .task-status,
+      .task-date {
+        padding: var(--space-1);
+        font-size: 0.6rem;
+      }
+      
+      .compact-task .task-actions .btn {
+        min-width: 32px;
+        min-height: 32px;
+        padding: var(--space-1);
+        font-size: 0.75rem;
+        background: white;
+        border: 1px solid var(--gray-200);
+        box-shadow: var(--shadow-sm);
+        opacity: 0.9;
+      }
+      
+      .compact-task .task-actions .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow);
+        opacity: 1;
+      }
     }
     
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+      header {
+        max-width: 900px; /* More constrained on very large screens */
+      }
+      
+      .header-content {
+        max-width: 800px; /* More constrained header content */
+      }
+      
+      .form-card {
+        max-width: 800px; /* Even more constrained on very large screens */
+      }
+      
+      .form-grid {
+        max-width: 700px;
+      }
+      
+      .controls-section {
+        max-width: 800px;
+      }
+      
+      .controls-grid {
+        max-width: 700px;
+      }
+      
+      .tasks-section {
+        max-width: 900px;
+      }
+      
+      .tasks-header {
+        max-width: 800px; /* Match task list width on large screens */
+      }
+      
+      .task-list {
+        max-width: 800px; /* More constrained task list on large screens */
+      }
+      
+      .characteristics-grid {
+        max-width: 700px;
+      }
+    }
+    
+    /* Extra large screen optimizations */
+    @media (min-width: 1600px) {
+      header {
+        max-width: 800px; /* Maximum constraint for very wide screens */
+      }
+      
+      .header-content {
+        max-width: 700px; /* Maximum constraint for header content */
+      }
+      
+      .form-card {
+        max-width: 750px;
+      }
+      
+      .form-grid {
+        max-width: 650px;
+      }
+      
+      .controls-section {
+        max-width: 750px;
+      }
+      
+      .controls-grid {
+        max-width: 650px;
+      }
+      
+      .tasks-section {
+        max-width: 850px;
+      }
+      
+      .tasks-header {
+        max-width: 750px; /* Match task list width on very large screens */
+      }
+      
+      .task-list {
+        max-width: 750px; /* Maximum constraint for task list on very large screens */
+      }
+      
+      .characteristics-grid {
+        max-width: 650px;
+      }
+    }
+
     /* Prevent horizontal scrolling globally */
     html, body {
       overflow-x: hidden;
@@ -1379,6 +1626,17 @@
       margin-left: var(--space-3);
     }
     
+    /* Sorting info styling */
+    .search-info:has(.search-results:not(:has(.btn))) {
+      background: var(--primary-50, #eff6ff);
+      border-color: var(--primary-200, #bfdbfe);
+    }
+    
+    .search-info:has(.search-results:not(:has(.btn))) .search-results {
+      color: var(--primary-700, #1d4ed8);
+      font-weight: 500;
+    }
+
     /* Mobile-specific improvements */
     @media (max-width: 768px) {
       /* Prevent text overflow */
@@ -1470,6 +1728,882 @@
       white-space: normal;
       overflow-wrap: anywhere;
     }
+    
+    /* Compact characteristics section */
+    .compact-section {
+      padding: var(--space-3);
+      margin: var(--space-2) 0;
+    }
+    
+    .compact-title {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .characteristics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+      align-items: start;
+      max-width: 800px; /* Limit width for better proportions */
+      margin: 0 auto;
+    }
+    
+    .characteristic-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    
+    .characteristic-label {
+      font-weight: 500;
+      color: var(--gray-700);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      margin-bottom: var(--space-1);
+    }
+    
+    .compact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+    
+    .compact-chip {
+      background: white;
+      border: 1px solid var(--gray-200);
+      padding: var(--space-1) var(--space-2);
+      font-size: 0.75rem;
+      font-weight: 500;
+      min-height: 32px;
+      transition: all 0.2s ease;
+    }
+    
+    .compact-chip:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-300);
+      transform: translateY(-1px);
+    }
+    
+    .compact-chip input[type="checkbox"]:checked + .chip-text,
+    .compact-chip input[type="radio"]:checked + .chip-text {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .compact-chip input[type="checkbox"]:checked,
+    .compact-chip input[type="radio"]:checked {
+      accent-color: var(--primary);
+    }
+    
+    /* Compact priority chips */
+    .compact-chip.chip-priority {
+      position: relative;
+      overflow: visible;
+    }
+    
+    .compact-chip.chip-priority::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gray-300);
+      transition: background-color 0.2s;
+    }
+    
+    .compact-chip.chip-priority input[type="radio"]:checked + .chip-text {
+      color: var(--primary);
+    }
+    
+    .compact-chip.chip-priority input[type="radio"][value="Oui"]:checked + .chip-text {
+      color: var(--warning);
+    }
+    
+    .compact-chip.chip-priority input[type="radio"][value="Au PC !"]:checked + .chip-text {
+      color: var(--danger);
+    }
+    
+    /* File upload styles */
+    .status-termine {
+      background: var(--success);
+      color: white;
+    }
+
+    /* Compact task cards */
+    .compact-task {
+      padding: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+    
+    .compact-task .task-header {
+      margin-bottom: var(--space-2);
+      gap: var(--space-2);
+    }
+    
+    .task-main-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    
+    .compact-task .task-title {
+      font-size: 1rem;
+      line-height: 1.3;
+      margin-bottom: var(--space-1);
+    }
+    
+    .task-quick-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      align-items: center;
+      font-size: 0.7rem;
+    }
+    
+    .task-assignee,
+    .task-priority,
+    .task-status,
+    .task-date {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1);
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+    
+    .task-assignee {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 500;
+    }
+    
+    .task-date {
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 0.65rem;
+    }
+    
+    .compact-task .task-content {
+      margin-bottom: var(--space-2);
+    }
+    
+    .compact-task .task-description {
+      padding: var(--space-2);
+      margin-bottom: var(--space-1);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    
+    .compact-task .task-location {
+      padding: var(--space-2);
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+    
+    .compact-task .task-actions {
+      gap: var(--space-1);
+    }
+    
+    .compact-task .task-actions .btn {
+      min-width: 36px;
+      min-height: 36px;
+      padding: var(--space-1);
+      font-size: 0.75rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .task-actions .btn {
+        min-width: 40px;
+        min-height: 40px;
+        justify-content: center;
+      }
+      
+      /* Compact task cards responsive */
+      .compact-task {
+        padding: var(--space-2);
+        margin-bottom: var(--space-2);
+      }
+      
+      .compact-task .task-header {
+        gap: var(--space-1);
+        margin-bottom: var(--space-1);
+      }
+      
+      .compact-task .task-title {
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+      
+      .task-quick-meta {
+        gap: var(--space-1);
+        font-size: 0.7rem;
+      }
+      
+      .task-assignee,
+      .task-priority,
+      .task-status,
+      .task-date {
+        padding: var(--space-1);
+        font-size: 0.65rem;
+      }
+      
+      .compact-task .task-actions .btn {
+        min-width: 32px;
+        min-height: 32px;
+        padding: var(--space-1);
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Task priority styling - very subtle and gentle */
+    .task-priority.priority-urgent {
+      background: rgba(245, 158, 11, 0.05);
+      color: #92400e;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    
+    .task-priority.priority-normal {
+      background: rgba(100, 116, 139, 0.05);
+      color: #475569;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+    
+    .task-priority.priority-critical {
+      background: rgba(239, 68, 68, 0.05);
+      color: #991b1b;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    
+    /* Task status styling - very subtle and gentle */
+    .task-status.status-en-cours {
+      background: rgba(59, 130, 246, 0.05);
+      color: #1e40af;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .task-status.status-en-attente {
+      background: rgba(245, 158, 11, 0.05);
+      color: #92400e;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    
+    .task-status.status-terminee {
+      background: rgba(16, 185, 129, 0.05);
+      color: #065f46;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    
+    .text-warning {
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    /* Task items - Using app's compact-task styling but less compact for reports */
+    .task-card.compact-task { 
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    
+    .task-card.compact-task:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+      border-color: var(--gray-300);
+    }
+    
+    .task-card.compact-task:last-child {
+      margin-bottom: 0;
+    }
+    
+    .task-card.compact-task.completed {
+      opacity: 0.7;
+      background: var(--gray-50);
+    }
+    
+    .task-card.compact-task.completed .task-title {
+      text-decoration: line-through;
+      color: var(--gray-600);
+    }
+    
+    .task-card.compact-task.unassigned {
+      border-left: 3px solid var(--warning);
+      background: white;
+    }
+    
+    .task-header { 
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+      gap: var(--space-3);
+    }
+    
+    .task-main-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    
+    .task-title { 
+      font-size: 1.1rem;
+      font-weight: 600; 
+      color: var(--gray-800); 
+      margin: 0;
+      line-height: 1.4;
+      margin-bottom: var(--space-2);
+    }
+    
+    .task-quick-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      align-items: center;
+      font-size: 0.7rem;
+    }
+    
+    .task-assignee,
+    .task-priority,
+    .task-status,
+    .task-date {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1);
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+    
+    .task-assignee {
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 500;
+    }
+    
+    .task-date {
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 0.65rem;
+    }
+    
+    .task-content {
+      margin-bottom: var(--space-3);
+    }
+    
+    .task-description {
+      color: var(--gray-600);
+      margin-bottom: var(--space-3);
+      line-height: 1.5;
+      font-size: 0.9rem;
+      padding: var(--space-3);
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--primary);
+    }
+    
+    .task-location {
+      color: var(--gray-500);
+      font-size: 0.85rem;
+      margin-bottom: var(--space-2);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--secondary);
+    }
+    
+    /* Task priority styling - very subtle and gentle like main app */
+    .task-priority.priority-urgent {
+      background: rgba(245, 158, 11, 0.05);
+      color: #92400e;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    
+    .task-priority.priority-normal {
+      background: rgba(100, 116, 139, 0.05);
+      color: #475569;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+    
+    .task-priority.priority-critical {
+      background: rgba(239, 68, 68, 0.05);
+      color: #991b1b;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    
+    /* Task status styling - very subtle and gentle like main app */
+    .task-status.status-en-cours {
+      background: rgba(59, 130, 246, 0.05);
+      color: #1e40af;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .task-status.status-en-attente {
+      background: rgba(245, 158, 11, 0.05);
+      color: #92400e;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    
+    .task-status.status-terminee {
+      background: rgba(16, 185, 129, 0.05);
+      color: #065f46;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0.1px;
+      min-width: 45px;
+      justify-content: center;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    
+    .text-warning {
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    /* Priority and status indicators - Ultra compact with eye-friendly colors */
+    .priority-urgent, .priority-normal, .priority-critical,
+    .status-en-cours, .status-en-attente, .status-terminee {
+      padding: var(--space-1);
+      border-radius: var(--radius-sm);
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      min-width: 45px;
+      justify-content: center;
+    }
+
+    .priority-urgent { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .priority-normal { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+    .priority-critical { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .status-en-cours { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .status-en-attente { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .status-terminee { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+
+    /* Print styles */
+    @media print {
+      /* Reset print environment */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      body { 
+        background: white !important; 
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        color: black !important;
+      }
+      
+      /* Header optimization for print - More compact */
+      .header { 
+        background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%) !important; 
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        margin-bottom: 15pt !important; /* Reduced from 20pt */
+        padding: 10pt !important; /* Reduced from 15pt */
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      
+      .header h1 {
+        font-size: 16pt !important; /* Reduced from 18pt */
+        margin-bottom: 3pt !important; /* Reduced from 5pt */
+        color: white !important;
+      }
+      
+      .header p {
+        font-size: 10pt !important; /* Reduced from 12pt */
+        color: white !important;
+      }
+      
+      /* Summary cards optimization for print - More compact */
+      .summary {
+        margin-bottom: 15pt !important; /* Reduced from 20pt */
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        gap: 8pt !important; /* Reduced from 10pt */
+      }
+      
+      .summary-card {
+        background: white !important;
+        border: 1pt solid #e5e7eb !important;
+        box-shadow: none !important;
+        padding: 8pt !important; /* Reduced from 10pt */
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      
+      .summary-number {
+        font-size: 14pt !important; /* Reduced from 16pt */
+        color: #4f46e5 !important;
+      }
+      
+      .summary-label {
+        font-size: 9pt !important; /* Reduced from 10pt */
+        color: #6b7280 !important;
+      }
+      
+      /* Tasks section optimization for print */
+      .tasks-section {
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background: white !important;
+        border: 1pt solid #e5e7eb !important;
+        box-shadow: none !important;
+        padding: 15pt !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      
+      .tasks-title {
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        font-size: 14pt !important;
+        margin-bottom: 15pt !important;
+        padding-bottom: 10pt !important;
+        border-bottom: 2pt solid #e5e7eb !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      
+      /* Task items optimization for print */
+      .task-item {
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background: white !important;
+        border: 1pt solid #e5e7eb !important;
+        box-shadow: none !important;
+        padding: 12pt !important;
+        margin-bottom: 10pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        page-break-before: auto !important;
+        break-before: auto !important;
+      }
+      
+      .task-item:last-child {
+        margin-bottom: 0 !important;
+      }
+      
+      .task-header {
+        margin-bottom: 10pt !important;
+        gap: 10pt !important;
+      }
+      
+      .task-title {
+        font-size: 12pt !important;
+        line-height: 1.3 !important;
+        color: black !important;
+        margin-bottom: 8pt !important;
+      }
+      
+      /* Task meta optimization for print */
+      .task-quick-meta {
+        gap: 8pt !important;
+        font-size: 10pt !important;
+        margin-top: 8pt !important;
+        flex-wrap: wrap !important;
+      }
+      
+      .task-assignee,
+      .task-priority,
+      .task-status,
+      .task-date {
+        padding: 6pt !important;
+        background: #f8fafc !important;
+        border: 1pt solid #e2e8f0 !important;
+        font-size: 9pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      
+      /* Task content optimization for print */
+      .task-content {
+        margin-bottom: 10pt !important;
+      }
+      
+      .task-description {
+        padding: 10pt !important;
+        margin-bottom: 8pt !important;
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
+        background: #f8fafc !important;
+        border-left: 3pt solid #4f46e5 !important;
+        color: #374151 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      
+      .task-location {
+        padding: 10pt !important;
+        font-size: 10pt !important;
+        line-height: 1.3 !important;
+        background: #f8fafc !important;
+        border-left: 3pt solid #6b7280 !important;
+        color: #6b7280 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      
+      /* Priority and status indicators for print */
+      .priority-urgent, .priority-normal, .priority-critical,
+      .status-en-cours, .status-en-attente, .status-terminee {
+        padding: 4pt !important;
+        font-size: 8pt !important;
+        font-weight: 600 !important;
+        border: 1pt solid !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      
+      .priority-urgent { 
+        background: #fef3c7 !important; 
+        color: #92400e !important; 
+        border-color: #fde68a !important; 
+      }
+      .priority-normal { 
+        background: #f3f4f6 !important; 
+        color: #374151 !important; 
+        border-color: #d1d5db !important; 
+      }
+      .priority-critical { 
+        background: #fee2e2 !important; 
+        color: #991b1b !important; 
+        border-color: #fecaca !important; 
+      }
+      .status-en-cours { 
+        background: #dbeafe !important; 
+        color: #1e40af !important; 
+        border-color: #93c5fd !important; 
+      }
+      .status-en-attente { 
+        background: #fef3c7 !important; 
+        color: #92400e !important; 
+        border-color: #fde68a !important; 
+      }
+      .status-terminee { 
+        background: #d1fae5 !important; 
+        color: #065f46 !important; 
+        border-color: #a7f3d0 !important; 
+      }
+      
+      /* Footer optimization for print */
+      .footer {
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 20pt !important;
+        padding: 15pt !important;
+        background: white !important;
+        border: 1pt solid #e5e7eb !important;
+        box-shadow: none !important;
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+        font-size: 10pt !important;
+        color: #6b7280 !important;
+      }
+      
+      /* Compact task optimization for print */
+      .compact-task {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      
+      /* Hide hover effects and animations for print */
+      .task-item:hover,
+      .summary-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      
+      /* Ensure proper page margins */
+      @page {
+        margin: 1in !important;
+        size: A4 !important;
+      }
+      
+      /* Force background colors and images for print */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      /* Optimize text for print */
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      
+      /* Prevent orphaned elements */
+      p, .task-item {
+        orphans: 3 !important;
+        widows: 3 !important;
+      }
+    }
+
+    /* Header responsive improvements */
+    @media (min-width: 1200px) {
+      header {
+        padding: var(--space-5); /* Slightly more padding on large screens */
+      }
+      
+      .header-content {
+        gap: var(--space-4); /* More spacing between title and actions */
+      }
+      
+      .app-title {
+        font-size: 2.25rem; /* Slightly larger title on large screens */
+      }
+      
+      /* Task card improvements for large screens */
+      .task-card {
+        padding: var(--space-5); /* More padding on large screens */
+        margin-bottom: var(--space-4); /* More spacing between cards */
+      }
+      
+      .task-header {
+        gap: var(--space-4); /* More spacing in task headers */
+        margin-bottom: var(--space-4);
+      }
+      
+      .task-title {
+        font-size: 1.2rem; /* Slightly larger task titles */
+      }
+      
+      .task-actions .btn {
+        min-width: 40px; /* Larger action buttons */
+        min-height: 40px;
+        padding: var(--space-3);
+      }
+    }
+    
+    @media (min-width: 1600px) {
+      header {
+        padding: var(--space-6); /* Even more padding on very large screens */
+      }
+      
+      .header-content {
+        gap: var(--space-5); /* Maximum spacing for very large screens */
+      }
+      
+      .app-title {
+        font-size: 2.5rem; /* Maximum title size for very large screens */
+      }
+      
+      /* Task card improvements for very large screens */
+      .task-card {
+        padding: var(--space-6); /* Maximum padding for very large screens */
+        margin-bottom: var(--space-5); /* Maximum spacing between cards */
+      }
+      
+      .task-header {
+        gap: var(--space-5); /* Maximum spacing in task headers */
+        margin-bottom: var(--space-5);
+      }
+      
+      .task-title {
+        font-size: 1.3rem; /* Maximum task title size */
+      }
+      
+      .task-actions .btn {
+        min-width: 44px; /* Maximum action button size */
+        min-height: 44px;
+        padding: var(--space-4);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1549,7 +2683,7 @@
               name="location" 
               type="text" 
               class="form-input" 
-              placeholder="Où se trouve la tâche ? (peut être un lien Google Maps)"
+              placeholder="Où se trouve la tâche ? (peut coller un ou des liens Google Maps)"
             >
           </div>
           
@@ -1569,89 +2703,86 @@
           </div>
           
           <!-- Task Characteristics Section -->
-          <div class="form-section">
-            <h3 class="section-title">Caractéristiques de la tâche</h3>
+          <div class="form-section compact-section">
+            <h3 class="section-title compact-title">Caractéristiques de la tâche</h3>
             
-            <div class="form-grid">
+            <div class="characteristics-grid">
               <!-- Assignee Section -->
-              <div class="form-row">
-                <label class="form-label">
+              <div class="characteristic-item">
+                <label class="characteristic-label">
                   <span class="field-icon">👥</span>
                   Assignation
                 </label>
-                <div class="chip-group chip-group-enhanced">
-                  <label class="chip chip-enhanced">
+                <div class="chip-group compact-chips">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Éric">
                     <span class="chip-text">Éric</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Fred">
                     <span class="chip-text">Fred</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Audrey">
                     <span class="chip-text">Audrey</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Lucas">
                     <span class="chip-text">Lucas</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Miguel">
                     <span class="chip-text">Miguel</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="checkbox" name="who" value="Autre">
                     <span class="chip-text">Autre</span>
                   </label>
                 </div>
-                <div class="field-hint">Sélectionnez une ou plusieurs personnes</div>
               </div>
               
               <!-- Priority Section -->
-              <div class="form-row">
-                <label class="form-label">
+              <div class="characteristic-item">
+                <label class="characteristic-label">
                   <span class="field-icon">🚨</span>
                   Priorité
                 </label>
-                <div class="chip-group chip-group-enhanced">
-                  <label class="chip chip-enhanced chip-priority">
+                <div class="chip-group compact-chips">
+                  <label class="chip compact-chip chip-priority">
                     <input type="radio" name="urgent" value="Non" checked>
                     <span class="chip-text">Normal</span>
                   </label>
-                  <label class="chip chip-enhanced chip-priority">
+                  <label class="chip compact-chip chip-priority">
                     <input type="radio" name="urgent" value="Oui">
                     <span class="chip-text">Urgent</span>
                   </label>
-                  <label class="chip chip-enhanced chip-priority">
+                  <label class="chip compact-chip chip-priority">
                     <input type="radio" name="urgent" value="Au PC !">
                     <span class="chip-text">Critique</span>
                   </label>
                 </div>
-                <div class="field-hint">Définissez l'urgence de la tâche</div>
               </div>
               
               <!-- Status Section -->
-              <div class="form-row">
-                <label class="form-label">
+              <div class="characteristic-item">
+                <label class="characteristic-label">
                   <span class="field-icon">📊</span>
                   Statut
                 </label>
-                <div class="chip-group chip-group-enhanced">
-                  <label class="chip chip-enhanced">
+                <div class="chip-group compact-chips">
+                  <label class="chip compact-chip">
                     <input type="radio" name="status" value="En cours" checked>
                     <span class="chip-text">En cours</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="radio" name="status" value="En Attente">
                     <span class="chip-text">En Attente</span>
                   </label>
-                  <label class="chip chip-enhanced">
+                  <label class="chip compact-chip">
                     <input type="radio" name="status" value="Terminée">
                     <span class="chip-text">Terminée</span>
                   </label>
                 </div>
-                <div class="field-hint">Définissez le statut de la tâche</div>
               </div>
             </div>
           </div>
@@ -1703,26 +2834,6 @@
         </div>
         
         <div class="control-group">
-          <label for="filterSelect" class="control-label">Filtrer par statut</label>
-          <select id="filterSelect" class="control-select">
-            <option value="all">Toutes les tâches</option>
-            <option value="en-cours">En cours</option>
-            <option value="en-attente">En Attente</option>
-            <option value="terminee">Terminées</option>
-            <option value="unassigned">Non assignées</option>
-          </select>
-        </div>
-        
-        <div class="control-group">
-          <label for="sortSelect" class="control-label">Trier par</label>
-          <select id="sortSelect" class="control-select">
-            <option value="status">Statut</option>
-            <option value="urgency">Priorité</option>
-            <option value="created">Date de création</option>
-          </select>
-        </div>
-        
-        <div class="control-group">
           <label for="employeeSelect" class="control-label">Filtrer par employé</label>
           <select id="employeeSelect" class="control-select">
             <option value="">Tous les employés</option>
@@ -1736,8 +2847,28 @@
         </div>
         
         <div class="control-group">
+          <label for="filterSelect" class="control-label">Filtrer par statut</label>
+          <select id="filterSelect" class="control-select">
+            <option value="all">Toutes les tâches</option>
+            <option value="en-cours">En cours</option>
+            <option value="en-attente">En Attente</option>
+            <option value="terminee">Terminées</option>
+            <option value="unassigned">Non assignées</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="sortSelect" class="control-label">Trier par</label>
+          <select id="sortSelect" class="control-select">
+            <option value="created" selected>Date de création</option>
+            <option value="status">Statut</option>
+            <option value="urgency">Priorité</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
           <button id="generateReport" class="btn btn-primary">
-            📋 Générer Rapport
+            📋 Générer Rapport de cette vue
           </button>
         </div>
       </div>
@@ -1763,7 +2894,7 @@
     // ============================================================================
     
     // Password for app access (change this to your desired password)
-    const APP_PASSWORD = "glen";
+    const APP_PASSWORD = "g";
     
     // DOM elements - will be initialized after DOM loads
     let $passwordOverlay, $passwordForm, $passwordInput, $appContainer, $cmvForm, $taskList, $tasksCount;
@@ -1771,7 +2902,7 @@
     
     // App state
     let currentFilter = 'all';
-    let currentSort = 'status';
+    let currentSort = 'created';
     let selectedEmployee = '';
     let isEditing = false;
     let editId = null;
@@ -2199,6 +3330,7 @@
         await new Promise(resolve => setTimeout(resolve, 100));
         
         const items = await listSubmissions();
+        console.log('Loaded tasks:', items.map(item => ({ title: item.title, urgent: item.urgent, status: item.status })));
         renderList(items);
         updateTasksCount(items.length);
       } catch (error) {
@@ -2238,6 +3370,13 @@
         // Apply optimized filtering and sorting
         const filteredItems = filterTasks(items);
         const sortedItems = sortTasks(filteredItems);
+        
+        console.log('After filtering:', filteredItems.length, 'items');
+        console.log('After sorting:', sortedItems.length, 'items');
+        console.log('Final sort order:');
+        sortedItems.forEach((item, index) => {
+          console.log(`${index + 1}. [${item.urgent}] [${item.status}] ${item.title}`);
+        });
         
         // Show search results info if searching
         if (searchQuery.trim()) {
@@ -2285,9 +3424,17 @@
       const assignees = isUnassigned ? 'Non assignée' : item.who.join(', ');
       
       return `
-        <div class="task-card ${item.status === 'Terminée' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
+        <div class="task-card compact-task ${item.status === 'Terminée' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
           <div class="task-header">
-            <h3 class="task-title">${escapeHtml(item.title)}</h3>
+            <div class="task-main-info">
+              <h3 class="task-title">${escapeHtml(item.title)}</h3>
+              <div class="task-quick-meta">
+                <span class="task-assignee ${isUnassigned ? 'text-warning' : ''}">👥 ${escapeHtml(assignees)}</span>
+                <span class="task-priority ${priorityClass}">${getPriorityText(item.urgent)}</span>
+                <span class="task-status ${statusClass}">${item.status}</span>
+                <span class="task-date">📅 ${formatDate(item.createdAt)}</span>
+              </div>
+            </div>
             <div class="task-actions">
               <button class="btn btn-sm btn-primary" onclick="editTask(${item.id})" title="Modifier">
                 ✏️
@@ -2298,29 +3445,12 @@
             </div>
           </div>
           
-          <div class="task-content">
-            ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
-            ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
-          </div>
-          
-          <div class="task-meta">
-            <div class="task-meta-item">
-              <strong>👥 Assigné à:</strong> 
-              <span class="${isUnassigned ? 'text-warning' : ''}">${escapeHtml(assignees)}</span>
+          ${(item.description || item.location) ? `
+            <div class="task-content">
+              ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
+              ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
             </div>
-            <div class="task-meta-item">
-              <strong>🚨 Priorité:</strong> 
-              <span class="${priorityClass}">${getPriorityText(item.urgent)}</span>
-            </div>
-            <div class="task-meta-item">
-              <strong>📊 Statut:</strong> 
-              <span class="${statusClass}">${item.status}</span>
-            </div>
-            <div class="task-meta-item">
-              <strong>📅 Créée:</strong> 
-              ${formatDate(item.createdAt)}
-            </div>
-          </div>
+          ` : ''}
         </div>
       `;
     }
@@ -2525,44 +3655,47 @@
     async function addMockData() {
       try {
         const mockTasks = [
+          // Critical Priority Tasks
           {
-            title: "Réparer le système d'irrigation",
-            description: "Tuyaux endommagés sur le sentier principal",
-            location: "Sentier principal - km 2.5",
-            who: ["Éric"],
-            urgent: "Oui",
+            title: "🚨 Réparer la clôture de sécurité",
+            description: "Section effondrée près du belvédère - risque de chute",
+            location: "Belvédère - point de vue",
+            who: ["Éric", "Lucas"],
+            urgent: "Au PC !",
             status: "En cours",
             createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Tailler les haies du parking",
-            description: "Haies envahissantes bloquant la vue",
-            location: "Parking principal",
-            who: ["Fred"],
-            urgent: "Non",
+            title: "🚨 Réparer la rampe d'accès",
+            description: "Béton fissuré sur la rampe handicapés - urgence sécurité",
+            location: "Entrée principale",
+            who: ["Audrey", "Lucas"],
+            urgent: "Au PC !",
             status: "En Attente",
             createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Réparer la rampe d'accès",
-            description: "Béton fissuré sur la rampe handicapés",
-            location: "Entrée principale",
-            who: ["Audrey", "Lucas"],
+            title: "🚨 Évacuation d'urgence - zone inondée",
+            description: "Zone de camping inondée après orage",
+            location: "Zone de camping - rivière",
+            who: ["Éric", "Fred", "Audrey"],
             urgent: "Au PC !",
             status: "En cours",
             createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
           },
+          
+          // Urgent Priority Tasks
           {
-            title: "Nettoyer les gouttières",
-            description: "Feuilles et débris bloquant l'écoulement",
-            location: "Bâtiment administratif",
-            who: ["Miguel"],
-            urgent: "Non",
-            status: "Terminée",
+            title: "⚠️ Réparer le système d'irrigation",
+            description: "Tuyaux endommagés sur le sentier principal - plantes en danger",
+            location: "Sentier principal - km 2.5",
+            who: ["Éric"],
+            urgent: "Oui",
+            status: "En cours",
             createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Réparer l'éclairage extérieur",
+            title: "⚠️ Réparer l'éclairage extérieur",
             description: "Projecteurs défaillants sur le chemin de randonnée",
             location: "Chemin de randonnée - départ",
             who: ["Éric"],
@@ -2571,49 +3704,123 @@
             createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Planter de nouveaux arbres",
-            description: "Remplacer les pins morts par des sapins",
-            location: "Zone de reboisement - versant nord",
-            who: [],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "Réparer le pont en bois",
+            title: "⚠️ Réparer le pont en bois",
             description: "Planches pourries sur le pont du ruisseau",
             location: "Pont du ruisseau - sentier est",
             who: ["Lucas"],
             urgent: "Oui",
             status: "Terminée",
-            createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+            createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Nettoyer les panneaux d'information",
+            title: "⚠️ Nettoyer les dégâts d'orage",
+            description: "Branches et débris après tempête de la nuit dernière",
+            location: "Tous les sentiers",
+            who: ["Fred", "Miguel"],
+            urgent: "Oui",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          
+          // Normal Priority Tasks
+          {
+            title: "📝 Tailler les haies du parking",
+            description: "Haies envahissantes bloquant la vue",
+            location: "Parking principal",
+            who: ["Fred"],
+            urgent: "Non",
+            status: "En Attente",
+            createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Nettoyer les gouttières",
+            description: "Feuilles et débris bloquant l'écoulement",
+            location: "Bâtiment administratif",
+            who: ["Miguel"],
+            urgent: "Non",
+            status: "Terminée",
+            createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Planter de nouveaux arbres",
+            description: "Remplacer les pins morts par des sapins",
+            location: "Zone de reboisement - versant nord",
+            who: [],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Nettoyer les panneaux d'information",
             description: "Graffitis et saleté sur les panneaux",
             location: "Tous les panneaux du site",
             who: ["Miguel", "Fred"],
             urgent: "Non",
             status: "En cours",
-            createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
+            createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000).toISOString()
           },
           {
-            title: "Réparer la clôture de sécurité",
-            description: "Section effondrée près du belvédère",
-            location: "Belvédère - point de vue",
-            who: ["Éric", "Lucas"],
-            urgent: "Au PC !",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "Tondre les pelouses",
+            title: "📝 Tondre les pelouses",
             description: "Herbe haute sur les zones de pique-nique",
             location: "Zones de pique-nique",
             who: [],
             urgent: "Non",
             status: "En cours",
-            createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
+            createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Vérifier les extincteurs",
+            description: "Contrôle annuel des extincteurs dans tous les bâtiments",
+            location: "Tous les bâtiments",
+            who: ["Audrey"],
+            urgent: "Non",
+            status: "En Attente",
+            createdAt: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Réparer les bancs de pique-nique",
+            description: "Bancs cassés dans la zone de repos",
+            location: "Zone de repos - lac",
+            who: ["Lucas"],
+            urgent: "Non",
+            status: "Terminée",
+            createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Nettoyer le parking vélos",
+            description: "Débris et feuilles dans le parking vélos",
+            location: "Parking vélos - entrée est",
+            who: ["Miguel"],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Vérifier les panneaux de signalisation",
+            description: "Contrôle de la visibilité des panneaux de direction",
+            location: "Tous les carrefours",
+            who: ["Fred"],
+            urgent: "Non",
+            status: "En Attente",
+            createdAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Réparer les poubelles",
+            description: "Poubelles endommagées dans les zones de pique-nique",
+            location: "Zones de pique-nique",
+            who: ["Audrey"],
+            urgent: "Non",
+            status: "Terminée",
+            createdAt: new Date(Date.now() - 17 * 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "📝 Nettoyer les toilettes publiques",
+            description: "Nettoyage hebdomadaire des toilettes publiques",
+            location: "Toilettes publiques - centre",
+            who: ["Miguel"],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString()
           }
         ];
         
@@ -2707,13 +3914,39 @@
           let sortResult = 0;
           switch (currentSort) {
             case 'urgency':
-              const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
+              // Define priority order: Critical (Au PC !) > Urgent (Oui) > Normal (Non)
+              const urgencyOrder = { 
+                "Au PC !": 3, 
+                "Oui": 2, 
+                "Non": 1 
+              };
               const urgencyA = urgencyOrder[a.urgent] || 0;
               const urgencyB = urgencyOrder[b.urgent] || 0;
-              sortResult = urgencyB - urgencyA;
+              sortResult = urgencyB - urgencyA; // Higher priority first
+              
+              // If same priority, sort by creation date (newer first)
+              if (sortResult === 0) {
+                sortResult = new Date(b.createdAt) - new Date(a.createdAt);
+              }
+              
+              console.log(`Comparing ${a.title} (${a.urgent}=${urgencyA}, ${a.status}) vs ${b.title} (${b.urgent}=${urgencyB}, ${b.status}) => ${sortResult}`);
               break;
             case 'created':
               sortResult = new Date(b.createdAt) - new Date(a.createdAt);
+              break;
+            case 'deadline':
+              const today = new Date().setHours(0,0,0,0);
+              const deadlineA = a.deadline ? new Date(a.deadline) : new Date('9999-12-31');
+              const deadlineB = b.deadline ? new Date(b.deadline) : new Date('9999-12-31');
+              
+              // Overdue tasks first (but only among non-done tasks)
+              const overdueA = deadlineA < today && a.status !== "Terminée";
+              const overdueB = deadlineB < today && b.status !== "Terminée";
+              if (overdueA !== overdueB) {
+                sortResult = overdueB - overdueA;
+              } else {
+                sortResult = deadlineA - deadlineB;
+              }
               break;
             default: // status
               sortResult = STATUS_WEIGHT[a.status] - STATUS_WEIGHT[b.status];
@@ -2777,7 +4010,7 @@
       const completedTasks = items.filter(item => item.status === 'Terminée').length;
       const pendingTasks = items.filter(item => item.status === 'En cours').length;
       const waitingTasks = items.filter(item => item.status === 'En Attente').length;
-      const urgentTasks = items.filter(item => item.urgent === 'Oui' || item.urgent === 'Au PC !').length;
+      const criticalTasks = items.filter(item => item.urgent === 'Au PC !').length;
       
       return `
         <!DOCTYPE html>
@@ -2787,24 +4020,24 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Rapport GlenTasks - ${now.toLocaleDateString('fr-FR')}</title>
           <style>
-            /* CSS Variables for consistent theming */
+            /* CSS Variables for consistent theming - Eye-friendly colors */
             :root {
-              --primary: #3b82f6;
-              --primary-dark: #2563eb;
-              --secondary: #64748b;
-              --success: #10b981;
-              --warning: #f59e0b;
-              --danger: #ef4444;
-              --gray-50: #f8fafc;
-              --gray-100: #f1f5f9;
-              --gray-200: #e2e8f0;
-              --gray-300: #cbd5e1;
-              --gray-400: #94a3b8;
-              --gray-500: #64748b;
-              --gray-600: #475569;
-              --gray-700: #334155;
-              --gray-800: #1e293b;
-              --gray-900: #0f172a;
+              --primary: #4f46e5;
+              --primary-dark: #3730a3;
+              --secondary: #6b7280;
+              --success: #059669;
+              --warning: #d97706;
+              --danger: #dc2626;
+              --gray-50: #f9fafb;
+              --gray-100: #f3f4f6;
+              --gray-200: #e5e7eb;
+              --gray-300: #d1d5db;
+              --gray-400: #9ca3af;
+              --gray-500: #6b7280;
+              --gray-600: #4b5563;
+              --gray-700: #374151;
+              --gray-800: #1f2937;
+              --gray-900: #111827;
               
               --space-1: 0.25rem;
               --space-2: 0.5rem;
@@ -2837,51 +4070,57 @@
 
             body { 
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-              line-height: 1.4; 
+              line-height: 1.3; 
               color: var(--gray-800);
               max-width: 1200px;
               margin: 0 auto;
-              padding: var(--space-3);
+              padding: var(--space-2);
               background: var(--gray-50);
-              font-size: 0.8rem;
+              font-size: 0.75rem;
             }
 
-            /* Header - Ultra compact */
+            /* Header - Ultra compact with eye-friendly colors */
             .header { 
               text-align: center; 
-              margin-bottom: var(--space-4);
-              padding: var(--space-4);
+              margin-bottom: var(--space-2); /* Reduced from var(--space-3) */
+              padding: var(--space-2); /* Reduced from var(--space-3) */
               background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
               color: white;
               border-radius: var(--radius-md);
               box-shadow: var(--shadow);
+              max-width: 900px; /* Match main app header width */
+              margin-left: auto;
+              margin-right: auto;
             }
             
             .header h1 { 
               margin: 0; 
-              font-size: 1.5rem;
+              font-size: 1.1rem; /* Reduced from 1.25rem */
               font-weight: 700;
-              margin-bottom: var(--space-1);
+              margin-bottom: var(--space-1); /* Reduced spacing */
             }
             
             .header p {
               margin: 0;
-              font-size: 0.875rem;
+              font-size: 0.7rem; /* Reduced from 0.8rem */
               opacity: 0.9;
               font-weight: 500;
             }
 
-            /* Summary cards - Ultra compact grid */
+            /* Summary cards - Ultra compact grid with muted colors */
             .summary {
               display: grid; 
-              grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
-              gap: var(--space-2);
-              margin-bottom: var(--space-4);
+              grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Reduced from 100px */
+              gap: var(--space-1); /* Reduced from var(--space-2) */
+              margin-bottom: var(--space-2); /* Reduced from var(--space-3) */
+              max-width: 800px; /* Match main app form width */
+              margin-left: auto;
+              margin-right: auto;
             }
             
             .summary-card {
               background: white;
-              padding: var(--space-3);
+              padding: var(--space-1); /* Reduced from var(--space-2) */
               border-radius: var(--radius);
               text-align: center;
               box-shadow: var(--shadow-sm);
@@ -2895,7 +4134,7 @@
             }
             
             .summary-number {
-              font-size: 1.5rem;
+              font-size: 1rem; /* Reduced from 1.25rem */
               font-weight: 700;
               color: var(--primary);
               margin-bottom: var(--space-1);
@@ -2904,9 +4143,9 @@
             
             .summary-label {
               color: var(--gray-600);
-              font-size: 0.7rem;
+              font-size: 0.6rem; /* Reduced from 0.65rem */
               text-transform: uppercase;
-              letter-spacing: 0.3px;
+              letter-spacing: 0.2px;
               font-weight: 600;
             }
 
@@ -2914,29 +4153,38 @@
             .tasks-section {
               background: white;
               border-radius: var(--radius-md);
-              padding: var(--space-4);
+              padding: var(--space-3);
               box-shadow: var(--shadow);
               border: 1px solid var(--gray-200);
+              max-width: 1000px; /* Match main app tasks section width */
+              margin-left: auto;
+              margin-right: auto;
             }
             
             .tasks-title {
-              font-size: 1.1rem;
+              font-size: 1rem;
               font-weight: 600;
               color: var(--gray-800);
-              margin-bottom: var(--space-3);
+              margin-bottom: var(--space-2);
               padding-bottom: var(--space-2);
               border-bottom: 1px solid var(--gray-200);
+              max-width: 900px; /* Match task list width */
+              margin-left: auto;
+              margin-right: auto;
             }
 
             /* Task items - Ultra compact */
             .task-item { 
-              padding: var(--space-3);
+              padding: var(--space-2);
               border: 1px solid var(--gray-200); 
               border-radius: var(--radius-sm);
               margin-bottom: var(--space-2);
               background: white;
               transition: all 0.2s ease;
               box-shadow: var(--shadow-sm);
+              max-width: 900px; /* Match task list width */
+              margin-left: auto;
+              margin-right: auto;
             }
             
             .task-item:hover {
@@ -2958,37 +4206,73 @@
             }
             
             .task-title { 
-              font-size: 0.9rem;
+              font-size: 0.85rem;
               font-weight: 600; 
               color: var(--gray-800); 
               margin: 0;
               flex: 1;
-              line-height: 1.3;
+              line-height: 1.2;
             }
 
-            /* Task description - Ultra compact */
+            /* Task quick meta - Ultra compact */
+            .task-quick-meta {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--space-1);
+              align-items: center;
+              font-size: 0.7rem;
+              margin-top: var(--space-1);
+            }
+            
+            .task-assignee,
+            .task-priority,
+            .task-status,
+            .task-date {
+              display: inline-flex;
+              align-items: center;
+              gap: var(--space-1);
+              padding: var(--space-1);
+              background: #f8fafc;
+              border-radius: var(--radius-sm);
+              border: 1px solid #e2e8f0;
+              white-space: nowrap;
+            }
+            
+            .task-assignee {
+              background: #f1f5f9;
+              color: #475569;
+              font-weight: 500;
+            }
+            
+            .task-date {
+              background: #f8fafc;
+              color: #64748b;
+              font-size: 0.65rem;
+            }
+
+            /* Task description - Ultra compact with eye-friendly colors */
             .task-description {
               color: var(--gray-600);
               margin-bottom: var(--space-2);
-              line-height: 1.3;
-              font-size: 0.8rem;
+              line-height: 1.2;
+              font-size: 0.75rem;
               padding: var(--space-2);
-              background: var(--gray-50);
+              background: #f8fafc;
               border-radius: var(--radius-sm);
               border-left: 2px solid var(--primary);
             }
 
-            /* Task location - Ultra compact */
+            /* Task location - Ultra compact with eye-friendly colors */
             .task-location {
               color: var(--gray-500);
-              font-size: 0.75rem;
+              font-size: 0.7rem;
               margin-bottom: var(--space-2);
               font-style: italic;
               display: flex;
               align-items: center;
               gap: var(--space-1);
               padding: var(--space-2);
-              background: var(--gray-50);
+              background: #f8fafc;
               border-radius: var(--radius-sm);
               border-left: 2px solid var(--secondary);
             }
@@ -2996,13 +4280,13 @@
             /* Task meta - Ultra compact grid layout */
             .task-meta { 
               display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+              grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
               gap: var(--space-1);
               padding: var(--space-2);
               background: var(--gray-50);
               border-radius: var(--radius-sm);
               border: 1px solid var(--gray-200);
-              font-size: 0.75rem;
+              font-size: 0.7rem;
             }
             
             .task-meta-item {
@@ -3019,19 +4303,19 @@
             .task-meta-item strong {
               color: var(--gray-700);
               font-weight: 600;
-              min-width: 50px;
-              font-size: 0.7rem;
+              min-width: 40px;
+              font-size: 0.65rem;
             }
 
             /* Priority and status indicators - Ultra compact */
             .priority-urgent, .priority-normal, .priority-critical,
-            .status-en-cours, .status-termine {
+            .status-en-cours, .status-en-attente, .status-terminee {
               padding: var(--space-1);
               border-radius: var(--radius-sm);
-              font-size: 0.65rem;
+              font-size: 0.6rem;
               font-weight: 600;
               text-transform: uppercase;
-              letter-spacing: 0.2px;
+              letter-spacing: 0.1px;
               display: inline-flex;
               align-items: center;
               gap: var(--space-1);
@@ -3039,45 +4323,54 @@
               justify-content: center;
             }
 
-            .priority-urgent { background: var(--warning); color: white; }
-            .priority-normal { background: var(--gray-500); color: white; }
-            .priority-critical { background: var(--danger); color: white; }
-            .status-en-cours { background: var(--primary); color: white; }
-            .status-en-attente { background: var(--warning); color: white; }
-            .status-terminee { background: var(--success); color: white; }
+            .priority-urgent { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+            .priority-normal { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+            .priority-critical { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+            .status-en-cours { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+            .status-en-attente { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+            .status-terminee { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
 
             /* Footer - Ultra compact */
             .footer { 
               text-align: center; 
-              margin-top: var(--space-4);
-              padding: var(--space-3);
+              margin-top: var(--space-3);
+              padding: var(--space-2);
               color: var(--gray-500);
-              font-size: 0.75rem;
+              font-size: 0.7rem;
               background: white;
               border-radius: var(--radius-md);
               border: 1px solid var(--gray-200);
+              max-width: 900px; /* Match header width */
+              margin-left: auto;
+              margin-right: auto;
             }
 
             /* Responsive design */
             @media (max-width: 768px) {
               body {
                 padding: var(--space-2);
-                font-size: 0.75rem;
+                font-size: 0.7rem;
               }
               
               .header {
-                padding: var(--space-3);
-                margin-bottom: var(--space-3);
+                padding: var(--space-2);
+                margin-bottom: var(--space-2);
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .header h1 {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
               }
               
               .summary {
                 grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-2);
-                margin-bottom: var(--space-3);
+                margin-bottom: var(--space-2);
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .summary-card {
@@ -3085,16 +4378,51 @@
               }
               
               .summary-number {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
               }
               
               .tasks-section {
-                padding: var(--space-3);
+                padding: var(--space-2);
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              
+              .tasks-title {
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .task-item {
                 padding: var(--space-2);
                 margin-bottom: var(--space-2);
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              
+              .compact-task {
+                padding: var(--space-3);
+              }
+              
+              .task-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+              }
+              
+              .task-quick-meta {
+                gap: var(--space-2);
+                font-size: 0.8rem;
+              }
+              
+              .task-assignee,
+              .task-priority,
+              .task-status,
+              .task-date {
+                padding: var(--space-2);
+                font-size: 0.75rem;
               }
               
               .task-header {
@@ -3111,18 +4439,18 @@
               
               .task-meta-item {
                 padding: var(--space-1);
-                font-size: 0.7rem;
+                font-size: 0.65rem;
               }
               
               .task-meta-item strong {
-                min-width: 45px;
-                font-size: 0.65rem;
+                min-width: 35px;
+                font-size: 0.6rem;
               }
             }
 
             @media (max-width: 480px) {
               body {
-                padding: var(--space-2);
+                padding: var(--space-1);
               }
               
               .header {
@@ -3130,7 +4458,7 @@
               }
               
               .header h1 {
-                font-size: 1.1rem;
+                font-size: 1rem;
               }
               
               .summary {
@@ -3141,11 +4469,69 @@
                 padding: var(--space-2);
               }
               
+              .compact-task {
+                padding: var(--space-3);
+              }
+              
               .task-item {
                 padding: var(--space-2);
               }
             }
-
+            
+            /* Large screen optimizations for reports */
+            @media (min-width: 1200px) {
+              .header {
+                max-width: 800px;
+              }
+              
+              .summary {
+                max-width: 700px;
+              }
+              
+              .tasks-section {
+                max-width: 900px;
+              }
+              
+              .tasks-title {
+                max-width: 800px;
+              }
+              
+              .task-item {
+                max-width: 800px;
+              }
+              
+              .footer {
+                max-width: 800px;
+              }
+            }
+            
+            /* Extra large screen optimizations for reports */
+            @media (min-width: 1600px) {
+              .header {
+                max-width: 750px;
+              }
+              
+              .summary {
+                max-width: 650px;
+              }
+              
+              .tasks-section {
+                max-width: 850px;
+              }
+              
+              .tasks-title {
+                max-width: 750px;
+              }
+              
+              .task-item {
+                max-width: 750px;
+              }
+              
+              .footer {
+                max-width: 750px;
+              }
+            }
+            
             /* Print styles */
             @media print {
               body { 
@@ -3157,22 +4543,48 @@
               .header { 
                 background: var(--primary) !important; 
                 -webkit-print-color-adjust: exact;
-                color-adjust: exact;
+                print-color-adjust: exact;
                 margin-bottom: var(--space-3);
                 padding: var(--space-3);
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .summary {
                 margin-bottom: var(--space-3);
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              
+              .tasks-section {
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              
+              .tasks-title {
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .task-item {
-                break-inside: avoid;
-                page-break-inside: avoid;
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
               }
               
               .footer {
-                margin-top: var(--space-3);
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+              }
+              
+              .compact-task {
+                break-inside: avoid;
+                page-break-inside: avoid;
               }
             }
           </style>
@@ -3201,42 +4613,42 @@
               <div class="summary-label">Terminées</div>
             </div>
             <div class="summary-card">
-              <div class="summary-number">${urgentTasks}</div>
-              <div class="summary-label">Urgentes</div>
+              <div class="summary-number">${criticalTasks}</div>
+              <div class="summary-label">Critiques</div>
             </div>
           </div>
           
           <div class="tasks-section">
             <h2 class="tasks-title">Tâches</h2>
-            ${items.map(item => `
-              <div class="task-item">
-                <div class="task-header">
-                  <h3 class="task-title">${escapeHtml(item.title)}</h3>
+            ${items.map(item => {
+              const priorityClass = getPriorityClass(item.urgent);
+              const statusClass = getStatusClass(item.status);
+              const isUnassigned = !item.who || item.who.length === 0;
+              const assignees = isUnassigned ? 'Non assignée' : item.who.join(', ');
+              
+              return `
+                <div class="task-card compact-task ${item.status === 'Terminée' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
+                  <div class="task-header">
+                    <div class="task-main-info">
+                      <h3 class="task-title">${escapeHtml(item.title)}</h3>
+                      <div class="task-quick-meta">
+                        <span class="task-assignee ${isUnassigned ? 'text-warning' : ''}">👥 ${escapeHtml(assignees)}</span>
+                        <span class="task-priority ${priorityClass}">${getPriorityText(item.urgent)}</span>
+                        <span class="task-status ${statusClass}">${item.status}</span>
+                        <span class="task-date">📅 ${formatDate(item.createdAt)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  ${(item.description || item.location) ? `
+                    <div class="task-content">
+                      ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
+                      ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+                    </div>
+                  ` : ''}
                 </div>
-                
-                ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
-                ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
-                
-                <div class="task-meta">
-                  <div class="task-meta-item">
-                    <strong>👥</strong> 
-                    <span>${item.who && item.who.length > 0 ? escapeHtml(item.who.join(', ')) : 'Non assignée'}</span>
-                  </div>
-                  <div class="task-meta-item">
-                    <strong>🚨</strong> 
-                    <span class="${getPriorityClass(item.urgent)}">${getPriorityText(item.urgent)}</span>
-                  </div>
-                  <div class="task-meta-item">
-                    <strong>📊</strong> 
-                    <span class="${getStatusClass(item.status)}">${item.status}</span>
-                  </div>
-                  <div class="task-meta-item">
-                    <strong>📅</strong> 
-                    <span>${formatDate(item.createdAt)}</span>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
+              `;
+            }).join('')}
           </div>
           
           <div class="footer">
@@ -3489,21 +4901,39 @@
     function sortTasks(items) {
       if (!items || items.length === 0) return items;
       
-      return items.sort((a, b) => {
-        // First priority: Done tasks always go to bottom
-        const wa = STATUS_WEIGHT[a.status] ?? 0;
-        const wb = STATUS_WEIGHT[b.status] ?? 0;
-        if (wa !== wb) return wa - wb;
+      console.log('Sorting tasks with currentSort:', currentSort);
+      console.log('Items before sorting:', items.length);
+      
+      const sortedItems = items.sort((a, b) => {
+        // First priority: Completed tasks always go to bottom
+        if (a.status === "Terminée" && b.status !== "Terminée") return 1;
+        if (b.status === "Terminée" && a.status !== "Terminée") return -1;
         
         // Second priority: Apply the selected sorting method
         let sortResult = 0;
         
         switch (currentSort) {
           case 'urgency':
-            const urgencyOrder = { "Au PC !": 3, "Oui": 2, "Non": 1 };
+            // Define priority order: Critical (Au PC !) > Urgent (Oui) > Normal (Non)
+            const urgencyOrder = { 
+              "Au PC !": 3, 
+              "Oui": 2, 
+              "Non": 1 
+            };
             const urgencyA = urgencyOrder[a.urgent] || 0;
             const urgencyB = urgencyOrder[b.urgent] || 0;
-            sortResult = urgencyB - urgencyA;
+            sortResult = urgencyB - urgencyA; // Higher priority first
+            
+            // If same priority, sort by creation date (newer first)
+            if (sortResult === 0) {
+              sortResult = new Date(b.createdAt) - new Date(a.createdAt);
+            }
+            
+            console.log(`Comparing ${a.title} (${a.urgent}=${urgencyA}, ${a.status}) vs ${b.title} (${b.urgent}=${urgencyB}, ${b.status}) => ${sortResult}`);
+            break;
+            
+          case 'created':
+            sortResult = new Date(b.createdAt) - new Date(a.createdAt);
             break;
             
           case 'deadline':
@@ -3521,16 +4951,26 @@
             }
             break;
             
-          case 'created':
-            sortResult = new Date(b.createdAt) - new Date(a.createdAt);
-            break;
-            
           default: // status
-            sortResult = STATUS_WEIGHT[a.status] - STATUS_WEIGHT[b.status];
+            const wa = STATUS_WEIGHT[a.status] ?? 0;
+            const wb = STATUS_WEIGHT[b.status] ?? 0;
+            sortResult = wa - wb;
         }
         
         return sortResult;
       });
+      
+      // Log the final sort order for debugging
+      if (currentSort === 'urgency') {
+        console.log('Final urgency sort order:');
+        sortedItems.forEach((item, index) => {
+          const priorityText = item.urgent === 'Au PC !' ? 'CRITICAL' : 
+                              item.urgent === 'Oui' ? 'URGENT' : 'NORMAL';
+          console.log(`${index + 1}. [${priorityText}] [${item.status}] ${item.title}`);
+        });
+      }
+      
+      return sortedItems;
     }
 
     // ============================================================================
