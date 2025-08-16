@@ -112,7 +112,7 @@
     }
     
     .password-input {
-      padding: var(--space-3);
+      padding: var(--space-2);
       border: 2px solid var(--gray-200);
       border-radius: var(--radius);
       font-size: 1rem;
@@ -129,7 +129,7 @@
       background: var(--primary);
       color: white;
       border: none;
-      padding: var(--space-3) var(--space-6);
+      padding: var(--space-2) var(--space-5);
       border-radius: var(--radius);
       font-size: 1rem;
       font-weight: 600;
@@ -176,7 +176,7 @@
     
     .header-actions {
       display: flex;
-      gap: var(--space-2);
+      gap: var(--space-1);
       flex-wrap: wrap;
     }
     
@@ -193,7 +193,7 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .btn:hover {
@@ -260,17 +260,17 @@
     .form-card {
       background: white;
       border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      margin-bottom: var(--space-6);
+      padding: var(--space-5);
+      margin-bottom: var(--space-5);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
     }
     
     .form-title {
-      font-size: 1.5rem;
+      font-size: 1.375rem;
       font-weight: 600;
       color: var(--gray-800);
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-5);
       text-align: center;
     }
     
@@ -293,7 +293,7 @@
       font-weight: 500;
       color: var(--gray-700);
       margin-bottom: var(--space-2);
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: var(--space-2);
@@ -336,12 +336,12 @@
     }
     
     .form-input-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
     }
     
     .field-hint {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--gray-500);
       margin-top: var(--space-1);
       font-style: italic;
@@ -353,8 +353,8 @@
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
       border-radius: var(--radius-lg);
-      padding: var(--space-4);
-      margin: var(--space-4) 0;
+      padding: var(--space-3);
+      margin: var(--space-3) 0;
     }
     
     .section-title {
@@ -384,8 +384,8 @@
     .chip {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-2) var(--space-3);
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-2);
       background: var(--gray-100);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius);
@@ -437,7 +437,7 @@
     
     .chip-priority {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
     
     .chip-priority::before {
@@ -473,7 +473,7 @@
     }
     
     .file-input {
-      padding: var(--space-4);
+      padding: var(--space-3);
       border: 2px dashed var(--gray-300);
       background: var(--gray-50);
       cursor: pointer;
@@ -548,8 +548,8 @@
     .controls-section {
       background: white;
       border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      margin-bottom: var(--space-6);
+      padding: var(--space-5);
+      margin-bottom: var(--space-5);
       box-shadow: var(--shadow);
       border: 1px solid var(--gray-200);
     }
@@ -570,11 +570,11 @@
       font-weight: 500;
       color: var(--gray-700);
       margin-bottom: var(--space-2);
-      font-size: 0.875rem;
+      font-size: 0.85rem;
     }
 
     .control-select {
-      padding: var(--space-3);
+      padding: var(--space-2);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius);
       font-size: 0.875rem;
@@ -583,7 +583,7 @@
     }
     
     .control-input {
-      padding: var(--space-3);
+      padding: var(--space-2);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius);
       font-size: 0.875rem;
@@ -621,7 +621,7 @@
     }
 
     .tasks-title {
-      font-size: 1.5rem;
+      font-size: 1.375rem;
       font-weight: 600;
       color: var(--gray-800);
       margin: 0;
@@ -726,6 +726,7 @@
       display: flex;
       gap: var(--space-1);
       flex-shrink: 0;
+      flex-wrap: wrap;
     }
     
     .task-actions .btn {
@@ -941,7 +942,7 @@
     /* Responsive design */
     @media (max-width: 768px) {
       .app-container {
-        padding: var(--space-3);
+        padding: var(--space-2);
         max-width: 100%;
         overflow-x: hidden;
       }
@@ -960,34 +961,35 @@
       .header-actions {
         justify-content: center;
         flex-wrap: wrap;
-        gap: var(--space-2);
+        gap: var(--space-1);
       }
       
       .header-actions .btn {
         font-size: 0.8rem;
-        padding: var(--space-2) var(--space-3);
+        padding: var(--space-1) var(--space-2);
         min-height: 44px;
       }
       
       .form-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-3);
+        gap: var(--space-2);
       }
       
       .controls-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-3);
+        gap: var(--space-2);
       }
       
       .task-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--space-2);
+        gap: var(--space-1);
       }
       
       .task-actions {
         align-self: flex-end;
         gap: var(--space-1);
+        flex-wrap: wrap;
       }
       
       .task-actions .btn {
@@ -1010,8 +1012,8 @@
       }
       
       .password-container {
-        margin: var(--space-4);
-        padding: var(--space-6);
+        margin: var(--space-3);
+        padding: var(--space-4);
         max-width: 90vw;
       }
       
@@ -1044,11 +1046,11 @@
       
       /* Tighter form card spacing on mobile to avoid "too wide" feel */
       .form-card {
-        padding: var(--space-4);
+        padding: var(--space-3);
       }
       
       .form-section {
-        padding: var(--space-3);
+        padding: var(--space-2);
       }
       
       /* Improve form inputs on mobile */
@@ -1056,11 +1058,19 @@
       .form-textarea,
       .control-input,
       .control-select {
-        min-height: 48px;
+        min-height: 44px;
         font-size: 1rem;
         -webkit-appearance: none;
         appearance: none;
         border-radius: var(--radius);
+      }
+      
+      /* Denser input padding on mobile */
+      .form-input,
+      .form-textarea,
+      .control-input,
+      .control-select {
+        padding: var(--space-2);
       }
       
       /* Better chip layout on mobile */
@@ -1071,24 +1081,25 @@
       }
       
       .chip {
-        min-height: 48px;
-        padding: var(--space-3) var(--space-4);
+        min-height: 44px;
+        padding: var(--space-2) var(--space-3);
         font-size: 0.9rem;
         width: 100%;
         justify-content: center;
       }
       
       .chip-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        word-break: break-word;
       }
     }
     
     /* Extra small mobile devices */
     @media (max-width: 480px) {
       .app-container {
-        padding: var(--space-2);
+        padding: var(--space-1);
       }
       
       .app-title {
@@ -1105,12 +1116,12 @@
       
       .header-actions .btn {
         font-size: 0.75rem;
-        padding: var(--space-2);
+        padding: var(--space-1);
       }
       
       .task-actions .btn {
-        min-width: 40px;
-        min-height: 40px;
+        min-width: 32px;
+        min-height: 32px;
         padding: var(--space-1);
       }
       
@@ -1168,13 +1179,14 @@
     /* Better touch targets for mobile */
     @media (max-width: 768px) {
       .btn {
-        min-height: 44px;
-        padding: var(--space-3) var(--space-4);
+        min-height: 40px;
+        padding: var(--space-2) var(--space-3);
+        white-space: normal;
       }
       
       .chip {
-        min-height: 44px;
-        padding: var(--space-3) var(--space-4);
+        min-height: 40px;
+        padding: var(--space-2) var(--space-3);
       }
       
       .task-actions .btn {
@@ -1385,7 +1397,7 @@
       
       /* Improve form layout */
       .form-row {
-        margin-bottom: var(--space-3);
+        margin-bottom: var(--space-2);
       }
       
       /* Better button spacing */
@@ -1439,6 +1451,24 @@
         border-color: var(--primary);
         box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
       }
+    }
+
+    /* Prevent text overflow */
+    .task-title {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    /* Ensure form text wraps on mobile */
+    .form-label,
+    .chip-text,
+    .btn,
+    .form-input::placeholder,
+    .control-input::placeholder,
+    .form-textarea::placeholder {
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
   </style>
 </head>
