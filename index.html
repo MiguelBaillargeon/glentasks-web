@@ -1042,6 +1042,15 @@
         box-sizing: border-box;
       }
       
+      /* Tighter form card spacing on mobile to avoid "too wide" feel */
+      .form-card {
+        padding: var(--space-4);
+      }
+      
+      .form-section {
+        padding: var(--space-3);
+      }
+      
       /* Improve form inputs on mobile */
       .form-input,
       .form-textarea,
@@ -1057,129 +1066,22 @@
       /* Better chip layout on mobile */
       .chip-group {
         gap: var(--space-2);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       
       .chip {
         min-height: 48px;
         padding: var(--space-3) var(--space-4);
         font-size: 0.9rem;
-      }
-      
-      /* Improve task cards on mobile */
-      .task-card {
-        padding: var(--space-4);
-        margin-bottom: var(--space-3);
-      }
-      
-      .task-meta {
-        flex-direction: column;
-        gap: var(--space-2);
-      }
-      
-      .task-meta-item {
-        font-size: 0.8rem;
-      }
-      
-      /* Better button sizing on mobile */
-      .btn {
-        min-height: 44px;
-        padding: var(--space-3) var(--space-4);
-        font-size: 0.9rem;
-        touch-action: manipulation;
-      }
-      
-      /* Enhanced form mobile improvements */
-      .form-section {
-        padding: var(--space-3);
-        margin: var(--space-3) 0;
-      }
-      
-      .section-title {
-        font-size: 1rem;
-        margin-bottom: var(--space-3);
-      }
-      
-      .chip-enhanced {
-        padding: var(--space-3);
-        min-height: 48px;
+        width: 100%;
         justify-content: center;
       }
       
-      .field-hint {
-        font-size: 0.7rem;
-        margin-top: var(--space-1);
-      }
-      
-      .file-input {
-        padding: var(--space-3);
-        min-height: 48px;
-        text-align: center;
-      }
-      
-      .file-hint {
-        font-size: 0.7rem;
-        margin-top: var(--space-1);
-      }
-      
-      /* Enhanced task card mobile improvements */
-      .task-card {
-        padding: var(--space-4);
-        margin-bottom: var(--space-3);
-      }
-      
-      .task-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-3);
-        margin-bottom: var(--space-3);
-      }
-      
-      .task-title {
-        font-size: 1.1rem;
-        line-height: 1.3;
-      }
-      
-      .task-actions {
-        align-self: flex-end;
-        gap: var(--space-1);
-      }
-      
-      .task-actions .btn {
-        min-width: 40px;
-        min-height: 40px;
-        padding: var(--space-2);
-      }
-      
-      .task-description,
-      .task-location {
-        padding: var(--space-2);
-        font-size: 0.9rem;
-      }
-      
-      .task-meta {
-        grid-template-columns: 1fr;
-        gap: var(--space-2);
-        padding: var(--space-3);
-      }
-      
-      .task-meta-item {
-        padding: var(--space-2);
-        font-size: 0.85rem;
-      }
-      
-      .task-meta-item strong {
-        min-width: 70px;
-        font-size: 0.8rem;
-      }
-      
-      .priority-urgent,
-      .priority-normal,
-      .priority-critical,
-      .status-en-cours,
-      .status-termine {
-        padding: var(--space-1) var(--space-2);
-        font-size: 0.75rem;
-        min-width: 70px;
+      .chip-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     
@@ -1219,6 +1121,11 @@
       
       .password-header h1 {
         font-size: 1.5rem;
+      }
+      
+      /* Single-column chips on very small screens */
+      .chip-group {
+        grid-template-columns: 1fr;
       }
     }
     
