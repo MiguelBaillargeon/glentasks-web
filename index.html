@@ -158,7 +158,7 @@
       border-radius: var(--radius-lg);
       padding: var(--space-4);
       margin-bottom: var(--space-4);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
       border: 1px solid var(--gray-200);
       max-width: 1000px; /* Match tasks section width */
       margin-left: auto;
@@ -176,9 +176,9 @@
     }
     
     .app-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gray-700);
       margin: 0;
       line-height: 1.2;
     }
@@ -538,20 +538,20 @@
     .submit-container {
       grid-column: 1 / -1;
       text-align: center;
-      margin-top: var(--space-4);
+      margin-top: var(--space-3);
     }
 
     .submit-btn {
       background: var(--primary);
       color: white;
       border: none;
-      padding: var(--space-4) var(--space-8);
+      padding: var(--space-3) var(--space-6);
       border-radius: var(--radius);
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
-      min-width: 200px;
+      min-width: 160px;
     }
 
     .submit-btn:hover {
@@ -795,6 +795,36 @@
       z-index: 2;
     }
     
+    /* Mark as done button - subtle and compact */
+    .mark-done-btn {
+      background: var(--success);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .mark-done-btn:hover {
+      background: #059669;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .mark-done-btn:focus {
+      outline: 2px solid var(--success);
+      outline-offset: 2px;
+    }
+    
     /* 3 dots menu button */
     .menu-btn {
       position: relative;
@@ -919,6 +949,13 @@
         box-shadow: var(--shadow-sm);
       }
       
+      /* Mobile mark as done button adjustments */
+      .mark-done-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+      
       /* Mobile dropdown adjustments */
       .dropdown-menu {
         min-width: 100px;
@@ -1036,14 +1073,31 @@
       border-left: 2px solid var(--secondary);
     }
     
+    /* Clickable link styling */
+    .clickable-link {
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      word-break: break-all;
+    }
+    
+    .clickable-link:hover {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+    
+    .clickable-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+    
     .task-meta {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: var(--space-2);
       padding: var(--space-3);
-      background: var(--gray-50);
-      border-radius: var(--radius);
-      border: 1px solid var(--gray-200);
     }
 
     .task-meta-item {
@@ -1524,6 +1578,13 @@
       .compact-task .menu-btn {
         width: 32px;
         height: 32px;
+      }
+      
+      /* Extra small mobile mark as done button adjustments */
+      .mark-done-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
       }
       
       /* Fix form elements for very small screens */
@@ -2944,15 +3005,15 @@
     /* Header responsive improvements */
     @media (min-width: 1200px) {
       header {
-        padding: var(--space-5); /* Slightly more padding on large screens */
+        padding: var(--space-2); /* Keep consistent padding */
       }
       
       .header-content {
-        gap: var(--space-4); /* More spacing between title and actions */
+        gap: var(--space-3); /* Keep consistent spacing */
       }
       
       .app-title {
-        font-size: 2.25rem; /* Slightly larger title on large screens */
+        font-size: 1.75rem; /* Keep consistent size */
       }
       
       /* Task card improvements for large screens */
@@ -2984,15 +3045,15 @@
     
     @media (min-width: 1600px) {
       header {
-        padding: var(--space-6); /* Even more padding on very large screens */
+        padding: var(--space-4); /* Keep consistent padding */
       }
       
       .header-content {
-        gap: var(--space-5); /* Maximum spacing for very large screens */
+        gap: var(--space-3); /* Keep consistent spacing */
       }
       
       .app-title {
-        font-size: 2.5rem; /* Maximum title size for very large screens */
+        font-size: 1.75rem; /* Keep consistent size */
       }
       
       /* Task card improvements for very large screens */
@@ -3083,6 +3144,87 @@
     .characteristic-item {
       overflow: visible;
     }
+
+    /* Task location - Ultra compact with eye-friendly colors */
+    .task-location {
+      color: var(--gray-500);
+      font-size: 0.7rem;
+      margin-bottom: var(--space-2);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-2);
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--secondary);
+    }
+    
+    /* Clickable link styling for reports */
+    .clickable-link {
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      word-break: break-all;
+    }
+    
+    .clickable-link:hover {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+    
+    .clickable-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+    
+    /* Subtle attachment styling */
+    .task-attachments {
+      margin-top: var(--space-2);
+      display: flex;
+      gap: var(--space-1);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .attachment-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) var(--space-2);
+      font-size: 0.65rem;
+      color: var(--gray-500);
+      text-decoration: none;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .attachment-link:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-300);
+      color: var(--gray-600);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .attachment-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+    
+    .attachment-icon {
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
@@ -3116,12 +3258,6 @@
         <div class="header-actions">
           <button id="exportCSV" class="btn btn-secondary">
             📊 Exporter CSV
-          </button>
-          <button id="addMockData" class="btn btn-secondary">
-            🧪 Ajouter données test
-          </button>
-          <button id="clearMockData" class="btn btn-danger hidden">
-            🗑️ Effacer données test
           </button>
         </div>
       </div>
@@ -3282,7 +3418,7 @@
                 accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
               >
             </div>
-            <div class="file-hint">Formats acceptés: PDF, DOC, images, texte</div>
+            <div class="file-hint">Formats acceptés: PDF, images, videos, voice messages</div>
           </div>
         </div>
         
@@ -3346,7 +3482,7 @@
         </div>
         
         <div class="control-group">
-          <button id="generateReport" class="btn btn-primary">
+          <button id="generateReport" class="btn btn-primary" style="padding: var(--space-2) var(--space-4); font-size: 0.75rem;">
             📋 Générer Rapport de cette vue
           </button>
         </div>
@@ -3377,7 +3513,7 @@
     
     // DOM elements - will be initialized after DOM loads
     let $passwordOverlay, $passwordForm, $passwordInput, $appContainer, $cmvForm, $taskList, $tasksCount;
-    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $addMockData, $clearMockData, $generateReport;
+    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $generateReport;
     
     // App state
     let currentFilter = 'all';
@@ -3570,9 +3706,18 @@
       
       // Action buttons
       $exportCSV.addEventListener('click', exportToCSV);
-      $addMockData.addEventListener('click', addMockData);
-      $clearMockData.addEventListener('click', clearMockData);
       $generateReport.addEventListener('click', generateReport);
+      
+      // File input validation
+      const filesInput = document.getElementById('files');
+      if (filesInput) {
+        filesInput.addEventListener('change', () => {
+          if (filesInput.files.length > 5) {
+            alert('Vous pouvez ajouter jusqu\'à 5 fichiers.');
+            filesInput.value = '';
+          }
+        });
+      }
       
       console.log('Event listeners set up successfully');
     }
@@ -3589,6 +3734,12 @@
       editId = null;
       document.getElementById('submitBtn').textContent = '💾 Enregistrer la tâche';
       document.getElementById('cancelEditBtn').style.display = 'none';
+      
+      // Clear existing files note
+      const existingFilesNote = document.getElementById('existingFilesNote');
+      if (existingFilesNote) {
+        existingFilesNote.remove();
+      }
     }
     
     // Handle form submission
@@ -3612,6 +3763,35 @@
           status: formData.get('status'),
           createdAt: new Date().toISOString()
         };
+        
+        // Process file uploads
+        const filesInput = document.getElementById('files');
+        if (filesInput && filesInput.files.length > 0) {
+          const fileEntries = [];
+          for (const file of filesInput.files) {
+            // Convert File to base64 data URL for localStorage storage
+            const fileEntry = {
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              data: null
+            };
+            
+            // Read file as data URL synchronously using a Promise
+            const fileDataPromise = new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                resolve(e.target.result);
+              };
+              reader.readAsDataURL(file);
+            });
+            
+            // Wait for file data to be read
+            fileEntry.data = await fileDataPromise;
+            fileEntries.push(fileEntry);
+          }
+          taskData.files = fileEntries;
+        }
         
         // Validation is now handled in addTask/updateTask functions
         
@@ -3779,6 +3959,29 @@
           input.checked = input.value === task.status;
         });
         
+        // Handle existing files (show info about current files)
+        const filesInput = document.getElementById('files');
+        if (filesInput && task.files && task.files.length > 0) {
+          // Create a note about existing files
+          let existingFilesNote = document.getElementById('existingFilesNote');
+          if (!existingFilesNote) {
+            existingFilesNote = document.createElement('div');
+            existingFilesNote.id = 'existingFilesNote';
+            existingFilesNote.className = 'file-hint';
+            existingFilesNote.style.marginTop = 'var(--space-2)';
+            existingFilesNote.style.color = 'var(--gray-600)';
+            existingFilesNote.style.fontStyle = 'italic';
+            filesInput.parentNode.appendChild(existingFilesNote);
+          }
+          existingFilesNote.textContent = `📎 Fichiers actuels: ${task.files.map(f => f.name).join(', ')} (sélectionner de nouveaux fichiers pour les remplacer)`;
+        } else {
+          // Remove existing files note if no files
+          const existingFilesNote = document.getElementById('existingFilesNote');
+          if (existingFilesNote) {
+            existingFilesNote.remove();
+          }
+        }
+        
         // Update form state
         isEditing = true;
         editId = task.id;
@@ -3792,6 +3995,33 @@
       } catch (error) {
         console.error('Failed to load task for editing:', error);
         alert('Erreur lors du chargement de la tâche: ' + error.message);
+      }
+    }
+    
+    // Mark a task as done
+    async function markTaskAsDone(taskId) {
+      try {
+        if (!confirm('Marquer cette tâche comme terminée ?')) {
+          return;
+        }
+        
+        const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
+        const taskIndex = items.findIndex(item => item.id == taskId);
+        
+        if (taskIndex === -1) {
+          throw new Error('Task not found');
+        }
+        
+        // Update task status to completed
+        items[taskIndex].status = 'Terminée';
+        localStorage.setItem('cmvDB', JSON.stringify(items));
+        
+        console.log('Task marked as done successfully');
+        await loadTasks();
+        showSuccess('Tâche marquée comme terminée !');
+      } catch (error) {
+        console.error('Failed to mark task as done:', error);
+        showError('Erreur lors de la modification: ' + error.message);
       }
     }
     
@@ -3901,9 +4131,10 @@
       const statusClass = getStatusClass(item.status);
       const isUnassigned = !item.who || item.who.length === 0;
       const assignees = isUnassigned ? 'Non assignée' : item.who.join(', ');
+      const isCompleted = item.status === 'Terminée';
       
       return `
-        <div class="task-card compact-task ${item.status === 'Terminée' ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
+        <div class="task-card compact-task ${isCompleted ? 'completed' : ''} ${isUnassigned ? 'unassigned' : ''}" data-id="${item.id}">
           <div class="task-header">
             <div class="task-main-info">
               <h3 class="task-title">${escapeHtml(item.title)}</h3>
@@ -3915,6 +4146,11 @@
               </div>
             </div>
             <div class="task-actions">
+              ${!isCompleted ? `
+                <button class="btn btn-success btn-sm mark-done-btn" onclick="markTaskAsDone(${item.id})" title="Marquer comme terminée">
+                  ✓
+                </button>
+              ` : ''}
               <div class="menu-btn" onclick="toggleDropdown(${item.id})" title="Menu">
                 ⋯
               </div>
@@ -3933,8 +4169,22 @@
           
           ${(item.description || item.location) ? `
             <div class="task-content">
-              ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
-              ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+              ${item.description ? `<div class="task-description">${makeLinksClickable(escapeHtml(item.description))}</div>` : ''}
+              ${item.location ? `<div class="task-location">📍 ${makeLinksClickable(escapeHtml(item.location))}</div>` : ''}
+            </div>
+          ` : ''}
+          
+          ${(item.files && item.files.length > 0) ? `
+            <div class="task-attachments">
+              ${item.files.map(file => `
+                <a href="${file.data}" 
+                   download="${file.name}" 
+                   class="attachment-link" 
+                   title="Télécharger ${file.name}">
+                  <span class="attachment-icon">📎</span>
+                  ${escapeHtml(file.name)}
+                </a>
+              `).join('')}
             </div>
           ` : ''}
         </div>
@@ -4044,7 +4294,21 @@
       
       const div = document.createElement('div');
       div.textContent = text;
-      return div.innerHTML;
+      return div.textContent;
+    }
+    
+    // Convert URLs in text to clickable links
+    function makeLinksClickable(text) {
+      if (typeof text !== 'string') return text;
+      
+      // Enhanced URL regex pattern to detect various types of links
+      const urlRegex = /(https?:\/\/[^\s]+|maps\.google\.com\/[^\s]+|goo\.gl\/[^\s]+|bit\.ly\/[^\s]+|tinyurl\.com\/[^\s]+|maps\.apple\.com\/[^\s]+|openstreetmap\.org\/[^\s]+|bing\.com\/maps\/[^\s]+|waze\.com\/[^\s]+)/gi;
+      
+      return text.replace(urlRegex, (url) => {
+        // Ensure URL has protocol
+        const fullUrl = url.startsWith('http') ? url : `https://${url}`;
+        return `<a href="${fullUrl}" target="_blank" rel="noopener noreferrer" class="clickable-link">${url}</a>`;
+      });
     }
     
     // Update tasks count display
@@ -4137,220 +4401,11 @@
     // MOCK DATA FUNCTIONS
     // ============================================================================
     
-    // Add mock data for testing
-    async function addMockData() {
-      try {
-        const mockTasks = [
-          // Critical Priority Tasks
-          {
-            title: "🚨 Réparer la clôture de sécurité",
-            description: "Section effondrée près du belvédère - risque de chute",
-            location: "Belvédère - point de vue",
-            who: ["Éric", "Lucas"],
-            urgent: "Au PC !",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "🚨 Réparer la rampe d'accès",
-            description: "Béton fissuré sur la rampe handicapés - urgence sécurité",
-            location: "Entrée principale",
-            who: ["Audrey", "Lucas"],
-            urgent: "Au PC !",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "🚨 Évacuation d'urgence - zone inondée",
-            description: "Zone de camping inondée après orage",
-            location: "Zone de camping - rivière",
-            who: ["Éric", "Fred", "Audrey"],
-            urgent: "Au PC !",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          
-          // Urgent Priority Tasks
-          {
-            title: "⚠️ Réparer le système d'irrigation",
-            description: "Tuyaux endommagés sur le sentier principal - plantes en danger",
-            location: "Sentier principal - km 2.5",
-            who: ["Éric"],
-            urgent: "Oui",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "⚠️ Réparer l'éclairage extérieur",
-            description: "Projecteurs défaillants sur le chemin de randonnée",
-            location: "Chemin de randonnée - départ",
-            who: ["Éric"],
-            urgent: "Oui",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "⚠️ Réparer le pont en bois",
-            description: "Planches pourries sur le pont du ruisseau",
-            location: "Pont du ruisseau - sentier est",
-            who: ["Lucas"],
-            urgent: "Oui",
-            status: "Terminée",
-            createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "⚠️ Nettoyer les dégâts d'orage",
-            description: "Branches et débris après tempête de la nuit dernière",
-            location: "Tous les sentiers",
-            who: ["Fred", "Miguel"],
-            urgent: "Oui",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          
-          // Normal Priority Tasks
-          {
-            title: "📝 Tailler les haies du parking",
-            description: "Haies envahissantes bloquant la vue",
-            location: "Parking principal",
-            who: ["Fred"],
-            urgent: "Non",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Nettoyer les gouttières",
-            description: "Feuilles et débris bloquant l'écoulement",
-            location: "Bâtiment administratif",
-            who: ["Miguel"],
-            urgent: "Non",
-            status: "Terminée",
-            createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Planter de nouveaux arbres",
-            description: "Remplacer les pins morts par des sapins",
-            location: "Zone de reboisement - versant nord",
-            who: [],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Nettoyer les panneaux d'information",
-            description: "Graffitis et saleté sur les panneaux",
-            location: "Tous les panneaux du site",
-            who: ["Miguel", "Fred"],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Tondre les pelouses",
-            description: "Herbe haute sur les zones de pique-nique",
-            location: "Zones de pique-nique",
-            who: [],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Vérifier les extincteurs",
-            description: "Contrôle annuel des extincteurs dans tous les bâtiments",
-            location: "Tous les bâtiments",
-            who: ["Audrey"],
-            urgent: "Non",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Réparer les bancs de pique-nique",
-            description: "Bancs cassés dans la zone de repos",
-            location: "Zone de repos - lac",
-            who: ["Lucas"],
-            urgent: "Non",
-            status: "Terminée",
-            createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Nettoyer le parking vélos",
-            description: "Débris et feuilles dans le parking vélos",
-            location: "Parking vélos - entrée est",
-            who: ["Miguel"],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Vérifier les panneaux de signalisation",
-            description: "Contrôle de la visibilité des panneaux de direction",
-            location: "Tous les carrefours",
-            who: ["Fred"],
-            urgent: "Non",
-            status: "En Attente",
-            createdAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Réparer les poubelles",
-            description: "Poubelles endommagées dans les zones de pique-nique",
-            location: "Zones de pique-nique",
-            who: ["Audrey"],
-            urgent: "Non",
-            status: "Terminée",
-            createdAt: new Date(Date.now() - 17 * 24 * 60 * 60 * 1000).toISOString()
-          },
-          {
-            title: "📝 Nettoyer les toilettes publiques",
-            description: "Nettoyage hebdomadaire des toilettes publiques",
-            location: "Toilettes publiques - centre",
-            who: ["Miguel"],
-            urgent: "Non",
-            status: "En cours",
-            createdAt: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString()
-          }
-        ];
-        
-        const items = JSON.parse(localStorage.getItem('cmvDB') || '[]');
-        mockTasks.forEach(task => {
-          task.id = Date.now() + Math.random();
-          items.push(task);
-        });
-        
-        localStorage.setItem('cmvDB', JSON.stringify(items));
-        
-        await loadTasks();
-        $addMockData.classList.add('hidden');
-        $clearMockData.classList.remove('hidden');
-        
-        console.log('Mock data added successfully');
-        alert('Données de test ajoutées avec succès !');
-          } catch (error) {
-        console.error('Failed to add mock data:', error);
-        alert('Erreur lors de l\'ajout des données de test: ' + error.message);
-      }
-    }
+    // Add mock data for testing - REMOVED
+    // async function addMockData() { ... }
     
-    // Clear mock data
-    async function clearMockData() {
-      try {
-        if (!confirm('Êtes-vous sûr de vouloir effacer toutes les données de test ?')) {
-          return;
-        }
-        
-        localStorage.removeItem('cmvDB');
-        await initializeDatabase();
-        await loadTasks();
-        
-        $addMockData.classList.remove('hidden');
-        $clearMockData.classList.add('hidden');
-        
-        console.log('Mock data cleared successfully');
-        alert('Données de test effacées avec succès !');
-      } catch (error) {
-        console.error('Failed to clear mock data:', error);
-        alert('Erreur lors de l\'effacement des données de test: ' + error.message);
-      }
-    }
+    // Clear mock data - REMOVED
+    // async function clearMockData() { ... }
     
     // ============================================================================
     // REPORT GENERATION
@@ -5128,8 +5183,22 @@
                   
                   ${(item.description || item.location) ? `
                     <div class="task-content">
-                      ${item.description ? `<div class="task-description">${escapeHtml(item.description)}</div>` : ''}
-                      ${item.location ? `<div class="task-location">📍 ${escapeHtml(item.location)}</div>` : ''}
+                      ${item.description ? `<div class="task-description">${makeLinksClickable(escapeHtml(item.description))}</div>` : ''}
+                      ${item.location ? `<div class="task-location">📍 ${makeLinksClickable(escapeHtml(item.location))}</div>` : ''}
+                    </div>
+                  ` : ''}
+                  
+                  ${(item.files && item.files.length > 0) ? `
+                    <div class="task-attachments">
+                      ${item.files.map(file => `
+                        <a href="${file.data}" 
+                           download="${file.name}" 
+                           class="attachment-link" 
+                           title="Télécharger ${file.name}">
+                          <span class="attachment-icon">📎</span>
+                          ${escapeHtml(file.name)}
+                        </a>
+                      `).join('')}
                     </div>
                   ` : ''}
                 </div>
@@ -5162,8 +5231,6 @@
       $sortSelect = document.getElementById('sortSelect');
       $employeeSelect = document.getElementById('employeeSelect');
       $exportCSV = document.getElementById('exportCSV');
-      $addMockData = document.getElementById('addMockData');
-      $clearMockData = document.getElementById('clearMockData');
       $generateReport = document.getElementById('generateReport');
       
       // Setup password form after DOM elements are available
@@ -5238,27 +5305,17 @@
     // SECURITY AND INPUT SANITIZATION
     // ============================================================================
     
-    // Sanitize HTML input to prevent XSS
-    function sanitizeInput(input) {
-      if (typeof input !== 'string') return input;
-      
-      return input
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#x27;')
-        .replace(/\//g, '&#x2F;');
-    }
+    // Note: sanitizeInput function removed to prevent double encoding
+    // escapeHtml function provides sufficient XSS protection
     
     // Sanitize task data before processing
     function sanitizeTaskData(taskData) {
       return {
         ...taskData,
-        title: sanitizeInput(taskData.title),
-        description: sanitizeInput(taskData.description),
-        location: sanitizeInput(taskData.location),
-        who: Array.isArray(taskData.who) ? taskData.who.map(w => sanitizeInput(w)) : []
+        title: taskData.title,
+        description: taskData.description,
+        location: taskData.location,
+        who: Array.isArray(taskData.who) ? taskData.who : []
       };
     }
 
@@ -6195,11 +6252,12 @@
     });
     
     TestRunner.test('Input Sanitization', async () => {
-      const maliciousInput = 'test script tag';
-      const sanitized = sanitizeInput(maliciousInput);
+      // Test that escapeHtml function properly handles text without double encoding
+      const testInput = 'test "quotes" and <tags>';
+      const escaped = escapeHtml(testInput);
       
-      TestRunner.assert(!sanitized.includes('script'), 'Script tags should be sanitized');
-      TestRunner.assert(sanitized.includes('script'), 'Text should be preserved');
+      TestRunner.assert(escaped === testInput, 'Text should be preserved without double encoding');
+      TestRunner.assert(!escaped.includes('&amp;'), 'No double encoding should occur');
     });
     
     // Run tests automatically in development mode
