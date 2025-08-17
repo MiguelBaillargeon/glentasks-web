@@ -772,11 +772,13 @@
       line-height: 1.4;
     }
     
+    /* Task actions - Updated for 3 dots menu */
     .task-actions {
       display: flex;
       gap: var(--space-2);
       flex-shrink: 0;
       flex-wrap: wrap;
+      position: relative; /* This is essential for dropdown positioning */
     }
     
     .task-actions .btn {
@@ -813,6 +815,164 @@
       opacity: 1;
     }
     
+    /* 3 dots menu button */
+    .menu-btn {
+      position: relative;
+      cursor: pointer;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: var(--gray-600);
+    }
+    
+    .menu-btn:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-300);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .menu-btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    
+    /* Dropdown menu - Compact but working */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      min-width: 120px; /* Compact width */
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      margin-top: var(--space-1);
+    }
+    
+    .dropdown-menu.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1); /* Compact gap */
+      padding: var(--space-1) var(--space-2); /* Compact padding */
+      color: var(--gray-700);
+      text-decoration: none;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-size: 0.8rem; /* Compact font size */
+    }
+    
+    .dropdown-item:hover {
+      background: var(--gray-50);
+      color: var(--gray-900);
+    }
+    
+    .dropdown-item:first-child {
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    
+    .dropdown-item:last-child {
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    
+    .dropdown-item.danger:hover {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+    
+    .dropdown-item.danger:hover .dropdown-icon {
+      color: #dc2626;
+    }
+    
+    .dropdown-icon {
+      font-size: 0.9rem; /* Compact icon size */
+      opacity: 0.8;
+    }
+    
+    /* Mobile responsive adjustments for dropdown - More compact */
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        min-width: 100px; /* Reduced from 120px */
+        right: -10px;
+        z-index: 10000;
+      }
+      
+      .dropdown-item {
+        padding: var(--space-2) var(--space-3); /* Reduced from var(--space-3) var(--space-4) */
+        font-size: 0.85rem; /* Reduced from 0.9rem */
+      }
+    }
+    
+    /* Extra small mobile devices - Even more compact */
+    @media (max-width: 480px) {
+      .dropdown-menu {
+        min-width: 90px; /* Reduced from 110px */
+        right: -5px;
+        z-index: 10000;
+      }
+      
+      .dropdown-item {
+        padding: var(--space-1) var(--space-2); /* Reduced padding */
+        font-size: 0.8rem; /* Reduced font size */
+      }
+      
+      .dropdown-icon {
+        font-size: 0.8rem; /* Reduced icon size */
+      }
+    }
+    
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+      .dropdown-menu {
+        z-index: 10000;
+      }
+      
+      .task-actions {
+        position: relative;
+        z-index: 10001;
+      }
+      
+      .task-card {
+        z-index: 1;
+      }
+    }
+    
+    @media (min-width: 1600px) {
+      .dropdown-menu {
+        z-index: 10000;
+      }
+      
+      .task-actions {
+        position: relative;
+        z-index: 10001;
+      }
+      
+      .task-card {
+        z-index: 1;
+      }
+    }
+
     /* Specific button styles for better visual hierarchy */
     .task-actions .btn-primary {
       color: var(--primary);
@@ -1299,6 +1459,11 @@
         box-shadow: var(--shadow);
         opacity: 1;
       }
+      
+      .compact-task .menu-btn {
+        width: 32px;
+        height: 32px;
+      }
     }
     
     /* Large screen optimizations */
@@ -1440,6 +1605,11 @@
         min-width: 40px;
         min-height: 40px;
         justify-content: center;
+      }
+      
+      .menu-btn {
+        min-width: 40px;
+        min-height: 40px;
       }
     }
 
@@ -1963,6 +2133,11 @@
         min-height: 32px;
         padding: var(--space-1);
         font-size: 0.7rem;
+      }
+      
+      .compact-task .menu-btn {
+        width: 32px;
+        height: 32px;
       }
     }
 
@@ -2568,6 +2743,11 @@
         min-height: 40px;
         padding: var(--space-3);
       }
+      
+      .menu-btn {
+        width: 40px;
+        height: 40px;
+      }
     }
     
     @media (min-width: 1600px) {
@@ -2602,6 +2782,11 @@
         min-width: 44px; /* Maximum action button size */
         min-height: 44px;
         padding: var(--space-4);
+      }
+      
+      .menu-btn {
+        width: 44px;
+        height: 44px;
       }
     }
   </style>
@@ -3436,12 +3621,19 @@
               </div>
             </div>
             <div class="task-actions">
-              <button class="btn btn-sm btn-primary" onclick="editTask(${item.id})" title="Modifier">
-                ✏️
-              </button>
-              <button class="btn btn-sm btn-danger" onclick="deleteTask(${item.id})" title="Supprimer">
-                🗑️
-              </button>
+              <div class="menu-btn" onclick="toggleDropdown(${item.id})" title="Menu">
+                ⋯
+              </div>
+              <div class="dropdown-menu" id="dropdown-${item.id}">
+                <button class="dropdown-item" onclick="editTask(${item.id})">
+                  <span class="dropdown-icon">✏️</span>
+                  Modifier
+                </button>
+                <button class="dropdown-item danger" onclick="deleteTask(${item.id})">
+                  <span class="dropdown-icon">🗑️</span>
+                  Supprimer
+                </button>
+              </div>
             </div>
           </div>
           
@@ -5314,7 +5506,8 @@
               count: times.length,
               average: durations.reduce((a, b) => a + b, 0) / durations.length,
               min: Math.min(...durations),
-              max: Math.max(...durations)
+              max: Math.max(...durations),
+              recent: times.slice(-10).map(t => ({ timestamp: t.timestamp, duration: t.duration }))
             };
           }
         }
@@ -5725,6 +5918,42 @@
         }, 2000);
       });
     }
+
+    // ============================================================================
+    // DROPDOWN MENAGEMENT
+    // ============================================================================
+    
+    // Toggle dropdown menu
+    function toggleDropdown(taskId) {
+      const dropdown = document.getElementById(`dropdown-${taskId}`);
+      const allDropdowns = document.querySelectorAll('.dropdown-menu');
+      
+      // Close all other dropdowns
+      allDropdowns.forEach(dd => {
+        if (dd.id !== `dropdown-${taskId}`) {
+          dd.classList.remove('show');
+        }
+      });
+      
+      // Toggle current dropdown
+      dropdown.classList.toggle('show');
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.task-actions')) {
+        const allDropdowns = document.querySelectorAll('.dropdown-menu');
+        allDropdowns.forEach(dd => dd.classList.remove('show'));
+      }
+    });
+    
+    // Close dropdown when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const allDropdowns = document.querySelectorAll('.dropdown-menu');
+        allDropdowns.forEach(dd => dd.classList.remove('show'));
+      }
+    });
   </script>
 </body>
 </html>
