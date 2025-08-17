@@ -772,13 +772,15 @@
       line-height: 1.4;
     }
     
-    /* Task actions - Updated for 3 dots menu */
+    /* Task actions - Updated for 3 dots menu with proper positioning */
     .task-actions {
       display: flex;
       gap: var(--space-2);
       flex-shrink: 0;
       flex-wrap: wrap;
       position: relative; /* This is essential for dropdown positioning */
+      align-self: flex-start; /* Keep actions at the top */
+      margin-top: 0; /* Remove any top margin */
     }
     
     .task-actions .btn {
@@ -829,6 +831,7 @@
       justify-content: center;
       transition: all 0.2s ease;
       color: var(--gray-600);
+      flex-shrink: 0; /* Prevent shrinking */
     }
     
     .menu-btn:hover {
