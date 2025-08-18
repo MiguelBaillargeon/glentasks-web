@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>GlenTasks | Gestion des Tâches</title>
   <meta name="description" content="GlenTasks - Gestion des tâches simple et efficace">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="GlenTasks">
   <meta name="theme-color" content="#3b82f6">
-  <meta name="mobile-web-app-capable" content="yes">
   <meta name="format-detection" content="telephone=no">
   
   <style>
@@ -708,21 +704,38 @@
       border-radius: var(--radius);
       padding: var(--space-4);
       margin-bottom: var(--space-3);
-      transition: all 0.2s ease-in-out;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative; /* This creates the positioning context for the menu button */
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       max-width: 100%; /* Ensure cards don't exceed container width */
+      overflow: hidden;
+    }
+    
+    .task-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
     .task-card:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       border-color: var(--gray-300);
+    }
+    
+    .task-card:hover::before {
+      opacity: 1;
     }
     
     .task-card.completed {
       opacity: 0.7;
-      background: var(--gray-50);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
     }
     
     .task-card.completed .task-title {
@@ -737,7 +750,7 @@
     }
     
     .task-card.unassigned:hover {
-      background: var(--gray-50);
+      background: linear-gradient(135deg, #fefbf5 0%, #fef7ed 100%);
     }
     
     .unassigned-badge {
@@ -3180,13 +3193,179 @@
       border-radius: var(--radius-sm);
     }
     
-    /* Subtle attachment styling */
+    /* Subtle attachment styling - More delicate and refined */
+    .task-attachments {
+      margin-top: var(--space-3);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      align-items: center;
+      padding: var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border: 1px solid #e8eaed;
+      font-size: 0.7rem;
+      color: var(--gray-600);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-attachments::before {
+      content: "📎";
+      margin-right: var(--space-2);
+      font-size: 0.75rem;
+      opacity: 0.6;
+      filter: grayscale(0.3);
+    }
+    
+    .task-attachments::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+    
+    .attachment-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-2) var(--space-3);
+      font-size: 0.65rem;
+      color: var(--gray-500);
+      text-decoration: none;
+      background: white;
+      border: 1px solid #e8eaed;
+      border-radius: var(--radius-md);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      position: relative;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    
+    .attachment-link:hover {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-color: #d1d5db;
+      color: var(--gray-700);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .attachment-link:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+    
+    .attachment-link:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-md);
+    }
+    
+    .attachment-icon {
+      font-size: 0.7rem;
+      opacity: 0.7;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    .attachment-link:hover .attachment-icon {
+      opacity: 0.9;
+    }
+    
+    /* Better attachment display on mobile */
+    @media (max-width: 768px) {
+      .task-attachments {
+        margin-top: var(--space-2);
+        padding: var(--space-2);
+        gap: var(--space-1);
+      }
+      
+      .attachment-link {
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.7rem;
+        max-width: 150px;
+      }
+      
+      .attachment-icon {
+        font-size: 0.75rem;
+      }
+    }
+    
+    /* Task attachments for print */
+    @media print {
+      .task-attachments {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        margin-top: 8pt !important;
+        padding: 8pt !important;
+        background: #f8fafc !important;
+        border: 1pt solid #e2e8f0 !important;
+        border-radius: 4pt !important;
+      }
+      
+      .task-attachments::before {
+        content: "📎" !important;
+        margin-right: 8pt !important;
+        font-size: 8pt !important;
+        opacity: 0.7 !important;
+      }
+      
+      .attachment-link {
+        padding: 4pt 6pt !important;
+        font-size: 8pt !important;
+        background: white !important;
+        border: 1pt solid #d1d5db !important;
+        border-radius: 3pt !important;
+        color: #374151 !important;
+        text-decoration: none !important;
+        margin-right: 4pt !important;
+        margin-bottom: 4pt !important;
+        display: inline-block !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+
+    /* Task attachments - Refined and delicate styling for reports */
     .task-attachments {
       margin-top: var(--space-2);
       display: flex;
       gap: var(--space-1);
       flex-wrap: wrap;
       align-items: center;
+      padding: var(--space-2);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-sm);
+      border: 1px solid #e8eaed;
+      font-size: 0.65rem;
+      color: var(--gray-600);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-attachments::before {
+      content: "📎";
+      margin-right: var(--space-2);
+      font-size: 0.7rem;
+      opacity: 0.6;
+      filter: grayscale(0.3);
+    }
+    
+    .task-attachments::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
     }
     
     .attachment-link {
@@ -3194,36 +3373,400 @@
       align-items: center;
       gap: var(--space-1);
       padding: var(--space-1) var(--space-2);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       color: var(--gray-500);
       text-decoration: none;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
+      background: white;
+      border: 1px solid #e8eaed;
       border-radius: var(--radius-sm);
       transition: all 0.2s ease;
-      max-width: 200px;
+      max-width: 160px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      font-weight: 500;
+      position: relative;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
     
     .attachment-link:hover {
-      background: var(--gray-100);
-      border-color: var(--gray-300);
-      color: var(--gray-600);
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-color: #d1d5db;
+      color: var(--gray-700);
       transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .attachment-link:focus {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
     
     .attachment-icon {
+      font-size: 0.65rem;
+      opacity: 0.7;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    .attachment-link:hover .attachment-icon {
+      opacity: 0.9;
+    }
+
+    /* Footer - Ultra compact */
+    .footer {
+      text-align: center;
+      margin-top: var(--space-3);
+      padding: var(--space-2);
+      color: var(--gray-500);
       font-size: 0.7rem;
-      opacity: 0.8;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200);
+      max-width: 900px; /* Match header width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .task-content {
+      margin-bottom: var(--space-3);
+      position: relative;
+    }
+    
+    .task-description {
+      color: var(--gray-600);
+      margin-bottom: var(--space-2);
+      line-height: 1.5;
+      font-size: 0.75rem;
+      padding: var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-description::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+    
+    .task-location {
+      color: var(--gray-500);
+      font-size: 0.7rem;
+      margin-bottom: var(--space-2);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-location::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+
+    .task-quick-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+      font-size: 0.7rem;
+      margin-top: var(--space-2);
+    }
+    
+    .task-assignee,
+    .task-priority,
+    .task-status,
+    .task-date {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-2) var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border: 1px solid #e8eaed;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-assignee::before,
+    .task-priority::before,
+    .task-status::before,
+    .task-date::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+    
+    .task-assignee:hover,
+    .task-priority:hover,
+    .task-status:hover,
+    .task-date:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border-color: #d1d5db;
+    }
+    
+    .task-assignee {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      color: #475569;
+      font-weight: 500;
+    }
+    
+    .task-date {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: #64748b;
+      font-size: 0.65rem;
+    }
+
+    /* Task items - Ultra compact with refined styling */
+    .task-item { 
+      padding: var(--space-3);
+      border: 1px solid #e8eaed; 
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-3);
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      max-width: 900px; /* Match task list width */
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .task-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-color: #d1d5db;
+    }
+    
+    .task-item:hover::before {
+      opacity: 1;
+    }
+    
+    .task-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .task-header { 
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+      gap: var(--space-3);
+    }
+    
+    .task-title { 
+      font-size: 0.9rem;
+      font-weight: 600; 
+      color: var(--gray-800); 
+      margin: 0;
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    /* Task quick meta - Ultra compact with refined styling */
+    .task-quick-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+      font-size: 0.7rem;
+      margin-top: var(--space-2);
+    }
+    
+    .task-assignee,
+    .task-priority,
+    .task-status,
+    .task-date {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-2) var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border: 1px solid #e8eaed;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-assignee::before,
+    .task-priority::before,
+    .task-status::before,
+    .task-date::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+    
+    .task-assignee:hover,
+    .task-priority:hover,
+    .task-status:hover,
+    .task-date:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border-color: #d1d5db;
+    }
+    
+    .task-assignee {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      color: #475569;
+      font-weight: 500;
+    }
+    
+    .task-date {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: #64748b;
+      font-size: 0.65rem;
+    }
+
+    /* Task description - Ultra compact with refined styling */
+    .task-description {
+      color: var(--gray-600);
+      margin-bottom: var(--space-3);
+      line-height: 1.4;
+      font-size: 0.8rem;
+      padding: var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-description::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+
+    /* Task location - Ultra compact with refined styling */
+    .task-location {
+      color: var(--gray-500);
+      font-size: 0.75rem;
+      margin-bottom: var(--space-3);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .task-location::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+    }
+
+    /* Summary cards - Ultra compact grid with refined styling */
+    .summary {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Reduced from 100px */
+      gap: var(--space-2); /* Reduced from var(--space-2) */
+      margin-bottom: var(--space-3); /* Reduced from var(--space-3) */
+      max-width: 800px; /* Match main app form width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .summary-card {
+      background: white;
+      padding: var(--space-2); /* Reduced from var(--space-2) */
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e8eaed;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .summary-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-color: #d1d5db;
+    }
+    
+    .summary-card:hover::before {
+      opacity: 1;
+    }
+    
+    .summary-number {
+      font-size: 1.1rem; /* Reduced from 1.25rem */
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: var(--space-1);
+      line-height: 1;
+    }
+    
+    .summary-label {
+      color: var(--gray-600);
+      font-size: 0.65rem; /* Reduced from 0.65rem */
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -3583,24 +4126,6 @@
         // Load and display tasks
         await loadTasks();
         
-        // Hide splash screen if in Capacitor
-        if (window.Capacitor && window.Capacitor.Plugins.SplashScreen) {
-          try {
-            console.log('Attempting to hide splash screen...');
-            await window.Capacitor.Plugins.SplashScreen.hide();
-            console.log('Splash screen hidden successfully');
-          } catch (error) {
-            console.warn('Could not hide splash screen:', error);
-            // Try alternative method
-            try {
-              await window.Capacitor.Plugins.SplashScreen.hide({ fadeOutDuration: 0 });
-              console.log('Splash screen hidden with alternative method');
-            } catch (altError) {
-              console.warn('Alternative splash screen hide failed:', altError);
-            }
-          }
-        }
-        
         console.log('App initialization completed successfully');
         
       } catch (error) {
@@ -3609,15 +4134,6 @@
         
         // Try to show some content even if database fails
         $taskList.innerHTML = '<div class="error">Erreur d\'initialisation: ' + error.message + '</div>';
-        
-        // Still try to hide splash screen even if app failed
-        if (window.Capacitor && window.Capacitor.Plugins.SplashScreen) {
-          try {
-            await window.Capacitor.Plugins.SplashScreen.hide();
-          } catch (splashError) {
-            console.warn('Could not hide splash screen after error:', splashError);
-          }
-        }
       }
     }
     
@@ -3656,7 +4172,8 @@
         who: Array.isArray(item.who) ? item.who : (item.who ? [item.who] : []),
         urgent: item.urgent || 'Non',
         status: item.status || 'En cours',
-        createdAt: item.createdAt || new Date().toISOString()
+        createdAt: item.createdAt || new Date().toISOString(),
+        files: item.files || [] // Preserve files data
       };
     }
     
@@ -3766,6 +4283,7 @@
         
         // Process file uploads
         const filesInput = document.getElementById('files');
+        
         if (filesInput && filesInput.files.length > 0) {
           const fileEntries = [];
           for (const file of filesInput.files) {
@@ -3783,12 +4301,20 @@
               reader.onload = function(e) {
                 resolve(e.target.result);
               };
+              reader.onerror = function(e) {
+                console.error('Error reading file:', file.name, e);
+                resolve(null);
+              };
               reader.readAsDataURL(file);
             });
             
             // Wait for file data to be read
             fileEntry.data = await fileDataPromise;
-            fileEntries.push(fileEntry);
+            if (fileEntry.data) {
+              fileEntries.push(fileEntry);
+            } else {
+              console.error('Failed to read file:', file.name);
+            }
           }
           taskData.files = fileEntries;
         }
@@ -4181,10 +4707,10 @@
                    download="${file.name}" 
                    class="attachment-link" 
                    title="Télécharger ${file.name}">
-                  <span class="attachment-icon">📎</span>
+                  <span class="attachment-icon">📄</span>
                   ${escapeHtml(file.name)}
                 </a>
-              `).join('')}
+          `).join('')}
             </div>
           ` : ''}
         </div>
@@ -4501,26 +5027,8 @@
         // Generate report HTML
         const reportHTML = generateReportHTML(items);
         
-        // Try to use Capacitor File API first
-        if (window.Capacitor && window.Capacitor.Plugins.Filesystem) {
-          try {
-            const filename = `rapport_glentasks_${new Date().toISOString().split('T')[0]}.html`;
-            const result = await window.Capacitor.Plugins.Filesystem.writeFile({
-              path: filename,
-              data: reportHTML,
-              directory: 'DOCUMENTS',
-              encoding: 'utf8'
-            });
-            
-            console.log('Report saved successfully:', result);
-            alert(`Rapport généré avec succès: ${filename}.`);
-          } catch (error) {
-            console.warn('Capacitor Filesystem failed, trying fallback:', error);
-            fallbackReportGeneration(reportHTML);
-          }
-        } else {
-          fallbackReportGeneration(reportHTML);
-        }
+        // Generate report using web APIs
+        fallbackReportGeneration(reportHTML);
         
       } catch (error) {
         console.error('Report generation failed:', error);
@@ -4772,21 +5280,46 @@
               display: inline-flex;
               align-items: center;
               gap: var(--space-1);
-              padding: var(--space-1);
-              background: #f8fafc;
-              border-radius: var(--radius-sm);
-              border: 1px solid #e2e8f0;
+              padding: var(--space-2) var(--space-3);
+              background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+              border-radius: var(--radius-md);
+              border: 1px solid #e8eaed;
               white-space: nowrap;
+              transition: all 0.2s ease;
+              position: relative;
+              overflow: hidden;
+            }
+            
+            .task-assignee::before,
+            .task-priority::before,
+            .task-status::before,
+            .task-date::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 1px;
+              background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
+            }
+            
+            .task-assignee:hover,
+            .task-priority:hover,
+            .task-status:hover,
+            .task-date:hover {
+              transform: translateY(-1px);
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+              border-color: #d1d5db;
             }
             
             .task-assignee {
-              background: #f1f5f9;
+              background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
               color: #475569;
               font-weight: 500;
             }
             
             .task-date {
-              background: #f8fafc;
+              background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
               color: #64748b;
               font-size: 0.65rem;
             }
@@ -5195,7 +5728,7 @@
                            download="${file.name}" 
                            class="attachment-link" 
                            title="Télécharger ${file.name}">
-                          <span class="attachment-icon">📎</span>
+                          <span class="attachment-icon">📄</span>
                           ${escapeHtml(file.name)}
                         </a>
                       `).join('')}
@@ -5244,7 +5777,7 @@
       checkAuthentication();
     });
     
-    // Handle page visibility changes (for mobile apps)
+    // Handle page visibility changes (for web applications)
     document.addEventListener('visibilitychange', function() {
       if (document.visibilityState === 'visible') {
         console.log('App became visible, refreshing data...');
@@ -5315,7 +5848,8 @@
         title: taskData.title,
         description: taskData.description,
         location: taskData.location,
-        who: Array.isArray(taskData.who) ? taskData.who : []
+        who: Array.isArray(taskData.who) ? taskData.who : [],
+        files: taskData.files || [] // Preserve files data
       };
     }
 
