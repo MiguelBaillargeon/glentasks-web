@@ -3797,7 +3797,7 @@
     <!-- Header -->
     <header>
       <div class="header-content">
-        <h1 class="app-title">GlenTasks</h1>
+        <h1 class="app-title">Nick's App</h1>
         <div class="header-actions">
           <button id="exportCSV" class="btn btn-secondary">
             📊 Exporter CSV
@@ -5227,7 +5227,7 @@
               padding: var(--space-2);
               border: 1px solid var(--gray-200); 
               border-radius: var(--radius-sm);
-              margin-bottom: var(--space-2);
+              margin-bottom: var(--space-4); /* Increased from var(--space-2) to add more space between cards */
               background: white;
               transition: all 0.2s ease;
               box-shadow: var(--shadow-sm);
@@ -5693,7 +5693,6 @@
           </div>
           
           <div class="tasks-section">
-            <h2 class="tasks-title">Tâches</h2>
             ${items.map(item => {
               const priorityClass = getPriorityClass(item.urgent);
               const statusClass = getStatusClass(item.status);
