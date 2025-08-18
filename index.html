@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GlenTasks | Gestion des Tâches</title>
   <meta name="description" content="GlenTasks - Gestion des tâches simple et efficace">
   <meta name="theme-color" content="#3b82f6">
@@ -1043,6 +1043,12 @@
       border-radius: var(--radius-sm);
       border: 1px solid #e2e8f0;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .task-assignee {
@@ -1215,7 +1221,6 @@
       .app-container {
         padding: var(--space-2);
         max-width: 100%;
-        overflow-x: hidden;
       }
       
       .header-content {
@@ -1327,9 +1332,8 @@
         font-size: 1rem;
       }
       
-      /* Prevent horizontal scrolling */
+      /* Prevent layout issues on small screens */
       body {
-        overflow-x: hidden;
         width: 100%;
         position: relative;
       }
@@ -1806,7 +1810,6 @@
 
     /* Prevent horizontal scrolling globally */
     html, body {
-      overflow-x: hidden;
       max-width: 100%;
     }
     
@@ -1821,7 +1824,6 @@
     .controls-section,
     .tasks-section {
       max-width: 100%;
-      overflow-x: hidden;
     }
 
     /* Accessibility improvements */
@@ -2098,7 +2100,7 @@
       
       /* Improve password form on mobile */
       .password-container {
-        width: calc(100vw - 2rem);
+        width: 100%;
         max-width: 400px;
       }
       
@@ -2355,6 +2357,9 @@
       border-radius: var(--radius-sm);
       border: 1px solid #e2e8f0;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .task-assignee {
@@ -2600,6 +2605,9 @@
       border-radius: var(--radius-sm);
       border: 1px solid #e2e8f0;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .task-assignee {
@@ -3240,10 +3248,13 @@
       border: 1px solid #e8eaed;
       border-radius: var(--radius-md);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      max-width: 180px;
+      max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-weight: 500;
       position: relative;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -3380,10 +3391,13 @@
       border: 1px solid #e8eaed;
       border-radius: var(--radius-sm);
       transition: all 0.2s ease;
-      max-width: 160px;
+      max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-weight: 500;
       position: relative;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
