@@ -3802,6 +3802,9 @@
           <button id="exportCSV" class="btn btn-secondary">
             📊 Exporter CSV
           </button>
+          <button id="generateExamples" class="btn btn-secondary">
+            📝 Exemples de tâches
+          </button>
         </div>
       </div>
     </header>
@@ -4056,7 +4059,7 @@
     
     // DOM elements - will be initialized after DOM loads
     let $passwordOverlay, $passwordForm, $passwordInput, $appContainer, $cmvForm, $taskList, $tasksCount;
-    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $generateReport;
+    let $filterSelect, $sortSelect, $employeeSelect, $exportCSV, $generateReport, $generateExamples;
     
     // App state
     let currentFilter = 'all';
@@ -4224,6 +4227,7 @@
       // Action buttons
       $exportCSV.addEventListener('click', exportToCSV);
       $generateReport.addEventListener('click', generateReport);
+      $generateExamples.addEventListener('click', generateExampleTasks);
       
       // File input validation
       const filesInput = document.getElementById('files');
@@ -4915,6 +4919,120 @@
       } catch (error) {
         console.error('CSV export failed:', error);
         alert('Erreur lors de l\'export CSV: ' + error.message);
+      }
+    }
+    
+    // Generate example tasks from CSV data
+    async function generateExampleTasks() {
+      try {
+        // Check if there are already tasks
+        const existingTasks = await listSubmissions();
+        if (existingTasks.length > 0) {
+          if (!confirm('Il y a déjà des tâches dans l\'application. Voulez-vous ajouter les exemples en plus des tâches existantes ?')) {
+            return;
+          }
+        }
+        
+        // Example tasks based on the CSV data
+        const exampleTasks = [
+          {
+            title: "Pelouse",
+            description: "Pelouse et WE sont dû",
+            location: "petit lac",
+            who: ["Audrey"],
+            urgent: "Oui",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() // 1 day ago
+          },
+          {
+            title: "Arroser",
+            description: "",
+            location: "Papillion",
+            who: ["Éric"],
+            urgent: "Au PC !",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Toiture cabanons",
+            description: "Commander matériaux et finir la toiture des cabanes.",
+            location: "https://maps.app.goo.gl/YYD6JGMvqazm7mGK9",
+            who: ["Miguel"],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Désherbage",
+            description: "",
+            location: "Autour du chalet",
+            who: ["Lucas"],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Tranché électrique",
+            description: "En attente du fil 18 Aout",
+            location: "mi-montagne",
+            who: ["Fred", "Lucas", "Miguel"],
+            urgent: "Non",
+            status: "En Attente",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Réparer Takeushi",
+            description: "Réparer le levier de la lame pelle takeushi.",
+            location: "Garage mécanique",
+            who: ["Fred"],
+            urgent: "Non",
+            status: "En Attente",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Raque rateau",
+            description: "Faire un raque pour rateaux en bois (voir fichier joint pour le plan).",
+            location: "Dôme lac",
+            who: ["Miguel"],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            title: "Ménage Fournaise",
+            description: "Faire le ménage de la cabane ou la fournaise",
+            location: "Fournaise",
+            who: [],
+            urgent: "Non",
+            status: "En cours",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          }
+        ];
+        
+        // Add each example task
+        let addedCount = 0;
+        for (const taskData of exampleTasks) {
+          try {
+            await addTask(taskData);
+            addedCount++;
+          } catch (error) {
+            console.error('Failed to add example task:', error);
+          }
+        }
+        
+        // Reload tasks and show success message
+        await loadTasks();
+        
+        if (addedCount > 0) {
+          showSuccess(`${addedCount} exemple${addedCount > 1 ? 's' : ''} de tâche${addedCount > 1 ? 's' : ''} ajouté${addedCount > 1 ? 's' : ''} avec succès !`);
+        } else {
+          showError('Aucun exemple de tâche n\'a pu être ajouté.');
+        }
+        
+        console.log('Example tasks generated successfully');
+      } catch (error) {
+        console.error('Failed to generate example tasks:', error);
+        showError('Erreur lors de la génération des exemples: ' + error.message);
       }
     }
     
@@ -5764,6 +5882,7 @@
       $employeeSelect = document.getElementById('employeeSelect');
       $exportCSV = document.getElementById('exportCSV');
       $generateReport = document.getElementById('generateReport');
+      $generateExamples = document.getElementById('generateExamples');
       
       // Setup password form after DOM elements are available
       setupPasswordForm();
